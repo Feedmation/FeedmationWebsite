@@ -31,7 +31,7 @@ $schema = "feedmati_system";
 	function dbconnect()
 	{
 		//connects to the db
-		$dbConnString = "host=localhost options='--client_encoding=UTF8' user=feedmati_user dbname=feedmati_system password=PZi0wuz9n+XX";
+		$dbConnString = "host=173.254.28.90 options='--client_encoding=UTF8' user=feedmati_user dbname=feedmati_system password=PZi0wuz9n+XX";
 		$dbConn = pg_connect($dbConnString ) or die("Problem with connection to PostgreSQL:".pg_last_error());
 		return $dbConn;
 	}
