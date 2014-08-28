@@ -1,0 +1,52 @@
+[08-Aug-2014 22:12:13 America/Denver] PHP Warning:  pg_prepare(): Query failed: ERROR:  syntax error at or near &quot;$6&quot;
+LINE 1: ... feedmati_system.rfid VALUES ($1, $2, $3, $4, $5. $6, $7, $8...
+                                                             ^ in /home1/feedmati/public_html/v1/assets/form_processing/insert_pet.php on line 55
+[09-Aug-2014 13:06:41 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:07:13 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:07:17 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:07:19 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:07:54 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:07:58 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:09:54 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:09:58 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:09:58 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:11:37 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:11:40 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:11:42 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:11:45 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:14:53 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:14:57 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:14:58 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:14:59 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:15:42 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:15:46 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:16:47 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:21:15 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:21:23 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:21:24 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:21:24 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:21:24 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:21:24 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:21:24 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:21:25 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:21:27 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:21:31 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:21:32 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:21:34 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:21:37 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:22:19 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:22:25 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:22:28 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:22:34 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:22:37 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:28:55 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:30:26 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:31:41 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:31:46 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:32:33 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:32:37 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:35:33 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[09-Aug-2014 13:35:42 America/Denver] PHP Notice:  A session had already been started - ignoring session_start() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 2
+[13-Aug-2014 18:47:01 America/Denver] PHP Fatal error:  Call to undefined function before() in /home1/feedmati/public_html/v1/assets/form_processing/insert_pet.php on line 18
+[13-Aug-2014 18:47:12 America/Denver] PHP Fatal error:  Call to undefined function before() in /home1/feedmati/public_html/v1/assets/form_processing/insert_pet.php on line 18
+[13-Aug-2014 18:47:19 America/Denver] PHP Fatal error:  Call to undefined function before() in /home1/feedmati/public_html/v1/assets/form_processing/insert_pet.php on line 18

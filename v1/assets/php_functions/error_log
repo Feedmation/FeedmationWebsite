@@ -1,0 +1,88 @@
+[09-Aug-2014 12:02:42 America/Denver] PHP Notice:  Undefined variable: _SESSION in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 143
+[09-Aug-2014 12:02:42 America/Denver] PHP Notice:  Undefined variable: petResult in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 149
+[09-Aug-2014 12:02:42 America/Denver] PHP Warning:  pg_num_rows() expects parameter 1 to be resource, null given in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 149
+[09-Aug-2014 12:04:15 America/Denver] PHP Notice:  Undefined variable: _SESSION in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 144
+[09-Aug-2014 12:04:15 America/Denver] PHP Notice:  Undefined variable: petResult in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 150
+[09-Aug-2014 12:04:15 America/Denver] PHP Warning:  pg_num_rows() expects parameter 1 to be resource, null given in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 150
+[09-Aug-2014 12:04:36 America/Denver] PHP Notice:  Undefined variable: _SESSION in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 144
+[09-Aug-2014 12:04:36 America/Denver] PHP Notice:  Undefined variable: petResult in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 150
+[09-Aug-2014 12:04:36 America/Denver] PHP Warning:  pg_num_rows() expects parameter 1 to be resource, null given in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 150
+[09-Aug-2014 12:06:34 America/Denver] PHP Notice:  Undefined variable: _SESSION in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 144
+[09-Aug-2014 12:06:34 America/Denver] PHP Notice:  Undefined variable: petResult in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 150
+[09-Aug-2014 12:06:34 America/Denver] PHP Warning:  pg_num_rows() expects parameter 1 to be resource, null given in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 150
+[09-Aug-2014 12:07:15 America/Denver] PHP Notice:  Undefined variable: _SESSION in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 144
+[09-Aug-2014 12:08:04 America/Denver] PHP Warning:  pg_prepare(): Query failed: ERROR:  could not determine data type of parameter $1 in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 141
+[09-Aug-2014 12:08:04 America/Denver] PHP Notice:  Undefined variable: petsResult in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 149
+[09-Aug-2014 12:08:32 America/Denver] PHP Notice:  Undefined variable: _SESSION in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 144
+[09-Aug-2014 12:09:53 America/Denver] PHP Notice:  Undefined variable: _SESSION in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 144
+[09-Aug-2014 12:10:33 America/Denver] PHP Notice:  Undefined variable: _SESSION in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 144
+[09-Aug-2014 12:10:35 America/Denver] PHP Notice:  Undefined variable: _SESSION in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 144
+[09-Aug-2014 12:11:53 America/Denver] PHP Notice:  Undefined variable: _SESSION in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 144
+[09-Aug-2014 12:18:33 America/Denver] PHP Notice:  Undefined variable: _SESSION in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 144
+[09-Aug-2014 12:42:06 America/Denver] PHP Notice:  Undefined variable: _SESSION in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 144
+[09-Aug-2014 12:43:42 America/Denver] PHP Warning:  pg_prepare(): Query failed: ERROR:  relation &quot;feedmati_system.rid&quot; does not exist
+LINE 1: SELECT * FROM feedmati_system.rid WHERE user_email = $1 AND ...
+                      ^ in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 141
+[09-Aug-2014 12:43:42 America/Denver] PHP Notice:  Undefined variable: petsResult in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 149
+[09-Aug-2014 12:44:27 America/Denver] PHP Notice:  Undefined variable: _SESSION in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 144
+[09-Aug-2014 12:44:54 America/Denver] PHP Notice:  Undefined variable: _SESSION in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 144
+[09-Aug-2014 12:45:07 America/Denver] PHP Warning:  pg_prepare(): Query failed: ERROR:  relation &quot;feedmati_system.rid&quot; does not exist
+LINE 1: SELECT * FROM feedmati_system.rid WHERE user_email = $1 AND ...
+                      ^ in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 141
+[09-Aug-2014 12:45:07 America/Denver] PHP Notice:  Undefined variable: petsResult in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 149
+[09-Aug-2014 12:45:51 America/Denver] PHP Notice:  Undefined variable: _SESSION in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 144
+[09-Aug-2014 13:01:06 America/Denver] PHP Notice:  Undefined index: feederId in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 143
+[09-Aug-2014 13:38:11 America/Denver] PHP Notice:  Undefined variable: _SESSION in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 142
+[09-Aug-2014 13:38:13 America/Denver] PHP Notice:  Undefined variable: _SESSION in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 142
+[09-Aug-2014 13:38:15 America/Denver] PHP Notice:  Undefined variable: _SESSION in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 142
+[19-Aug-2014 08:48:32 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 137
+[19-Aug-2014 08:48:36 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 137
+[19-Aug-2014 08:48:59 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 137
+[19-Aug-2014 08:49:28 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 137
+[19-Aug-2014 08:49:29 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 137
+[19-Aug-2014 08:51:05 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 137
+[19-Aug-2014 08:51:05 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 137
+[19-Aug-2014 08:51:06 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 137
+[19-Aug-2014 08:59:17 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 137
+[19-Aug-2014 08:59:17 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 137
+[19-Aug-2014 09:13:36 America/Denver] PHP Notice:  Use of undefined constant loginFunctions - assumed 'loginFunctions' in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:13:36 America/Denver] PHP Notice:  Use of undefined constant php - assumed 'php' in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:13:36 America/Denver] PHP Warning:  include_once(loginFunctionsphp): failed to open stream: No such file or directory in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:13:36 America/Denver] PHP Warning:  include_once(): Failed opening 'loginFunctionsphp' for inclusion (include_path='.:/usr/php/54/usr/lib64:/usr/php/54/usr/share/pear') in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:13:36 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 139
+[19-Aug-2014 09:21:02 America/Denver] PHP Warning:  include_once(loginFunctions.php): failed to open stream: No such file or directory in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:21:02 America/Denver] PHP Warning:  include_once(): Failed opening 'loginFunctions.php' for inclusion (include_path='.:/usr/php/54/usr/lib64:/usr/php/54/usr/share/pear') in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:21:02 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 139
+[19-Aug-2014 09:21:04 America/Denver] PHP Warning:  include_once(loginFunctions.php): failed to open stream: No such file or directory in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:21:04 America/Denver] PHP Warning:  include_once(): Failed opening 'loginFunctions.php' for inclusion (include_path='.:/usr/php/54/usr/lib64:/usr/php/54/usr/share/pear') in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:21:04 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 139
+[19-Aug-2014 09:21:05 America/Denver] PHP Warning:  include_once(loginFunctions.php): failed to open stream: No such file or directory in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:21:05 America/Denver] PHP Warning:  include_once(): Failed opening 'loginFunctions.php' for inclusion (include_path='.:/usr/php/54/usr/lib64:/usr/php/54/usr/share/pear') in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:21:05 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 139
+[19-Aug-2014 09:21:06 America/Denver] PHP Warning:  include_once(loginFunctions.php): failed to open stream: No such file or directory in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:21:06 America/Denver] PHP Warning:  include_once(): Failed opening 'loginFunctions.php' for inclusion (include_path='.:/usr/php/54/usr/lib64:/usr/php/54/usr/share/pear') in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:21:06 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 139
+[19-Aug-2014 09:43:51 America/Denver] PHP Warning:  include_once(/home1/feedmati/public_html/v1/assetsloginFunctions.php): failed to open stream: No such file or directory in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:43:51 America/Denver] PHP Warning:  include_once(): Failed opening '/home1/feedmati/public_html/v1/assetsloginFunctions.php' for inclusion (include_path='.:/usr/php/54/usr/lib64:/usr/php/54/usr/share/pear') in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:43:51 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 139
+[19-Aug-2014 09:43:53 America/Denver] PHP Warning:  include_once(/home1/feedmati/public_html/v1/assetsloginFunctions.php): failed to open stream: No such file or directory in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:43:53 America/Denver] PHP Warning:  include_once(): Failed opening '/home1/feedmati/public_html/v1/assetsloginFunctions.php' for inclusion (include_path='.:/usr/php/54/usr/lib64:/usr/php/54/usr/share/pear') in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:43:53 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 139
+[19-Aug-2014 09:54:43 America/Denver] PHP Warning:  include_once(/home1/feedmati/public_html/v1/assets/loginFunctions.php): failed to open stream: No such file or directory in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:54:43 America/Denver] PHP Warning:  include_once(): Failed opening '/home1/feedmati/public_html/v1/assets/loginFunctions.php' for inclusion (include_path='.:/usr/php/54/usr/lib64:/usr/php/54/usr/share/pear') in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:54:43 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 139
+[19-Aug-2014 09:54:45 America/Denver] PHP Warning:  include_once(/home1/feedmati/public_html/v1/assets/loginFunctions.php): failed to open stream: No such file or directory in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:54:45 America/Denver] PHP Warning:  include_once(): Failed opening '/home1/feedmati/public_html/v1/assets/loginFunctions.php' for inclusion (include_path='.:/usr/php/54/usr/lib64:/usr/php/54/usr/share/pear') in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:54:45 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 139
+[19-Aug-2014 09:54:54 America/Denver] PHP Warning:  include_once(/home1/feedmati/public_html/v1/assets/loginFunctions.php): failed to open stream: No such file or directory in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:54:54 America/Denver] PHP Warning:  include_once(): Failed opening '/home1/feedmati/public_html/v1/assets/loginFunctions.php' for inclusion (include_path='.:/usr/php/54/usr/lib64:/usr/php/54/usr/share/pear') in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:54:54 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 139
+[19-Aug-2014 09:54:55 America/Denver] PHP Warning:  include_once(/home1/feedmati/public_html/v1/assets/loginFunctions.php): failed to open stream: No such file or directory in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:54:55 America/Denver] PHP Warning:  include_once(): Failed opening '/home1/feedmati/public_html/v1/assets/loginFunctions.php' for inclusion (include_path='.:/usr/php/54/usr/lib64:/usr/php/54/usr/share/pear') in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:54:55 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 139
+[19-Aug-2014 09:55:18 America/Denver] PHP Warning:  include_once(loginFunctions.php): failed to open stream: No such file or directory in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:55:18 America/Denver] PHP Warning:  include_once(): Failed opening 'loginFunctions.php' for inclusion (include_path='.:/usr/php/54/usr/lib64:/usr/php/54/usr/share/pear') in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:55:18 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 139
+[19-Aug-2014 09:55:19 America/Denver] PHP Warning:  include_once(loginFunctions.php): failed to open stream: No such file or directory in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:55:19 America/Denver] PHP Warning:  include_once(): Failed opening 'loginFunctions.php' for inclusion (include_path='.:/usr/php/54/usr/lib64:/usr/php/54/usr/share/pear') in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 6
+[19-Aug-2014 09:55:19 America/Denver] PHP Fatal error:  Call to undefined function dbconnect() in /home1/feedmati/public_html/v1/assets/php_functions/phpFunctions.php on line 139
