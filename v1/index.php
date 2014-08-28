@@ -39,7 +39,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 	<center> 
     <form method="post" class="form-inline" role="form" action="index.php">
 	 
-        <label for="username">Username:</label>
+        <label for="username">Usrname:</label>
         <input type="email" class="form-control" required="required" name="username">    
         <br><br>
         <label for="password">Password:</label>
