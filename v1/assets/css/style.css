@@ -78,6 +78,11 @@ div#select-3-button {
 .marginRight {
 	margin-right: 5px;
 	}		
+	
+.delete {
+	display:none;
+	margin-left:5px;
+	}	
 					
 </style>
 

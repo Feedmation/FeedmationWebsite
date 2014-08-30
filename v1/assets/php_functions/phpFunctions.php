@@ -55,8 +55,19 @@ if(session_id() == '') {
 							});
 							
 							}
+							
+							function deleteFeeder$i() {
+								    var dialog = confirm('Are you sure you want to delete feeder: $row[feeder_name]?');
+									if (dialog == true) {
+										alert('implement ajax to delete');
+									} else {
+										return;
+									}
+							}
 							</script>
-							<a onclick='goToStats$i()'><button class='btn $onlineStatus btn-default'>$row[feeder_name]</button></a><br><br>
+							<a onclick='goToStats$i()'><button class='btn $onlineStatus btn-default'>$row[feeder_name]</button></a>
+							<a onclick='deleteFeeder$i()' class='delete'><img src='assets/images/delete.png' height='34' width='34'></a>
+							<br><br>
 							";
 				
 				
