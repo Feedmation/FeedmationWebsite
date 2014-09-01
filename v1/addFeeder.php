@@ -13,7 +13,6 @@ include_once 'loginFunctions.php';
 <head>
 	
 <script>
-	
 	$( document ).ready(function() {
 		$("#buttonBar").hide();
 		$(".errorMessage").empty();

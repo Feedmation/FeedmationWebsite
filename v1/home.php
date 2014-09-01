@@ -87,7 +87,7 @@ function deleteFeeder() {
 	</center>
 
 </div>
-
+<div class='loadingModal'><!-- this can be displayed when AJAX request are sent so the user knows something is happening --></div>
 </body>
 </html>
 

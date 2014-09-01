@@ -57,13 +57,37 @@ if(session_id() == '') {
 							}
 							
 							function deleteFeeder$i() {
-								    var dialog = confirm('Are you sure you want to delete feeder: $row[feeder_name]?');
-									if (dialog == true) {
-										alert('implement ajax to delete');
-									} else {
-										return;
-									}
+								var feeder = '$row[feeder_id]';
+								var dialog = confirm('Are you sure you want to delete feeder: $row[feeder_name]?');
+								if (dialog == true) {
+									reassignPetsAndDelete(feeder);
+								} else {
+									return;
+								}
 							}
+							
+							function reassignPetsAndDelete(feederId) {
+								$.ajax({
+									url: 'assets/php_functions/phpFunctions.php?feeder=' + feederId,
+									type: 'POST',
+									success: function(data) {
+										if(data.match('true')) {
+											alert('create a page to reassign pets');
+										} else {
+											$.ajax({
+												url: 'delete_feeder.php?feederId=' + feederId,
+												type: 'POST',
+												success: function(data) {
+													$('#feeders').html(data);
+													$('#deleteFeederBtn').html('Delete Feeder');
+													$('#buttonBar').show();
+												}														
+											});
+										}
+									}	
+								});
+							}
+							
 							</script>
 							<a onclick='goToStats$i()'><button class='btn $onlineStatus btn-default'>$row[feeder_name]</button></a>
 							<a onclick='deleteFeeder$i()' class='delete'><img src='assets/images/delete.png' height='34' width='34'></a>
@@ -146,6 +170,9 @@ if(session_id() == '') {
 	
 	}
 	
+	//this code will execute when any feeder is clicked, or a delete feeder 'X' is clicked
+	//will check to see if pets have been assigned to the feeder
+	//returns true if yes, false if no
 	if(isset($_GET['feeder'])) {
 		$dbconn = dbconnect();
 	
@@ -160,7 +187,6 @@ if(session_id() == '') {
 		}
 		unset($_GET['feeder']);
 		if($petsResult) {
-			echo pg_num_rows($petsResult);
 			if(pg_num_rows($petsResult)==0) {
 				echo "false";
 			} else {

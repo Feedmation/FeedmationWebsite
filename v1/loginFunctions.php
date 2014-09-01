@@ -6,6 +6,10 @@
 <link rel="stylesheet" media="all" type="text/css" href="assets/jquery-timepicker-master/jquery.timepicker.css" />
 <script type="text/javascript" src="assets/jquery-timepicker-master/jquery.timepicker.js"></script>
 
+<script>
+//$( document ).ajaxStart(function() { $('body').addClass('loading'); });
+//$( document ).ajaxStop(function() { $('body').removeClass('loading'); });    
+</script>
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css">
