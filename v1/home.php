@@ -42,10 +42,12 @@ function addPet() {
 }
 
 function deleteFeeder() {
+	$('.errorMessage').empty();
 	if($('.delete').is(':visible')) {
 		$('.delete').hide();
 		$('#deleteFeederBtn').html('Delete Feeder');
 	} else {
+		$('.btn').addClass('focus');
 		$('.delete').show();
 		$('#deleteFeederBtn').html('Cancel Delete');
 	}

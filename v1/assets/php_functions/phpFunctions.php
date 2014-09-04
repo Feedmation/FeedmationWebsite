@@ -32,28 +32,26 @@ if(session_id() == '') {
 				$feeders.= "<script>
 							function goToStats$i() {
 							
-							var feeder = '$row[feeder_id]';
-							
-							$.ajax({
-							  url: 'assets/php_functions/phpFunctions.php?feeder=$row[feeder_id]',
-							  type: 'POST',
-							  success: function(data1) {
-								if(data1.match('true')) {
-									$.ajax({
-									  url: 'stats.php?feederId=$row[feeder_id]',
-									  type: 'POST',
-									  success: function(data) {
-										$('#feeders').empty().html(data);
-									  }
-									});	
-								
-								} else {
-									$('.errorMessage').hide().html('You have not assigned any pets to this feeder.<br>Add a pet using the button below').fadeIn('slow');
-								}
-	
-							  }
-							});
-							
+								var feeder = '$row[feeder_id]';
+								$.ajax({
+								  url: 'assets/php_functions/phpFunctions.php?feeder=$row[feeder_id]',
+								  type: 'POST',
+								  success: function(data1) {
+									if(data1.match('true')) {
+										$.ajax({
+										  url: 'stats.php?feederId=$row[feeder_id]',
+										  type: 'POST',
+										  success: function(data) {
+											$('#feeders').empty().html(data);
+										  }
+										});	
+									
+									} else {
+										$('.errorMessage').hide().html('You have not assigned any pets to this feeder.<br>Add a pet using the button below').fadeIn('slow');
+									}
+		
+								  }
+								});
 							}
 							
 							function deleteFeeder$i() {
@@ -72,7 +70,13 @@ if(session_id() == '') {
 									type: 'POST',
 									success: function(data) {
 										if(data.match('true')) {
-											alert('create a page to reassign pets');
+											$.ajax({
+											  url: 'reassignPets.php?deleteFeeder=' + feederId,
+											  type: 'GET',
+											  success: function(data) {
+												$('#feeders').html(data);
+											  }
+											});
 										} else {
 											$.ajax({
 												url: 'delete_feeder.php?feederId=' + feederId,
@@ -195,6 +199,86 @@ if(session_id() == '') {
 		} else {
 			echo "false";
 		}
+	}
+	
+	//populate the pets to reassign when trying to delete a feeder
+	//will print out the pets and a select box into a table row
+	//the select box will contain all feeders available to reassign the pet to
+	//and the delete pet option.
+	function populatePetsToReassign() {
+		$dbconn = dbconnect();
+		
+		$feederId = $_GET['deleteFeeder'];
+		
+		//build the select box, which will be the same for each pet
+		$selectRemainingFeeders = "SELECT * FROM $GLOBALS[schema].feeders WHERE user_email = $1 AND feeder_id != $2";
+		$selectRemainingFeedersPrep = pg_prepare($dbconn, "feederRemaining", $selectRemainingFeeders);
+		
+		if($selectRemainingFeedersPrep) {
+			$selectRemainingFeedersResult = pg_execute($dbconn, "feederRemaining", array($_SESSION['user'], $feederId));
+		} else {
+			echo "Could not sanitize user name. Try again later.";
+		}
+		
+		if($selectRemainingFeedersResult) {
+			$feederOptions = "<select class='form-control'><option value='delete'>Delete Pet</option>";
+			while($feederRow = pg_fetch_assoc($selectRemainingFeedersResult)) {
+				$feederOptions.= "<option value='$feederRow[feeder_id]'>Reassign pet to $feederRow[feeder_name]</option>";
+			}
+			$feederOptions.= "</select>";
+		} else {
+			echo "Problem finding feeders. Try again later.";
+		}
+		
+		//select all pets assigned to this feeder
+		$selectPets = "SELECT * FROM $GLOBALS[schema].rfid WHERE user_email = $1 AND feeder_id = $2";
+		$selectPetsPrep = pg_prepare($dbconn, "pets", $selectPets);
+		
+		if($selectPetsPrep) {
+			$petsResult = pg_execute($dbconn, "pets", array($_SESSION['user'], $feederId));
+		} else {
+			echo "Could not sanitize user name. Try again later.";
+		}
+		
+		if($petsResult) {
+			$pets = '';
+			while($row = pg_fetch_assoc($petsResult)) {
+				$pets.= "
+						<tr><td>$row[pet_name]</td><td><input type='hidden' name='tagId' value='$row[tag_id]'>$feederOptions</td></tr>				
+						";
+			}
+		} else {
+			echo "Problem finding pets. Try again later.";
+		}
+	
+		echo $pets;
+	}
+	
+	//called by populatePetsToReassign to get the select box of 
+	//available feeders to reassign the pet to. 
+	function populateAlternateFeeders($feederId, $tagId) {
+		$dbconn = dbconnect();
+		//build the select box, which will be the same for each pet
+		$selectRemainingFeeders = "SELECT * FROM $GLOBALS[schema].feeders WHERE user_email = $1 AND feeder_id != $2";
+		$selectRemainingFeedersPrep = pg_prepare($dbconn, "feederRemaining", $selectRemainingFeeders);
+		
+		if($selectRemainingFeedersPrep) {
+			$selectRemainingFeedersResult = pg_execute($dbconn, "feederRemaining", array($_SESSION['user'], $feederId));
+		} else {
+			echo "Could not sanitize user name. Try again later.";
+		}
+		
+		if($selectRemainingFeedersResult) {
+			$feederOptions = "<select class='form-control' name='$tagId'><option value='delete'>Delete Pet</option>";
+			while($feederRow = pg_fetch_assoc($selectRemainingFeedersResult)) {
+				$feederOptions.= "<option value='$feederRow[feeder_id]'>Reassign pet to $feederRow[feeder_name]</option>";
+			}
+			$feederOptions.= "</select>";
+		} else {
+			echo "Problem finding feeders. Try again later.";
+		}
+		
+		echo $feederOptions; 
 	}
 
 ?>

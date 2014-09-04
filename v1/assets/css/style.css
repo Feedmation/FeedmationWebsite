@@ -2,87 +2,99 @@
 	
 div.ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset {
 	margin-bottom: 25px;
-	}
+}
 	
 div.ui-btn.ui-input-btn.ui-corner-all.ui-shadow.ui-btn-inline {
 	margin-top:20px;
 	margin-left: auto;
 	margin-right: auto;
-	}	
+}	
 	
 .errorMessage {
 	width: 100%;
 	text-align: center;
 	color: red;
-	}	
+}	
 
 #terms {
 	margin-top: 20px;
-	}
+}
 			
 #formWrapper {
 	margin-bottom: 20px;
-	}
+}
 		
 .navbar-header .navbarText {
 	margin-left:20px !important;
-	}
+}
 	
 .navbar-fixed-top {
 	margin-bottom:20px !important;
-	}
+}
 
 #feeders button.btn.online.btn-default {
 	background-image: linear-gradient(to bottom,#EAFDE5 0,#CDFFC8 100%);	
-	}
+}
 	
 #feeders button.btn.offline.btn-default {
 	background-image: linear-gradient(to bottom,#F18D8D 0,#FD6B6B 100%);
 	color: white;
-	}
+}
+
+#feeders button.btn.online.btn-default:focus {
+	background-color: #CDFFC8;
+}		
 	
 #feeders button.btn.online.btn-default:hover {
 	background-color: #CDFFC8;
-	}
+}
+	
+#feeders button.btn.offline.btn-default:focus {
+	background-color: #FD6B6B;
+}
+	
+#feeders button.btn.offline.btn-default:hover {
+	background-color: #FD6B6B;
+}
 		
 .backButton {
 	background:#E5F4FF;
-	}			
+}			
 		
 table {		
 	border: 1px solid #b4b4b4;
-	}
+}
 	
 table tr td:last-child {
     border-right: none;
-	}
+}
 
 table tr:last-child td {
     border-bottom: none;
-	}	
+}	
 	
 table tr td {
     border-bottom: 1px solid #b4b4b4;
     border-right: 1px solid #b4b4b4;
     padding: 7px 7px 7px 2px;
-	}	
+}	
 
 div#select-3-button {
 	margin-bottom: 25px;
-	}
+}
 				
 .marginLeft {
 	margin-left: 5px;
-	}			
+}			
 				
 .marginRight {
 	margin-right: 5px;
-	}		
+}		
 	
 .delete {
 	display:none;
 	margin-left:5px;
-	}	
+}	
 	
 .loadingModal {
 	display:    none;
@@ -96,7 +108,7 @@ div#select-3-button {
 				url('../images/ajaxLoading.gif') 
                 50% 50% 
                 no-repeat;
-	}	
+}	
 	
 body.loading {
     overflow: hidden;   
