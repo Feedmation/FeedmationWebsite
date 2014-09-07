@@ -18,11 +18,11 @@ $dbConn = pg_connect($dbConnString ) or die("Problem with connection to PostgreS
 
 //Start query to check if feeder auth is valid
 $authQuery = "SELECT * FROM $GLOBALS[schema].feeds WHERE feeder_id = $1";
-$stmt = pg_prepare($conn,"auth",$authQuery);
+$stmt = pg_prepare($dbConn,"auth",$authQuery);
 		
 echo pg_result_error($stmt);
 
-//if statment won't prepare then return error else execute statment
+//if statement won't prepare then return error else execute statment
 if(!$stmt)
 {
 	header('Content-Type: application/json');
@@ -31,9 +31,9 @@ if(!$stmt)
 
 } else {
 	
-	$result =  pg_execute($conn,"auth",array($feederid));
+	$result =  pg_execute($dbConn,"auth",array($feederid));
 	
-	//if feeder id match was found then run requested function.
+	//if one feeder id match was found then run requested function.
 	if(pg_num_rows($result)==1)
 	{
 		
@@ -91,4 +91,6 @@ if(!$stmt)
 		return;
 	}
 }
+
+pg_close($dbConn);
 ?>
