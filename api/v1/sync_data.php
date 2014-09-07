@@ -1,7 +1,10 @@
 <?php
 include_once('objects/tag.php');
+$sitePath = dirname(dirname(__FILE__));
+include_once $sitePath + 'v1/loginFunctions.php';
 
-$authToken = $_GET['feederid'];
+$dbConn = dbconnect();
+$feederid = $_GET['feederid'];
 $func = $_GET['function'];
 
 switch($func)
@@ -26,7 +29,7 @@ switch($func)
  
  	case 'pull_settings':
 
-		if ( $authToken == "12345" ) 
+		if ( $feederid == "12345" ) 
 		{
 
 			$tag1 = new Tag(1, '84003515CA', 3.5, 10, 11, 16, 20);
@@ -46,7 +49,7 @@ switch($func)
       
       case 'feed_now':
 
-		if ( $authToken == "12345" ) 
+		if ( $feederid == "12345" ) 
 		{
 
 			$feedNow = array('f' => 1,'fa' => 2.01);
