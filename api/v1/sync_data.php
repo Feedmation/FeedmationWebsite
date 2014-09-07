@@ -1,7 +1,7 @@
 <?php
 include_once('objects/tag.php');
 $sitePath = dirname(dirname(__FILE__));
-include_once $sitePath + 'v1/loginFunctions.php';
+include_once ($sitePath + 'v1/loginFunctions.php');
 
 $dbConn = dbconnect();
 $feederid = $_GET['feederid'];
