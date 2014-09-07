@@ -83,7 +83,7 @@ function deleteFeeder() {
 	</div>
 	<br><br>	
 	<center id="buttonBar">
-	<button id="addFeederBtn" class='btn btn-default marginRight' name='addFeeder' onclick="addFeeder();" data-inline="true">Add Feeder</button>
+	<button id="addFeederBtn" class='btn btn-default' name='addFeeder' onclick="addFeeder();" data-inline="true">Add Feeder</button>
 	<button id="deleteFeederBtn" class='btn btn-default marginLeft' name='deleteFeeder' onclick="deleteFeeder();" data-inline="true">Delete Feeder</button>
 	<button id="addPetBtn" class='btn btn-default marginLeft' name='addPet' onclick="addPet();" data-inline="true">Add Pet</button>
 	</center>

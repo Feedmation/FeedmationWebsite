@@ -22,8 +22,20 @@ include_once 'loginFunctions.php';
 	$('#addPetForm').on('submit', function (e) {
 
 		e.preventDefault();
+		var start1 = $('#startTime1').val();
+		var end1 = $('#endTime1').val();
+		var start2 = $('#startTime2').val();
+		var end2 = $('#endTime2').val();
+		if(start1 == 12) {
+			start1 = 0;
+		}
 		
-		if( (parseInt($('#startTime1').val()) >= parseInt($('#endTime1').val())) || (parseInt($('#startTime2').val()) >= parseInt($('#endTime2').val())) ) {
+		if(start2 == 12) {
+			start2 = 0;
+		}
+		
+		
+		if( start1 >= end1 || start2 >= end2 ) {
 			window.scrollTo(0,0);
 			$(".errorMessage").hide().html("The start time cannot be greater than or equal to the end time!").fadeIn('slow');
 			return;

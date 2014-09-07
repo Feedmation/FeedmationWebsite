@@ -71,7 +71,7 @@ if(session_id() == '') {
 									success: function(data) {
 										if(data.match('true')) {
 											$.ajax({
-											  url: 'reassignPets.php?deleteFeeder=' + feederId,
+											  url: 'reassignDeletePets.php?deleteFeeder=' + feederId,
 											  type: 'GET',
 											  success: function(data) {
 												$('#feeders').html(data);
@@ -79,7 +79,7 @@ if(session_id() == '') {
 											});
 										} else {
 											$.ajax({
-												url: 'delete_feeder.php?feederId=' + feederId,
+												url: 'deleteFeeder.php?feederToDelete=' + feederId,
 												type: 'POST',
 												success: function(data) {
 													$('#feeders').html(data);
