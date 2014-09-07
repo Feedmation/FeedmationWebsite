@@ -17,7 +17,7 @@ $dbConnString = "host=173.254.28.90 options='--client_encoding=UTF8' user=feedma
 $dbConn = pg_connect($dbConnString ) or die("Problem with connection to PostgreSQL:".pg_last_error());	
 
 //Start query to check if feeder auth is valid
-$authQuery = "SELECT * FROM $GLOBALS[schema].feeds WHERE feeder_id = $1";
+$authQuery = "SELECT * FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
 $stmt = pg_prepare($dbConn,"auth",$authQuery);
 		
 echo pg_result_error($stmt);
