@@ -63,18 +63,20 @@ if(!$stmt)
  			
  			// function for providing per feeder with tag settings
  			case 'pull_settings':
-				$tag1 = new Tag(1, '84003515CA', 3.5, 10, 11, 16, 20);
-				$tag2 = new Tag(2, '84003515CA', 2.5, 10, 12, 16, 21);
-				$tag3 = new Tag(3, '84003515CA', 1.5, 10, 11, 16, 22);
+				$tag1 = new Tag(true, '84003515CA', 3.5, 10, 11, 16, 20);
+				$tag2 = new Tag(true, '84003515CA', 2.5, 10, 12, 16, 21);
+				$tag3 = new Tag(false, '84003515CA', 1.5, 10, 11, 16, 22);
 	
+				$tags = array( '1' => $tag1->getArray(), '2' => $tag2->getArray(), '3' => $tag3->getArray());
+				
 				header('Content-Type: application/json');
-				//echo json_encode(array("blank" => 0));
-				echo json_encode(array("tag" => 1, "tid" => "14003515CA", "a" => 3.01, "s1" => 10, "s1e" => 11, "s2" => 14, "s2e" => 17));
+			    echo json_encode($tags);
+			    
 			break;
       
       		// function for providing pet feeder with feed now request info
       		case 'feed_now':
-				$feedNow = array('f' => 1,'fa' => 2.01);
+				$feedNow = array('feedNow' => true,'feedAmount' => 2.25);
 	
 				header('Content-Type: application/json');
 				echo json_encode($feedNow);

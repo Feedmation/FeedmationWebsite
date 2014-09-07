@@ -3,7 +3,7 @@
 class Tag {
 
 	// Properties
-	private $tag;
+	private $tagUpdate;
 	private $tagId;
 	private $amount;
 	private $startSlot1;
@@ -13,8 +13,8 @@ class Tag {
 
 	
 	// Methods
-	public function __construct($tag, $tagId, $amount, $startSlot1, $endSlot1, $startSlot2, $endSlot2) {
-		$this->tag = $tag;
+	public function __construct($tagUpdate, $tagId, $amount, $startSlot1, $endSlot1, $startSlot2, $endSlot2) {
+		$this->tagUpdate = $tagUpdate;
 		$this->tagId = $tagId;
 		$this->amount = $amount;
 		$this->startSlot1 = $startSlot1;
@@ -24,7 +24,7 @@ class Tag {
 	}
 	
 	public function getArray() {
-		return array("tag" => $this->tag, "tid" => $this->tagId, "a" => $this->amount, "s1" => $this->startSlot1, "s1e" => $this->endSlot1, "s2" => $this->startSlot2, "s2e" => $this->endSlot2);
+		return array("tagUpdate" => $this->tagUpdate, "tagID" => $this->tagId, "amount" => $this->amount, "slot1Start" => $this->startSlot1, "slot1End" => $this->endSlot1, "slot2Start" => $this->startSlot2, "slot2End" => $this->endSlot2);
 	}
 }
 
