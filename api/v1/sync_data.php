@@ -1,6 +1,9 @@
 <?php
 include_once('objects/tag.php');
 
+$feederid = $_GET['feederid'];
+$func = $_GET['function'];
+
 //variable for the schema used in the database.
 //store it here so we can easily change it if need be. 
 //to access it from ANY scope of ANY file use:
@@ -9,79 +12,83 @@ include_once('objects/tag.php');
 //$GLOBALS[schema]
 $schema = "feedmati_system";
 
-	function dbconnect()
-	{
-		//connects to the db
-		$dbConnString = "host=173.254.28.90 options='--client_encoding=UTF8' user=feedmati_user dbname=feedmati_system password=PZi0wuz9n+XX";
-		$dbConn = pg_connect($dbConnString ) or die("Problem with connection to PostgreSQL:".pg_last_error());
-		return $dbConn;
-	}
+//connects to the db
+$dbConnString = "host=173.254.28.90 options='--client_encoding=UTF8' user=feedmati_user dbname=feedmati_system password=PZi0wuz9n+XX";
+$dbConn = pg_connect($dbConnString ) or die("Problem with connection to PostgreSQL:".pg_last_error());	
 
+//Start query to check if feeder auth is valid
+$authQuery = "SELECT * FROM $GLOBALS[schema].feeds WHERE feeder_id = $1";
+$stmt = pg_prepare($conn,"auth",$authQuery);
+		
+echo pg_result_error($stmt);
 
-$feederid = $_GET['feederid'];
-$func = $_GET['function'];
-
-switch($func)
+//if statment won't prepare then return error else execute statment
+if(!$stmt)
 {
+	header('Content-Type: application/json');
+	echo json_encode(array("error" => "database query error"));
+	return;
+
+} else {
 	
-	case 'log_data':
-		$parameters = array();
-		$body = file_get_contents("php://input");
-		$body_params = json_decode($body);
-        	if($body_params) {
-            	foreach($body_params as $param_name => $param_value) {
-                	$parameters[$param_name] = $param_value;
-                }
+	$result =  pg_execute($conn,"auth",array($feederid));
+	
+	//if feeder id match was found then run requested function.
+	if(pg_num_rows($result)==1)
+	{
+		
+		switch($func)
+		{
+			//data loging function
+			case 'log_data':
+				$parameters = array();
+				$body = file_get_contents("php://input");
+				$body_params = json_decode($body);
+        		
+        		if($body_params) {
+            		foreach($body_params as $param_name => $param_value) 
+            		{
+                		$parameters[$param_name] = $param_value;
+                	}
 				header('Content-Type: application/json');
                 echo json_encode(array("logData" => "Submited"));
-            } else {
+                
+            	} else {
+            	
             	header('Content-Type: application/json');
             	echo json_encode(array("logdata" => "failed"));
-            }
-              	  	
-    	break;
- 
- 	case 'pull_settings':
-
-		if ( $feederid == "12345" ) 
-		{
-
-			$tag1 = new Tag(1, '84003515CA', 3.5, 10, 11, 16, 20);
-			$tag2 = new Tag(2, '84003515CA', 2.5, 10, 12, 16, 21);
-			$tag3 = new Tag(3, '84003515CA', 1.5, 10, 11, 16, 22);
+            	
+            	}
+        	break;
+ 			
+ 			// function for providing per feeder with tag settings
+ 			case 'pull_settings':
+				$tag1 = new Tag(1, '84003515CA', 3.5, 10, 11, 16, 20);
+				$tag2 = new Tag(2, '84003515CA', 2.5, 10, 12, 16, 21);
+				$tag3 = new Tag(3, '84003515CA', 1.5, 10, 11, 16, 22);
 	
-			header('Content-Type: application/json');
-			//echo json_encode(array("blank" => 0));
-			echo json_encode(array("tag" => 1, "tid" => "14003515CA", "a" => 3.01, "s1" => 10, "s1e" => 11, "s2" => 14, "s2e" => 17));
-	
-		} else {
-			
-			echo json_encode(array("token" => "invalid"));
-		}
-		
-      break;
+				header('Content-Type: application/json');
+				//echo json_encode(array("blank" => 0));
+				echo json_encode(array("tag" => 1, "tid" => "14003515CA", "a" => 3.01, "s1" => 10, "s1e" => 11, "s2" => 14, "s2e" => 17));
+			break;
       
-      case 'feed_now':
-
-		if ( $feederid == "12345" ) 
-		{
-
-			$feedNow = array('f' => 1,'fa' => 2.01);
+      		// function for providing pet feeder with feed now request info
+      		case 'feed_now':
+				$feedNow = array('f' => 1,'fa' => 2.01);
 	
-			header('Content-Type: application/json');
-			echo json_encode($feedNow);
+				header('Content-Type: application/json');
+				echo json_encode($feedNow);
+			break;
 	
-		} else {
-			
-			echo json_encode(array("token" => "invalid"));
+			default:
+				header("HTTP/1.0 405 Method Not Allowed");
+			break;
 		}
-		
-      break;
-	
-	default:
-		header("HTTP/1.0 405 Method Not Allowed");
-		break;
+		return;
+			
+	} else {
+		echo json_encode(array("error" => "invalid feeder id"));
+		return;
+	}
 }
-
-	exit;
 ?>
