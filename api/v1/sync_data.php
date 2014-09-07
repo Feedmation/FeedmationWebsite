@@ -1,9 +1,23 @@
 <?php
 include_once('objects/tag.php');
-include_once ('../../loginFunctions.php');
+
+//variable for the schema used in the database.
+//store it here so we can easily change it if need be. 
+//to access it from ANY scope of ANY file use:
+//$GLOBALS['schema']
+//if already inside of double quotes then just use:
+//$GLOBALS[schema]
+$schema = "feedmati_system";
+
+	function dbconnect()
+	{
+		//connects to the db
+		$dbConnString = "host=173.254.28.90 options='--client_encoding=UTF8' user=feedmati_user dbname=feedmati_system password=PZi0wuz9n+XX";
+		$dbConn = pg_connect($dbConnString ) or die("Problem with connection to PostgreSQL:".pg_last_error());
+		return $dbConn;
+	}
 
 
-$dbConn = dbconnect();
 $feederid = $_GET['feederid'];
 $func = $_GET['function'];
 
