@@ -100,6 +100,14 @@ if(!$stmt)
 								$slot1End = $tagRow['slot_one_end'];
 								$slot2Start = $tagRow['slot_two_start'];
 								$slot2End = $tagRow['slot_two_end'];
+								
+								//Boolean fix
+								if ( $tagChange == 'f' ) {
+									$tagChange = false;
+								} else {
+									$tagChange = true;
+								}
+								
 								$tag = new Tag($tagChange, $tagID, $amount, $slot1Start, $slot1End, $slot2Start, $slot2End);
 								$tagArray[$tagCount] = $tag->getArray();
 								$tagCount++;
