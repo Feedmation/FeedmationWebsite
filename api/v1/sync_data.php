@@ -89,11 +89,10 @@ if(!$stmt)
 						
 						if(pg_num_rows($tagResults) > 0) {
 							
-							$tagStack;
+							$tagStack = array();
 							while($tagRow = pg_fetch_assoc($tagResults)) {
 					
 								$tagChange = $tagRow['has_changed'];
-								echo $tagChange;
 								$tagID = $tagRow['tag_id'];
 								$amount = $tagRow['feed_amount'];
 								$slot1Start = $tagRow['slot_one_start'];
@@ -102,14 +101,11 @@ if(!$stmt)
 								$slot2End = $tagRow['slot_two_end'];
 								
 								$tag = new Tag($tagChange, $tagID, $amount, $slot1Start, $slot1End, $slot2Start, $slot2End);
-								header('Content-Type: application/json');
-								$tags = array( '1' => $tag->getArray() );
-			    				echo json_encode($tags);
-								//array_push($tagStack, $tag->getArray());
+								array_push($tagStack, $tag->getArray());
 							}
 							
-							//header('Content-Type: application/json');
-			   				//echo json_encode($tagStack);
+							header('Content-Type: application/json');
+			   				echo json_encode($tagStack);
 						}
 					}
 					
