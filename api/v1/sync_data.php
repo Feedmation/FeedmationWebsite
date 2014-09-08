@@ -102,7 +102,7 @@ if(!$stmt)
 								$slot2End = $tagRow['slot_two_end'];
 								
 								$tag = new Tag($tagChange, $tagID, $amount, $slot1Start, $slot1End, $slot2Start, $slot2End);
-								$tagArray[$tagCount] = $tag;
+								$tagArray[$tagCount] = $tag->getArray();
 								$tagCount++;
 							}
 							
