@@ -93,6 +93,7 @@ if(!$stmt)
 							while($tagRow = pg_fetch_assoc($tagResults)) {
 					
 								$tagChange = $tagRow['has_changed'];
+								echo $tagChange;
 								$tagID = $tagRow['tag_id'];
 								$amount = $tagRow['feed_amount'];
 								$slot1Start = $tagRow['slot_one_start'];
