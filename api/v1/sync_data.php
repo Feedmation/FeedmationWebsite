@@ -101,13 +101,16 @@ if(!$stmt)
 								$slot2End = $tagRow['slot_two_end'];
 								
 								$tag = new Tag($tagChange, $tagID, $amount, $slot1Start, $slot1End, $slot2Start, $slot2End);
-								array_push($tagStack, $tag->getArray());
+								echo $tag->getArray();
+								//array_push($tagStack, $tag->getArray());
 							}
 							
-							header('Content-Type: application/json');
-			   				echo json_encode($tagStack);
+							//header('Content-Type: application/json');
+			   				//echo json_encode($tagStack);
 						}
 					}
+					
+					pg_free_result($tagResults);
 				}
 					
  				/*
