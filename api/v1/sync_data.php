@@ -102,7 +102,8 @@ if(!$stmt)
 								
 								$tag = new Tag($tagChange, $tagID, $amount, $slot1Start, $slot1End, $slot2Start, $slot2End);
 								header('Content-Type: application/json');
-			    				echo json_encode($tag);
+								$tags = array( '1' => $tag->getArray() );
+			    				echo json_encode($tags);
 								//array_push($tagStack, $tag->getArray());
 							}
 							
