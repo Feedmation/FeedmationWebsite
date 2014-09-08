@@ -100,7 +100,6 @@ if(!$stmt)
 								$slot1End = $tagRow['slot_one_end'];
 								$slot2Start = $tagRow['slot_two_start'];
 								$slot2End = $tagRow['slot_two_end'];
-								
 								$tag = new Tag($tagChange, $tagID, $amount, $slot1Start, $slot1End, $slot2Start, $slot2End);
 								$tagArray[$tagCount] = $tag->getArray();
 								$tagCount++;
@@ -113,17 +112,6 @@ if(!$stmt)
 					
 					pg_free_result($tagResults);
 				}
-					
- 				/*
-				$tag1 = new Tag(true, '84003515CA', 3.5, 10, 11, 16, 20);
-				$tag2 = new Tag(true, '84003515CA', 2.5, 10, 12, 16, 21);
-				$tag3 = new Tag(false, '84003515CA', 1.5, 10, 11, 16, 22);
-	
-				$tags = array( '1' => $tag1->getArray(), '2' => $tag2->getArray(), '3' => $tag3->getArray());
-				
-				header('Content-Type: application/json');
-			    echo json_encode($tags);
-			    */
 			    
 			break;
       
