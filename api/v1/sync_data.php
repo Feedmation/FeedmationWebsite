@@ -67,8 +67,6 @@ if(!$stmt)
  				//Start query to get tag settings for a feeder
 				$tagQuery = "SELECT * FROM $GLOBALS[schema].rfid WHERE feeder_id = $1";
 				$stmt = pg_prepare($dbConn,"tags",$tagQuery);
-		
-				echo pg_result_error($stmt);
 
 				//if statement won't prepare then return error else execute statment
 				if(!$stmt) {
@@ -115,6 +113,14 @@ if(!$stmt)
 							
 							header('Content-Type: application/json');
 			   				echo json_encode($tagArray);
+			   				
+			   				$setTags = "UPDATE $GLOBALS[schema].rfid SET has_changed = false WHERE feeder_id = $1";
+							$stmt = pg_prepare($dbConn,"tagUpdate",$setTags);
+
+							//if statement won't prepare then return error else execute statment
+							if($stmt) {
+								pg_execute($dbConn,"tagUpdate",array($feederid));
+							}	
 						}
 					}
 					
