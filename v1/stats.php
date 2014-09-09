@@ -13,9 +13,39 @@ include_once 'loginFunctions.php';
 <head>
 
 <script>
-	$( document ).ready(function() {
+	
+	function loadStatsTable(tagId) {
+		$.ajax({
+			url: 'assets/php_functions/phpFunctions.php',
+			type: "POST",
+			data: {	populateStatsTable: 'true',
+					statsTag : tagId},
+			success: function(data) {
+				var error = 'error';
+				if(data.match(error)) {
+					window.scrollTo(0,0);
+					$(".errorMessage").hide().html("There was an error populating stats for your pet. Try again later.").fadeIn('slow');
+				} else {
+					$(".errorMessage").empty();
+					$("#statsTable").html(data);
+				}
+			}
+		});
+	}
+	
+	$(document).ready(function() {	
 		$("#buttonBar").hide();
 		$('.errorMessage').empty();
+		
+		var selectBox = document.getElementById("petSelect");
+		var tagId = selectBox.options[selectBox.selectedIndex].value;
+		loadStatsTable(tagId);
+		
+		$('select').change(function() {
+			tagId = selectBox.options[selectBox.selectedIndex].value;
+			loadStatsTable(tagId);
+		});
+		
 	});
 
 </script>
@@ -24,14 +54,11 @@ include_once 'loginFunctions.php';
 
 <body>
 	<label for='pet'>Select a pet:</label>
-	<select class="form-control" name='pet'>
+	<select class="form-control" id='petSelect' name='pet'>
 		<?php populatePetsSelectBox(); ?>
 	</select>
 	<br>
-	<table class='table'>
-	   <h2>custom stats coming up next!</h2>
-	</table>         
-	 
+	<div id='statsTable'> </div> 
 	<center><a href="home.php" data-inline='true' class='btn btn-default backButton'>Go back to Feedmation Home</a></center>
 </body>
 </html>

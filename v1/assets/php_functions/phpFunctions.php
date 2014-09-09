@@ -280,6 +280,43 @@ if(session_id() == '') {
 		
 		echo $feederOptions; 
 	}
+	
+	//this will populate the stats table for the newly selected pet
+	if(isset($_POST['populateStatsTable']) && !empty($_POST['populateStatsTable'])) {
+		$dbconn = dbconnect();
+		
+		$tagId = $_POST['statsTag'];
+		
+		//select the stats for the current tagId
+		$selectStats = "SELECT * FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND user_email = $2";
+		$selectStatsPrep = pg_prepare($dbconn, "selectStats", $selectStats);
+		
+		if($selectStatsPrep) {
+			$selectStatsResult = pg_execute($dbconn, "selectStats", array($tagId, $_SESSION['user']));		
+		} else {
+			echo "error";
+		}
+		
+		if($selectStatsResult) {
+			if(pg_num_rows($selectStatsResult)==0) {
+				echo "<h4>Your pet doesn't have any stats yet!</h4><br>";
+			} else {
+				//print out a table with all the stats 
+				$row = pg_fetch_assoc($selectStatsResult);
+				echo "
+					<table class='table table-striped table-bordered table-hover'>
+						<tr><td>Cups of food dispensed</td><td>$row[amtfedcups]</td></tr>
+						<tr><td>Cups of food eaten</td><td>$row[amtatecups]</td></tr>
+						<tr><td>Pounds of food eaten</td><td>$row[amtateweight]</td></tr>
+						<tr><td>Pet weight (lbs.)</td><td>$row[petweight]</td></tr>
+					</table>
+					
+					";
+			}
+		} else {
+			echo "error";
+		}		
+	}
 
 ?>
 
