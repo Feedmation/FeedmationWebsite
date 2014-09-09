@@ -7,6 +7,9 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 	}
 ?>
 
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
