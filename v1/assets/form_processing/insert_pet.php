@@ -16,9 +16,17 @@ include_once '../../loginFunctions.php';
 	$petName = $_POST['name'];
 	$tagNumber = $_POST['number'];
 	$startSlot1 = intval(substr($_POST['startTime1'], 0, strpos($_POST['startTime1'], ":")));
-	$startSlot2 = intval(substr($_POST['startTime2'], 0, strpos($_POST['startTime2'], ":"))) + 12;
+	$startSlot2 = intval(substr($_POST['startTime2'], 0, strpos($_POST['startTime2'], ":")));
 	$endSlot1 = intval(substr($_POST['endTime1'], 0, strpos($_POST['endTime1'], ":")));
 	$endSlot2 = intval(substr($_POST['endTime2'], 0, strpos($_POST['endTime2'], ":"))) + 12;
+	
+	if($startSlot1 == 12) {
+		$startSlot1 -= 12;
+	}
+	
+	if($startSlot2 != 12) {
+		$startSlot2 += 12;	
+	}
 	
 	//check if the pet tag already exists in the DB
 	$tagIdSelect = "SELECT * FROM $GLOBALS[schema].rfid WHERE tag_id = $1 AND user_email = $2";

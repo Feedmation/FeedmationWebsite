@@ -22,20 +22,39 @@ include_once 'loginFunctions.php';
 	$('#addPetForm').on('submit', function (e) {
 
 		e.preventDefault();
-		var start1 = $('#startTime1').val();
-		var end1 = $('#endTime1').val();
-		var start2 = $('#startTime2').val();
-		var end2 = $('#endTime2').val();
-		if(start1 == 12) {
-			start1 = 0;
+		var start1String = $('#startTime1').val();
+		var start1Split = start1String.split(":");
+		var start1Int = parseInt(start1Split[0]);
+		
+		var end1String = $('#endTime1').val();
+		var end1Split = end1String.split(":");
+		var end1Int = parseInt(end1Split[0]);
+		
+		var start2String = $('#startTime2').val();
+		var start2Split = start2String.split(":");
+		var start2Int = parseInt(start2Split[0]);
+		
+		var end2String = $('#endTime2').val();
+		var end2Split = end2String.split(":");
+		var end2Int = parseInt(end2Split[0]);
+
+		if(start1Int === 12) {
+			start1Int = 0;
 		}
 		
-		if(start2 == 12) {
-			start2 = 0;
+		if(start2Int === 12) {
+			start2Int = 0;
 		}
 		
+		if(end1Int === 12) {
+			end1Int = 0;
+		}
 		
-		if( start1 >= end1 || start2 >= end2 ) {
+		if(end2Int === 12) {
+			end2Int = 0;
+		}
+		
+		if( (start1Int >= end1Int) || (start2Int >= end2Int) ) {
 			window.scrollTo(0,0);
 			$(".errorMessage").hide().html("The start time cannot be greater than or equal to the end time!").fadeIn('slow');
 			return;
