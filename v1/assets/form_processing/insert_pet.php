@@ -19,6 +19,7 @@ include_once '../../loginFunctions.php';
 	$startSlot2 = intval(substr($_POST['startTime2'], 0, strpos($_POST['startTime2'], ":")));
 	$endSlot1 = intval(substr($_POST['endTime1'], 0, strpos($_POST['endTime1'], ":")));
 	$endSlot2 = intval(substr($_POST['endTime2'], 0, strpos($_POST['endTime2'], ":"))) + 12;
+	$feedAmt = $_POST['feedAmount'];
 	
 	if($startSlot1 == 12) {
 		$startSlot1 -= 12;
@@ -42,12 +43,12 @@ include_once '../../loginFunctions.php';
 	if(pg_num_rows($tagIdResult) == 0) {
 		
 		//no match found, proceed with insert	
-		$petInsert = "INSERT INTO $GLOBALS[schema].rfid VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)";
+		$petInsert = "INSERT INTO $GLOBALS[schema].rfid VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)";
 		
 		$petPrep = pg_prepare($dbConn, "insertPet", $petInsert);
 		
 		if($petPrep) {
-			$petResult = pg_execute($dbConn, "insertPet", array($tagNumber, $feederId, $startSlot1, $endSlot1, $startSlot2, $endSlot2, $petName, $_SESSION['user'], "TRUE"));	
+			$petResult = pg_execute($dbConn, "insertPet", array($tagNumber, $feederId, $startSlot1, $endSlot1, $startSlot2, $endSlot2, $petName, $_SESSION['user'], "TRUE", $feedAmt));	
 			pg_free_result($petResult);
 		} else {
 			echo "<p>Couldn't insert values for pet. Try again later.</p>";

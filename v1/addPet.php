@@ -126,7 +126,9 @@ include_once 'loginFunctions.php';
 			<input type="text" required="required" class="form-control timepicker" name="startTime2" id="startTime2" placeholder="Pick a Time"><br> 
 			<label for="endTime2">End Time:</label>
 			<input type="text" required="required" class="form-control" name="endTime2" id="endTime2" placeholder="Pick a Time"> 
-		</div>
+		</div> 
+		<label for='feedAmount'>How many cups of food per eating window?</label>
+        <input type="number" step='0.01' min='0.5' max='8' required="required" class="form-control" name="feedAmount"> 
         <br><br>         
         <center><a href="home.php" data-inline='true' class='btn btn-default backButton marginRight'>Cancel Submission</a> <button type='submit' id='addFeederSubmitBtn' class="btn btn-default marginLeft">Submit Pet Info</button></center>
     </form>
