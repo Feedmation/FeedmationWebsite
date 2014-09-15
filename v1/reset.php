@@ -92,18 +92,17 @@
 		}
 	
         if($found>=1)
-        {
-            $pass = randomPassword();
-			 
+        {	 
 			 //connects to the db
 			$dbconn = dbconnect();
 
-			$updateQ = "Update $schema.authentication SET password_hash = $1 AND salt = $2 WHERE user_email = $3";
+			$updateQ = "Update $schema.authentication SET password_hash = $1, salt = $2 WHERE user_email = $3";
 						
 			$updatePrep = pg_prepare($dbconn, "prep", $updateQ);
 			
 			if($updatePrep) 
 			{
+				$pass = randomPassword();
 				$salt = rand();
 				$encrypt = sha1($pass . $salt);
 
