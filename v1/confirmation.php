@@ -17,7 +17,7 @@
 <head>
     <title>Redirecting...</title>
     <meta http-equiv="refresh" 
-content="10;URL=http://babbage.cs.missouri.edu/~uafy6/Feedmation/FeedmationWebsite/v1/index.php">
+content="10;URL=index.php">
 </head>
 <body>
 	A new password has been to sent to your email.
