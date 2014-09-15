@@ -109,18 +109,22 @@ if(!$stmt)
 								$tag = new Tag($tagChange, $tagID, $amount, $slot1Start, $slot1End, $slot2Start, $slot2End);
 								$tagArray[$tagCount] = $tag->getArray();
 								$tagCount++;
+								
+								
+								/*
+								//Now that the JSON has been sent to the feeder, set all it's tags has_chaged values to false
+			   					$setTags = "UPDATE $GLOBALS[schema].rfid SET has_changed = false WHERE feeder_id = $1 AND tag_id = $2 AND has_changed = $3";
+								$stmt = pg_prepare($dbConn,"tagUpdate",$setTags);
+								//if statement won't prepare then return error else execute statment
+								if($stmt) {
+									pg_execute($dbConn,"tagUpdate",array($feederid, $tagID, true));
+								}
+								*/	
+								
 							}
 							
 							header('Content-Type: application/json');
 			   				echo json_encode($tagArray);
-			   				
-			   				$setTags = "UPDATE $GLOBALS[schema].rfid SET has_changed = false WHERE feeder_id = $1";
-							$stmt = pg_prepare($dbConn,"tagUpdate",$setTags);
-
-							//if statement won't prepare then return error else execute statment
-							if($stmt) {
-								pg_execute($dbConn,"tagUpdate",array($feederid));
-							}	
 						}
 					}
 					
