@@ -98,17 +98,17 @@
 			 //connects to the db
 			$dbconn = dbconnect();
 
-			$updateQ = "Update $schema.authentication SET password_hash = $1 WHERE user_email = $2";
+			$updateQ = "Update $schema.authentication SET password_hash = $1 AND salt = $2 WHERE user_email = $3";
 						
 			$updatePrep = pg_prepare($dbconn, "prep", $updateQ);
 			
 			if($updatePrep) 
 			{
 				$salt = rand();
-				$encrypt = sha1($pass);
+				$encrypt = sha1($pass . $salt);
 
 				//execute the query
-				$prepResult = pg_execute($dbconn, "prep", array($encrypt,$user));
+				$prepResult = pg_execute($dbconn, "prep", array($encrypt,$salt,$user));
 				
 				//this will return the number of rows, if any, that were returned by the query. 
 				//0 means the username does not exist, 1 means it already exists. 
