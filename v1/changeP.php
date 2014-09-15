@@ -9,7 +9,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class='container'>
 			<div class="navbar-header">
-				<p class="navbarText brand navbar-text">New Password</p>
+				<p class="navbarText brand navbar-text">Change Password</p>
 			</div>
 		</div>
 	</nav>
@@ -21,7 +21,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 
 	</head>
 	<body>
-	
+	<br><br><br>
 	<div data-role="main" class="container">
     <form method="post" action="registration.php">
 		<label for='password'>Password:</label>
@@ -42,6 +42,8 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 	$resetPass = $_POST['password'];
 	$newPass = $_POST['rePassword'];
 	$conPass = $_POST['conPassword'];
+	$salt = rand();
+	
 	
 	if(isset($_POST['update']))
 	{
@@ -57,15 +59,15 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 			//connects to the db
 			$dbconn = dbconnect();
 
-			$updateQ = "Update $schema.authentication SET password_hash = $1 WHERE user_email = $2 
-						AND password_hash = $3";
+			$updateQ = "Update $schema.authentication SET password_hash = $1, salt = $2 WHERE user_email = $3";
 						
 			$updatePrep = pg_prepare($dbconn, "prep", $updateQ);
 			
 			if($updatePrep) 
 			{
+				$changePass= sha1($newPass . $salt);
 				//execute the query
-				$prepResult = pg_execute($dbconn, "prep", array($newPass,$user,$resetPass));
+				$prepResult = pg_execute($dbconn, "prep", array($changePass,$salt,$user));
 			
 				//free result in case we want to use it again
 				pg_free_result($prepResult);	
@@ -77,7 +79,18 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 		
 			if($prepResult==true) 
 			{
-				$message = "Your password has been successfully changed."; 
+			
+				$user = ($_SESSION['user']);
+				 $subject = "Feedmation Password Change";
+			   $message = "Hey, your password has been successfully change. You will now be able to 
+					login with your changed password. \n\n Your changed password : $newPass \n
+					Once you log in with your new password, you will then be able to change the 
+					password.\n\n
+					- Feedmation";
+			   $header = "From: info@feedmation.com \r\n";
+			   $retval = mail($user, $subject, $message,$header);
+			 
+				//$message = "Your password has been successfully changed."; 
 			}
 			//this code will only execute if the entered user name does not already exist
 			else 
