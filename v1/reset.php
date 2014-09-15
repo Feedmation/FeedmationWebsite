@@ -132,11 +132,11 @@
 			  
 			  if( $retval == true )  
 			   {
-				  echo "Message sent successfully...";
+				  header("Location: http://babbage.cs.missouri.edu/~uafy6/Feedmation/FeedmationWebsite/v1/confirmation.php");
 			   }
 			   else
 			   {
-				  echo "Message could not be sent...";
+				  echo "Message could not be sent! Incorrect security question and/or answer.";
 			   }
 							 
 				//header("Location: http://babbage.cs.missouri.edu/~uafy6/Feedmation/FeedmationWebsite/v1/confirmation.php");
