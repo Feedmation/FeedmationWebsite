@@ -40,21 +40,21 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
   
   
   <?php
-	$resetPass = $_POST['password'];
-	$newPass = $_POST['rePassword'];
-	$conPass = $_POST['conPassword'];
-	$salt = rand();
-	$user = $_SESSION['user'];
-	
-	
+	echo $_SESSION['user'];
 	if(isset($_POST['update']))
 	{
+		$resetPass = $_POST['password'];
+		$newPass = $_POST['rePassword'];
+		$conPass = $_POST['conPassword'];
+		$salt = rand();
+		$user = $_SESSION['user'];
+	
 		$resetPass = sha1($resetPass);
 	
-			echo $newPass;
-			echo $conPass;
-			echo $_SESSION['password_hash'];
-			echo $resetPass;
-		
+			//echo $user;
+		if(($newPass != $conPass) || ($user != $resetPass)) 
+		{
+			echo "Passwords must match!";
+		}
 	}
   ?>
