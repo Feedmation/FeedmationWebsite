@@ -17,10 +17,10 @@
 <head>
     <title>Redirecting...</title>
     <meta http-equiv="refresh" 
-content="10;URL=index.php">
+content="10;URL=home.php">
 </head>
 <body>
-	Your new password has been to sent to your email.
+	A new password has been to sent to your email.
     You are now being automatically redirected to the home page.<br />
     If your browser does not redirect you in 10 seconds, or you do
     not wish to wait, <a href="index.php">click here</a>. 

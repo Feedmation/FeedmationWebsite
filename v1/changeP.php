@@ -99,5 +99,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 			}
 			
 		}
+		
+			 header("Location: confirmation.php");
 	}
   ?>

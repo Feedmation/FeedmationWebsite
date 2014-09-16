@@ -132,7 +132,7 @@
 			  
 			  if( $retval == true )  
 			   {
-				  header("Location: http://babbage.cs.missouri.edu/~uafy6/Feedmation/FeedmationWebsite/v1/confirmation.php");
+				  header("Location: confirmation.php");
 			   }
 			   else
 			   {
