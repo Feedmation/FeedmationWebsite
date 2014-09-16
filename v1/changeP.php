@@ -86,12 +86,17 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 			   $header = "From: info@feedmation.com \r\n";
 			   $retval = mail($user, $subject, $message,$header);
 			 
+			 if( $retval == true )  
+			   {
+				  header("Location: confirmation.php");
+			   }
+			   else
+			   {
+				  echo "Confirmation email could not be sent!.";
+			   }
+			 
 			}
 			//this code will only execute if the entered user name does not already exist
-			else 
-			{
-				$message = "Error!! Your password has not changed!";
-			}
 		}
 	}
   ?>
