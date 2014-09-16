@@ -69,7 +69,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 				{
 					$changePass= sha1($newPass . $salt);
 					//execute the query
-					$prepResult = pg_execute($dbconn, "prep", array($changePass,$salt,$user]));
+					$prepResult = pg_execute($dbconn, "prep", array($changePass,$salt,$user));
 			
 					//free result in case we want to use it again
 					pg_free_result($prepResult);	
@@ -97,7 +97,6 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 			{
 				$message = "Error!! Your password has not changed!";
 			}
-			
 		}
 			 header("Location: confirmation.php");
 	}
