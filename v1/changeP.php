@@ -53,7 +53,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 		$resetPass = sha1($resetPass);
 		if(($newPass != $conPass) || ($_SESSION['password_hash']!= $resetPass))
 		{
-			$message = "Incorrect Password! Passwords must match!";
+			echo "Incorrect Password! Passwords must match!";
 		}
 		//that is the last input that must be verified.
 		//from here, continue with adding everything to the DB 
