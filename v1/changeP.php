@@ -48,17 +48,23 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 	
 	if(isset($_POST['update']))
 	{
-		if(($newPass != $conPass) || ($_SESSION['password_hash']!= sha1($resetPass)))
+	
+		$resetPass = sha1($resetPass);
+		if(($newPass != $conPass) || ($_SESSION['password_hash']!= $resetPass))
 		{
 		$message = "Incorrect Password! Passwords must match!";
 		}
 		//that is the last input that must be verified.
 		//from here, continue with adding everything to the DB 
 		//and redirecting the user. 
-		else 
+		 else 
 		{
+			echo $newPass;
+			echo $conPass;
+			echo $_SESSION['password_hash'];
+			echo $resetPass;
 			
-				//connects to the db
+				/*//connects to the db
 				$dbconn = dbconnect();
 				
 				$updateQ = "Update $schema.authentication SET password_hash = $1, salt = $2 WHERE user_email = $3";
@@ -98,6 +104,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 				$message = "Error!! Your password has not changed!";
 			}
 		}
-			 header("Location: confirmation.php");
+			 header("Location: confirmation.php" */);
+	}
 	}
   ?>
