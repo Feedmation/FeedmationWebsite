@@ -57,16 +57,15 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 		else 
 		{
 			
-			if($_SESSION['password_hash'] == $resetPass)
-			{
+		if($_SESSION['password_hash'] == sha1($resetPass))
+		{
 				//connects to the db
 				$dbconn = dbconnect();
-	
-	
+				
 				$updateQ = "Update $schema.authentication SET password_hash = $1, salt = $2 WHERE user_email = $3";
 						
 				$updatePrep = pg_prepare($dbconn, "prep", $updateQ);
-			}
+			
 				if($updatePrep) 
 				{
 					$changePass= sha1($newPass . $salt);
@@ -85,8 +84,8 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 			if($prepResult==true) 
 			{
 			
-				$user = ($_SESSION['user']);
-				 $subject = "Feedmation Password Change";
+			   $user = ($_SESSION['user']);
+			   $subject = "Feedmation Password Change";
 			   $message = "Hey, your password has been successfully changed. You will now be able to 
 					login with your changed password. \n\n Your changed password : $newPass \n
 					Once you log in with your new password, you will then be able to change the 
@@ -95,8 +94,8 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 			   $header = "From: info@feedmation.com \r\n";
 			   $retval = mail($user, $subject, $message,$header);
 			 
-				//$message = "Your password has been successfully changed."; 
 			}
+		}
 			//this code will only execute if the entered user name does not already exist
 			else 
 			{
@@ -104,7 +103,6 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 			}
 			
 		}
-		
 			 header("Location: confirmation.php");
 	}
   ?>
