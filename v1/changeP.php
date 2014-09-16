@@ -43,13 +43,14 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 	$newPass = $_POST['rePassword'];
 	$conPass = $_POST['conPassword'];
 	$salt = rand();
+	$user = $_SESSION['user'];
 	
 	
 	if(isset($_POST['update']))
 	{
-		if($newPass != $conPass) 
+		if(($newPass != $conPass) || ($_SESSION['password_hash']!= sha1($resetPass)))
 		{
-		$message = "Passwords must match!";
+		$message = "Incorrect Password! Passwords must match!";
 		}
 		//that is the last input that must be verified.
 		//from here, continue with adding everything to the DB 
@@ -57,8 +58,6 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 		else 
 		{
 			
-		if($_SESSION['password_hash'] == sha1($resetPass))
-		{
 				//connects to the db
 				$dbconn = dbconnect();
 				
@@ -70,7 +69,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 				{
 					$changePass= sha1($newPass . $salt);
 					//execute the query
-					$prepResult = pg_execute($dbconn, "prep", array($changePass,$salt,$user));
+					$prepResult = pg_execute($dbconn, "prep", array($changePass,$salt,$user]));
 			
 					//free result in case we want to use it again
 					pg_free_result($prepResult);	
@@ -83,8 +82,6 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 		
 			if($prepResult==true) 
 			{
-			
-			   $user = ($_SESSION['user']);
 			   $subject = "Feedmation Password Change";
 			   $message = "Hey, your password has been successfully changed. You will now be able to 
 					login with your changed password. \n\n Your changed password : $newPass \n
@@ -95,7 +92,6 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 			   $retval = mail($user, $subject, $message,$header);
 			 
 			}
-		}
 			//this code will only execute if the entered user name does not already exist
 			else 
 			{
