@@ -56,22 +56,27 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 		//and redirecting the user. 
 		else 
 		{
-			//connects to the db
-			$dbconn = dbconnect();
-
-			$updateQ = "Update $schema.authentication SET password_hash = $1, salt = $2 WHERE user_email = $3";
-						
-			$updatePrep = pg_prepare($dbconn, "prep", $updateQ);
 			
-			if($updatePrep) 
+			if($_SESSION['password_hash'] == $resetPass)
 			{
-				$changePass= sha1($newPass . $salt);
-				//execute the query
-				$prepResult = pg_execute($dbconn, "prep", array($changePass,$salt,$user));
+				//connects to the db
+				$dbconn = dbconnect();
+	
+	
+				$updateQ = "Update $schema.authentication SET password_hash = $1, salt = $2 WHERE user_email = $3";
+						
+				$updatePrep = pg_prepare($dbconn, "prep", $updateQ);
+			}
+				if($updatePrep) 
+				{
+					$changePass= sha1($newPass . $salt);
+					//execute the query
+					$prepResult = pg_execute($dbconn, "prep", array($changePass,$salt,$user));
 			
-				//free result in case we want to use it again
-				pg_free_result($prepResult);	
-			} 	
+					//free result in case we want to use it again
+					pg_free_result($prepResult);	
+				}
+							
 			else 
 			{
 				$message = "failed";
@@ -82,7 +87,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 			
 				$user = ($_SESSION['user']);
 				 $subject = "Feedmation Password Change";
-			   $message = "Hey, your password has been successfully change. You will now be able to 
+			   $message = "Hey, your password has been successfully changed. You will now be able to 
 					login with your changed password. \n\n Your changed password : $newPass \n
 					Once you log in with your new password, you will then be able to change the 
 					password.\n\n
