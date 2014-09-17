@@ -63,12 +63,14 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 			
 				if($updatePrep) 
 				{
-					$changePass= sha1($newPass . $salt);
+				
+					echo "Udoka Anugwo";
+					/* $changePass= sha1($newPass . $salt);
 					//execute the query
 					$prepResult = pg_execute($dbconn,"prep", array($changePass,$salt,$user));
 			
 					//free result in case we want to use it again
-					pg_free_result($prepResult);	
+					pg_free_result($prepResult); */	
 				}
 			
 			   $subject = "Feedmation Password Change";
@@ -80,7 +82,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 			   $header = "From: info@feedmation.com \r\n";
 			   $retval = mail($user, $subject, $message,$header);
 			 
-			 if( $retval == true )  
+			 if($retval == true )  
 			   {
 				  header("Location: confirmation.php");
 			   }
