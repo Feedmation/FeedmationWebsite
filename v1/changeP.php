@@ -43,18 +43,20 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 	//echo $_SESSION['user'];
 	if(isset($_POST['update']))
 	{
-		$resetPass = $_POST['password'];
+		$oldPass = $_POST['password'];
 		$newPass = $_POST['rePassword'];
 		$conPass = $_POST['conPassword'];
 		$salt = rand();
 		$user = $_SESSION['user'];
+		
 	
 			//echo $user;
-		if(($newPass != $conPass) || ($_SESSION['password_hash']!= sha1($resetPass . $_SESSION['salt']))) 
+		if(($newPass != $conPass) || ($_SESSION['password_hash']!= sha1($oldPass . $_SESSION['salt']))) 
 		{
 			$message = "Passwords must match!";
+			echo $_SESSION['password_hash'];
 		}
-		else
+		/* else
 		{
 			//connects to the db
 				$dbconn = dbconnect();				
@@ -92,8 +94,8 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 			   else
 			   {
 				  echo "Confirmation email could not be sent!.";
-			   } */
+			   } 
 			//this code will only execute if the entered user name does not already exist
-		}
+		} */
 	}
   ?>
