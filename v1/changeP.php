@@ -37,14 +37,8 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 		<br>
     </form>
   </div>
-  
-  
+ 
   <?php
-		$hash = $_SESSION['password_hash'];
-		echo $hash;
-		echo $_SESSION['password_hash'];
-		//echo $_SESSION['user'];
-	
 	
 	//echo $_SESSION['user'];
 	if(isset($_POST['update']))
@@ -66,7 +60,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 				$dbconn = dbconnect();
 				
 				$updateQ = "Update $schema.authentication SET password_hash = $1, salt = $2 WHERE user_email = $3";
-				echo $updateQ;
+				//echo $updateQ;
 				
 				$updatePrep = pg_prepare($dbconn, "prep", $updateQ);
 			
@@ -84,7 +78,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 					
 					$subject = "Feedmation Password Reset";
 					$message = "Hey, your password has been successfully reset. You will now be able to 
-					login with your new password. \n\n Your new password : $pass \n\n
+					login with your new password. \n\n Your new password : $conPass \n\n
 					Once you log in with your new password, you will then be able to change the 
 					password.\n\n\n\n
 					- Feedmation";
