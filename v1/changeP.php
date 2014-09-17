@@ -60,7 +60,9 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 				$dbconn = dbconnect();				
 				$updateQ = "Update $schema.authentication SET password_hash = $1, salt = $2 WHERE user_email = $3";		
 				$updatePrep = pg_prepare($dbconn,"prep", $updateQ);
-			echo $updateQ;
+				
+					echo $updateQ;
+				/*
 				if($updatePrep) 
 				{
 				
@@ -82,7 +84,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 			   $header = "From: info@feedmation.com \r\n";
 			   $retval = mail($user, $subject, $message,$header);
 			 
-			 if($retval == true )  
+			  if($retval == true )  
 			   {
 					echo "PARTYNEXTDOOR2";
 				 // header("Location: confirmation.php");
@@ -90,7 +92,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 			   else
 			   {
 				  echo "Confirmation email could not be sent!.";
-			   }
+			   } */
 			//this code will only execute if the entered user name does not already exist
 		}
 	}
