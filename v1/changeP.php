@@ -42,6 +42,9 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
   <?php
 		$hash = $_SESSION['password_hash'];
 		echo $hash;
+		echo $_SESSION['password_hash'];
+		echo $_SESSION['user'];
+	
 	
 	//echo $_SESSION['user'];
 	if(isset($_POST['update']))
