@@ -48,13 +48,13 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 		$conPass = $_POST['conPassword'];
 		$salt = rand();
 		$user = $_SESSION['user'];
-		
+		echo $_SESSION['password_hash'];
 	
 			//echo $user;
 		if(($newPass != $conPass) || ($_SESSION['password_hash']!= sha1($oldPass . $_SESSION['salt']))) 
 		{
 			$message = "Passwords must match!";
-			echo $_SESSION['password_hash'];
+			
 		}
 		/* else
 		{
