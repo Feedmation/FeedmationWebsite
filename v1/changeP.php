@@ -52,7 +52,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 		$oldPass = $_POST['password'];
 		$newPass = $_POST['rePassword'];
 		$conPass = $_POST['conPassword'];
-		$oldSalt = $_SESSION['salt'];
+		//$oldSalt = $_SESSION['salt'];
 		$user = $_SESSION['user'];
 	
 			//echo $user;
@@ -72,13 +72,37 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 			
 				if($updatePrep == true) 
 				{
-					header("Location: home.php");
-					/* $changePass= sha1($newPass . $salt);
+					//header("Location: home.php");
+					$salt = rand();
+					$changePass = sha1($newPass . $salt);
+					
 					//execute the query
-					$prepResult = pg_execute($dbconn, "prep", array($changePass,$salt,$user));
+					$prepResult = pg_execute($dbconn,"prep", array($changePass,$salt,$user));
 			
 					//free result in case we want to use it again
-					pg_free_result($prepResult) */;	
+					pg_free_result($prepResult);	
+					
+					$subject = "Feedmation Password Reset";
+					$message = "Hey, your password has been successfully reset. You will now be able to 
+					login with your new password. \n\n Your new password : $pass \n\n
+					Once you log in with your new password, you will then be able to change the 
+					password.\n\n\n\n
+					- Feedmation";
+					$header = "From: info@feedmation.com \r\n";
+					$retval = mail($user, $subject, $message,$header);
+  
+				  if( $retval == true )  
+				   {
+					  header("Location: confirmation.php");
+				   }
+				   else
+				   {
+					  echo "Message could not be sent! Incorrect security question and/or answer.";
+				   }
+					
+					
+					
+					
 				}
 		
 		}
