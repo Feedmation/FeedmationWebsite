@@ -74,6 +74,7 @@ function feedNow() {
 			</div>
 			<div class="navbar-header pull-right">
 				<p class="navbar-text">
+					<a href="changeP.php" class='btn btn-default pull-right'>Change Password</a>  
 					<a href="logout.php" class="btn btn-default pull-right">Logout</a>
 				</p>	
 			</div>

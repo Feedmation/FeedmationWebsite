@@ -7,6 +7,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 	}
 ?>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +32,9 @@ if(isset($_POST['register'])) {
 	$repeatpass = sha1($_POST['repassword'] . $salt);
 	$fname = $_POST['first-name'];
 	$lname = $_POST['last-name'];
+	$secQues = $_POST['secQues'];
+	$secAns = $_POST['secAns'];
+	
 	
 	//check to see if the passwords match before proceeding
 	if($pass != $repeatpass) {
@@ -66,21 +70,24 @@ if(isset($_POST['register'])) {
 		}
 		
 		//check if the row already exists before continuing 
-		if($found > 0) {
+		if($searchresult == true) 
+		{
 			$message = "That user name has already been registered by another user!"; 
 		}
+		
 		//this code will only execute if the entered user name does not already exist
 		else {
 		
-			//store the user email, password hash, randomly generated salt, first name, and last name in the DB
-			$query = "INSERT INTO $schema.authentication VALUES ($1, $2, $3, $4, $5)";
+			//store the user email, password hash, randomly generated salt, first name,last name,security question,
+			//and security answer in the DB
+			$query = "INSERT INTO $schema.authentication VALUES ($1, $2, $3, $4, $5, $6, $7)";
 					
 			//prepare the query
 			$insertPrep = pg_prepare($dbconn, "register", $query);
 			
 			if($insertPrep) {
 			//execute the query
-			$result = pg_execute($dbconn, "register", array($user, $pass, $salt, $fname, $lname));
+			$result = pg_execute($dbconn, "register", array($user, $pass, $salt, $fname, $lname, $secQues, $secAns));
 			//free result like before for later use
 			pg_free_result($result);
 			} else {
@@ -135,12 +142,26 @@ if(isset($_POST['register'])) {
 		<br>
 		<label for='last-name'>Last Name:</label>
 		<input type='text' class="form-control" required="required" name='last-name' id='last-name'> 
-		
+		<br>
+		<label for='secQues'>Security Question:</label>
+		<br>
+		<select name = 'secQues' class="form-control">
+		  <option value="" selected>----------------------------</option>
+		  <option value="favMovie">What is your favorite movie? </option>
+		  <option value="momMaidenName">What is your mother's maiden name? </option>
+		  <option value="elementarySchool">What is the name of the elementary school you attended? </option>
+		  <option value="dreamJob">What is your dream job? </option>
+		</select>
+		<br><br>
+		<label for='secAns'>Security Answer:</label>
+		<input type='text' class="form-control" required="required" name='secAns' id='secAns'> 
+		<br>
 		<input type='checkbox' required="required" id='tos'>
 		<label id='terms' for='tos'>I have read and agree to the <a href='#'>Terms of Service</a></label>
 		<br><br>
 		<center><button type='submit' name='register' class='btn btn-default'>Sign up</button>
-		<br><br>
+		<br>
+		
     </form>
     
   </div>

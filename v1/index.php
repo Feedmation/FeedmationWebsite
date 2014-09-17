@@ -7,9 +7,6 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 	}
 ?>
 
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +46,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
         <input type='password' class="form-control" pattern=".{8,16}" title="Must be between 8 and 16 characters" required="required" name="password"> 
 		<br><br>
 
-			<button type="submit" class='btn btn-default' name='login' id='submitButton'>Log In</button>
+			<button type="submit" class='btn btn-default' name='login' id='submitButton'>Log In</button>             - 		<a href="reset.php" class='btn btn-default'>Reset Password? </a>
 	</form>		
 			<br>
 			<p>Or</p>
