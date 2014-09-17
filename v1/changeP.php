@@ -54,7 +54,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 		
 	
 			//echo $user;
-		if($newPass != $conPass)) 
+		if($newPass != $conPass)
 		{
 			$message = "Passwords must match!";
 			
