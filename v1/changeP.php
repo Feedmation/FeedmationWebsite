@@ -39,15 +39,13 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
   </div>
  
   <?php
+		$oldPass = $_POST['password'];
+		$newPass = $_POST['rePassword'];
+		$conPass = $_POST['conPassword'];
 	
 	//echo $_SESSION['user'];
 	if(isset($_POST['update']))
 	{
-		$oldPass = $_POST['password'];
-		$newPass = $_POST['rePassword'];
-		$conPass = $_POST['conPassword'];
-		//$oldSalt = $_SESSION['salt'];
-		$user = $_SESSION['user'];
 	
 			//echo $user;
 		if($newPass != $conPass)
