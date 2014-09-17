@@ -46,12 +46,13 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 		$oldPass = $_POST['password'];
 		$newPass = $_POST['rePassword'];
 		$conPass = $_POST['conPassword'];
-		$salt = rand();
+		$oldSalt = $_SESSION['salt'];
 		$user = $_SESSION['user'];
-		echo $_SESSION['password_hash'];
+		$hash = $_SESSION['password_hash'];
+		echo $hash;
 	
 			//echo $user;
-		if(($newPass != $conPass) || ($_SESSION['password_hash']!= sha1($oldPass . $_SESSION['salt']))) 
+		if(($newPass != $conPass) || ($hash! = sha1($oldPass . $_SESSION['salt']))) 
 		{
 			$message = "Passwords must match!";
 			
@@ -67,7 +68,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 				/*
 				if($updatePrep) 
 				{
-				
+					$salt = rand();
 					echo "Udoka Anugwo";
 					$changePass= sha1($newPass . $salt);
 					//execute the query
