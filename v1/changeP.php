@@ -84,7 +84,8 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 			 
 			 if($retval == true )  
 			   {
-				  header("Location: confirmation.php");
+					echo "PARTYNEXTDOOR2";
+				 // header("Location: confirmation.php");
 			   }
 			   else
 			   {
