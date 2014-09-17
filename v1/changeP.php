@@ -40,6 +40,9 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
   
   
   <?php
+		$hash = $_SESSION['password_hash'];
+		echo $hash;
+	
 	//echo $_SESSION['user'];
 	if(isset($_POST['update']))
 	{
@@ -48,8 +51,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 		$conPass = $_POST['conPassword'];
 		$oldSalt = $_SESSION['salt'];
 		$user = $_SESSION['user'];
-		$hash = $_SESSION['password_hash'];
-		echo $hash;
+		
 	
 			//echo $user;
 		if($newPass != $conPass)) 
