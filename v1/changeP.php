@@ -40,7 +40,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
   
   
   <?php
-	echo $_SESSION['user'];
+	//echo $_SESSION['user'];
 	if(isset($_POST['update']))
 	{
 		$resetPass = $_POST['password'];
@@ -54,29 +54,23 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 		{
 			$message = "Passwords must match!";
 		}
-		
 		else
 		{
 			//connects to the db
-				$dbconn = dbconnect();
-				
-				$updateQ = "Update $schema.authentication SET password_hash = $1, salt = $2 WHERE user_email = $3";
-						
-				$updatePrep = pg_prepare($dbconn, "prep", $updateQ);
+				$dbconn = dbconnect();				
+				$updateQ = "Update $schema.authentication SET password_hash = $1, salt = $2 WHERE user_email = $3";		
+				$updatePrep = pg_prepare($dbconn,"prep", $updateQ);
 			
 				if($updatePrep) 
 				{
 					$changePass= sha1($newPass . $salt);
 					//execute the query
-					$prepResult = pg_execute($dbconn, "prep", array($changePass,$salt,$user));
+					$prepResult = pg_execute($dbconn,"prep", array($changePass,$salt,$user));
 			
 					//free result in case we want to use it again
 					pg_free_result($prepResult);	
 				}
-				
-				
-			if($prepResult==true) 
-			{
+			
 			   $subject = "Feedmation Password Change";
 			   $message = "Hey, your password has been successfully changed. You will now be able to 
 					login with your changed password. \n\n Your changed password : $newPass \n
@@ -94,8 +88,6 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 			   {
 				  echo "Confirmation email could not be sent!.";
 			   }
-			 
-			}
 			//this code will only execute if the entered user name does not already exist
 		}
 	}
