@@ -43,7 +43,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 		$hash = $_SESSION['password_hash'];
 		echo $hash;
 		echo $_SESSION['password_hash'];
-		echo $_SESSION['user'];
+		//echo $_SESSION['user'];
 	
 	
 	//echo $_SESSION['user'];
@@ -54,13 +54,33 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 		$conPass = $_POST['conPassword'];
 		$oldSalt = $_SESSION['salt'];
 		$user = $_SESSION['user'];
-		
 	
 			//echo $user;
 		if($newPass != $conPass)
 		{
 			$message = "Passwords must match!";
+		}
+		else
+		{	
+				//connects to the db
+				$dbconn = dbconnect();
+				
+				$updateQ = "Update $schema.authentication SET password_hash = $1, salt = $2 WHERE user_email = $3";
+				echo $updateQ;
+				
+				$updatePrep = pg_prepare($dbconn, "prep", $updateQ);
 			
+				if($updatePrep == true) 
+				{
+					header("Location: home.php");
+					/* $changePass= sha1($newPass . $salt);
+					//execute the query
+					$prepResult = pg_execute($dbconn, "prep", array($changePass,$salt,$user));
+			
+					//free result in case we want to use it again
+					pg_free_result($prepResult) */;	
+				}
+		
 		}
 	}
   ?>
