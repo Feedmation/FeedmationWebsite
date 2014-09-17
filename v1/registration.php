@@ -70,11 +70,10 @@ if(isset($_POST['register'])) {
 		}
 		
 		//check if the row already exists before continuing 
-		if($searchresult == true) 
+		if($found > 0) 
 		{
 			$message = "That user name has already been registered by another user!"; 
-		}
-		
+		}		
 		//this code will only execute if the entered user name does not already exist
 		else {
 		
@@ -124,7 +123,7 @@ if(isset($_POST['register'])) {
 	</nav>
 	<br><br><br>
 
-	<h3 id="errorMessage" ><?php echo $message?></h3>
+	<center><h4 class='errorMessage' id="errorMessage" ><?php echo $message?></h4></center>
 	
   <div data-role="main" class="container">
     <form method="post" action="registration.php">
@@ -165,7 +164,7 @@ if(isset($_POST['register'])) {
     </form>
     
   </div>
-
+<br><br>
 
 </body>
 </html>
