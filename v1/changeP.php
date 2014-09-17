@@ -89,7 +89,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 				   }
 				   else
 				   {
-					  echo "Message could not be sent! Incorrect security question and/or answer.";
+					  echo "Password could be changed. Passwords do not match!.";
 				   }
 					
 					
