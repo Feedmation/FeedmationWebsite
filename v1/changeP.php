@@ -52,51 +52,10 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 		echo $hash;
 	
 			//echo $user;
-		if(($newPass != $conPass) || ($hash != sha1($oldPass . $_SESSION['salt']))) 
+		if($newPass != $conPass)) 
 		{
 			$message = "Passwords must match!";
 			
 		}
-		/* else
-		{
-			//connects to the db
-				$dbconn = dbconnect();				
-				$updateQ = "Update $schema.authentication SET password_hash = $1, salt = $2 WHERE user_email = $3";		
-				$updatePrep = pg_prepare($dbconn,"prep", $updateQ);
-				
-					echo $updateQ;
-				/*
-				if($updatePrep) 
-				{
-					$salt = rand();
-					echo "Udoka Anugwo";
-					$changePass= sha1($newPass . $salt);
-					//execute the query
-					$prepResult = pg_execute($dbconn,"prep", array($changePass,$salt,$user));
-			
-					//free result in case we want to use it again
-					pg_free_result($prepResult);	
-				}
-			
-			   $subject = "Feedmation Password Change";
-			   $message = "Hey, your password has been successfully changed. You will now be able to 
-					login with your changed password. \n\n Your changed password : $newPass \n
-					Once you log in with your new password, you will then be able to change the 
-					password.\n\n
-					- Feedmation";
-			   $header = "From: info@feedmation.com \r\n";
-			   $retval = mail($user, $subject, $message,$header);
-			 
-			  if($retval == true )  
-			   {
-					echo "PARTYNEXTDOOR2";
-				 // header("Location: confirmation.php");
-			   }
-			   else
-			   {
-				  echo "Confirmation email could not be sent!.";
-			   } 
-			//this code will only execute if the entered user name does not already exist
-		} */
 	}
   ?>
