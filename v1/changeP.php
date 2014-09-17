@@ -60,17 +60,17 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 				$dbconn = dbconnect();				
 				$updateQ = "Update $schema.authentication SET password_hash = $1, salt = $2 WHERE user_email = $3";		
 				$updatePrep = pg_prepare($dbconn,"prep", $updateQ);
-			
+			echo $updateQ;
 				if($updatePrep) 
 				{
 				
 					echo "Udoka Anugwo";
-					/* $changePass= sha1($newPass . $salt);
+					$changePass= sha1($newPass . $salt);
 					//execute the query
 					$prepResult = pg_execute($dbconn,"prep", array($changePass,$salt,$user));
 			
 					//free result in case we want to use it again
-					pg_free_result($prepResult); */	
+					pg_free_result($prepResult);	
 				}
 			
 			   $subject = "Feedmation Password Change";
