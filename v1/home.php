@@ -38,7 +38,6 @@ function addPet() {
 		$("#feeders").html(data);
       }
 	});	
-	
 }
 
 function deleteFeeder() {
@@ -51,6 +50,17 @@ function deleteFeeder() {
 		$('.delete').show();
 		$('#deleteFeederBtn').html('Cancel Delete');
 	}
+}
+
+function feedNow() {
+	$.ajax({
+      url: 'feedNow.php',
+      type: "GET",
+      success: function(data) {
+		$('#feedNow').hide();
+		$("#feeders").html(data);
+      }
+	});	
 }
 
 </script>
@@ -74,6 +84,7 @@ function deleteFeeder() {
 <div class="container">
 	
 	<div data-role="main" id="main-content" class="ui-content">
+		<button id='feedNow' class='btn btn-danger' name='feedNow' onclick='feedNow();'>Feed Now!</button>
 		<center>
 			<div class="errorMessage"></div><br>
 			<div id="feeders">
