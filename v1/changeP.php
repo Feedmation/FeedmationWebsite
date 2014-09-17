@@ -52,7 +52,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 		echo $hash;
 	
 			//echo $user;
-		if(($newPass != $conPass) || ($hash! = sha1($oldPass . $_SESSION['salt']))) 
+		if(($newPass != $conPass) || ($hash != sha1($oldPass . $_SESSION['salt']))) 
 		{
 			$message = "Passwords must match!";
 			
