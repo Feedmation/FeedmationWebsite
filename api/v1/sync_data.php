@@ -87,7 +87,7 @@ if(!$stmt)
 						
 						if(pg_num_rows($tagResults) > 0) {
 							
-							$tagArray = array();
+							$tagArray[3];
 
 							while($tagRow = pg_fetch_assoc($tagResults)) {
 					
@@ -108,7 +108,7 @@ if(!$stmt)
 								}
 								
 								$tag = new Tag($tagChange, $tagID, $amount, $slot1Start, $slot1End, $slot2Start, $slot2End);
-								$tagArray[$slotNum] = {$slotNum => $tag->getArray()};
+								$tagArray[$slotNum] = $tag->getArray();
 								
 								/*
 								//Now that the JSON has been sent to the feeder, set all it's tags has_chaged values to false
