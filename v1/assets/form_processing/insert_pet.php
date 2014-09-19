@@ -48,8 +48,8 @@ include_once '../../loginFunctions.php';
 		} else 
 		{ //else locating an open slot between 1 and 4
 		
-			$openSlot;
-			$match = false;
+			$openSlot = NULL;
+			$match = NULL;
 			$keepSearching = true;
 			
 			for ($i=1; $i<=4; $i++) {
@@ -57,6 +57,7 @@ include_once '../../loginFunctions.php';
 				if ($keepSearching) {
 					echo "Searching\n";
 					while( ($tagRow = pg_fetch_assoc($slotAmountResult)) ) {
+						echo "while loops";
 						if ($i == $tagRow['tag_slot']) {
 							$match = true; 
 							echo $i . " found\n";
