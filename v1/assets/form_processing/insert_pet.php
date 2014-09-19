@@ -52,24 +52,30 @@ include_once '../../loginFunctions.php';
 			$match = NULL;
 			$keepSearching = true;
 			
-			for ($i=0; $i<=3; $i++) {
-
-				if ($keepSearching) {
-					while( ($tagRow = pg_fetch_assoc($slotAmountResult)) ) {
-						if ($i == $tagRow['tag_slot']) {
-							$match = true; 
-						}
-					}
-			
-					if ($match) {
-						$keepSearching = true;
-						$match = false;
-					} else {
-						$keepSearching = false;
-						$openSlot = $i;
-					}
+			if(pg_num_rows($slotAmountResult) == 0) {
+	
+				$openSlot = 0;
 					
-					pg_result_seek($slotAmountResult, 0);
+			}else{
+					
+					for ($i=0; $i<=3; $i++) {
+					if ($keepSearching) {
+						while( ($tagRow = pg_fetch_assoc($slotAmountResult)) ) {
+							if ($i == $tagRow['tag_slot']) {
+								$match = true; 
+							}
+						}
+		
+						if ($match) {
+							$keepSearching = true;
+							$match = false;
+						} else {
+							$keepSearching = false;
+							$openSlot = $i;
+						}
+				
+						pg_result_seek($slotAmountResult, 0);
+					}
 				}
 			}
 			
