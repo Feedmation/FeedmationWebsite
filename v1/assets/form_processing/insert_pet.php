@@ -48,12 +48,12 @@ include_once '../../loginFunctions.php';
 		} else 
 		{ //else locating an open slot between 1 and 4
 		
-			$openSlot;
-			$match=false;
-			$keepSearching = true;
+			global $openSlot;
+			global $match=false;
+			global $keepSearching = true;
 			for ($i=1; $i<=4; $i++) {
 
-				if ($keepSearching == false) {
+				if ($keepSearching == true) {
 				
 					while( ($tagRow = pg_fetch_assoc($slotAmountResult)) ) {
 						if ($i == $tagRow['tag_slot']) {
@@ -111,6 +111,8 @@ include_once '../../loginFunctions.php';
 				} else {
 					echo "<p>Couldn't sanitize query for Tag ID.</p>";
 				}
+			} else {
+				echo "<p>Problem finding slot for pet</p>";
 			}
 		}
 		
