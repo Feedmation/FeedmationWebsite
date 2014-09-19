@@ -72,6 +72,8 @@ include_once '../../loginFunctions.php';
 						$openSlot = $i;
 						echo "set slot" . $i;
 					}
+					
+					pg_result_seek($slotAmountResult, 0);
 				}
 			}
 			
