@@ -87,7 +87,7 @@ if(!$stmt)
 						
 						if(pg_num_rows($tagResults) > 0) {
 							
-							$tagArray[3];
+							$tagArray = array();
 
 							while($tagRow = pg_fetch_assoc($tagResults)) {
 					

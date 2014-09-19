@@ -54,11 +54,11 @@ include_once '../../loginFunctions.php';
 			
 			if(pg_num_rows($slotAmountResult) == 0) {
 	
-				$openSlot = 0;
+				$openSlot = 1;
 					
 			}else{
 					
-					for ($i=0; $i<=3; $i++) {
+					for ($i=1; $i<=4; $i++) {
 					if ($keepSearching) {
 						while( ($tagRow = pg_fetch_assoc($slotAmountResult)) ) {
 							if ($i == $tagRow['tag_slot']) {
