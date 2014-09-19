@@ -63,7 +63,7 @@ include_once '../../loginFunctions.php';
 						}
 					}
 			
-					if ($match==true) {
+					if ( $match ) {
 						$keepSearching = true;
 					} else {
 						$keepSearching = false;
