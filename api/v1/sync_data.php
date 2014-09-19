@@ -108,7 +108,8 @@ if(!$stmt)
 								}
 								
 								$tag = new Tag($tagChange, $tagID, $amount, $slot1Start, $slot1End, $slot2Start, $slot2End);
-								$tagArray[$slotNum] = $tag->getArray();
+								$tagWithNum = array($slotNum => $tag->getArray());
+								$tagArray[$slotNum] = $tagWithNum;
 								
 								/*
 								//Now that the JSON has been sent to the feeder, set all it's tags has_chaged values to false
