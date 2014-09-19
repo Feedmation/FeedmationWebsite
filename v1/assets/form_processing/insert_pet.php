@@ -52,7 +52,7 @@ include_once '../../loginFunctions.php';
 			$match = NULL;
 			$keepSearching = true;
 			
-			for ($i=1; $i<=4; $i++) {
+			for ($i=0; $i<=3; $i++) {
 
 				if ($keepSearching) {
 					while( ($tagRow = pg_fetch_assoc($slotAmountResult)) ) {
