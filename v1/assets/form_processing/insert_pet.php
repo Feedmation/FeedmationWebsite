@@ -51,20 +51,22 @@ include_once '../../loginFunctions.php';
 			$openSlot;
 			$match=false;
 			$keepSearching = true;
-			for ($i=4; $i>=1; $i--) {
-			
-				while( ($tagRow = pg_fetch_assoc($slotAmountResult)) and ($keepSearching==true) ) {
-					$slotNum = $tagRow['tag_slot'];
-					if ($i == $slotNum) {
-						$match = true; 
+			for ($i=1; $i<=4; $i++) {
+
+				if ($keepSearching == false) {
+				
+					while( ($tagRow = pg_fetch_assoc($slotAmountResult)) ) {
+						if ($i == $tagRow['tag_slot']) {
+							$match = true; 
+						}
 					}
-				}
 			
-				if ($match==true) {
-					$keepSearching = true;
-				} else {
-					$keepSearching = false;
-					$openSlot = $i;
+					if ($match==true) {
+						$keepSearching = true;
+					} else {
+						$keepSearching = false;
+						$openSlot = $i;
+					}
 				}
 			}
 			
