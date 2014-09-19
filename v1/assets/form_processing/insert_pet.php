@@ -48,9 +48,10 @@ include_once '../../loginFunctions.php';
 		} else 
 		{ //else locating an open slot between 1 and 4
 		
-			global $openSlot;
-			global $match=false;
-			global $keepSearching = true;
+			$openSlot;
+			$match = false;
+			$keepSearching = true;
+			
 			for ($i=1; $i<=4; $i++) {
 
 				if ($keepSearching == true) {
