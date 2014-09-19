@@ -58,15 +58,15 @@ include_once '../../loginFunctions.php';
 				
 					while( ($tagRow = pg_fetch_assoc($slotAmountResult)) ) {
 						if ($i == $tagRow['tag_slot']) {
-							$match = true; 
+							global $match = true; 
 						}
 					}
 			
 					if ($match==true) {
-						$keepSearching = true;
+						global $keepSearching = true;
 					} else {
-						$keepSearching = false;
-						$openSlot = $i;
+						global $keepSearching = false;
+						global $openSlot = $i;
 					}
 				}
 			}
