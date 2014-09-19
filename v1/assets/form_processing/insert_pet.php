@@ -66,7 +66,7 @@ include_once '../../loginFunctions.php';
 			
 					if ($match) {
 						$keepSearching = true;
-						echo "true";
+						$match = false;
 					} else {
 						$keepSearching = false;
 						$openSlot = $i;
