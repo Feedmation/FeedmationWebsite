@@ -108,7 +108,7 @@ if(!$stmt)
 								}
 								
 								$tag = new Tag($tagChange, $tagID, $amount, $slot1Start, $slot1End, $slot2Start, $slot2End);
-								$tagArray[$slotNum] = $tag->getArray();
+								$tagArray = array($slotNum => $tag->getArray());
 								
 								
 								/*
