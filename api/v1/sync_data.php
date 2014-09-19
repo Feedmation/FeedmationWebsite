@@ -88,6 +88,10 @@ if(!$stmt)
 						if(pg_num_rows($tagResults) > 0) {
 							
 							$tagArray = array();
+							$tagArray[1] = 1;
+							$tagArray[2] = 2;
+							$tagArray[3] = 3;
+							$tagArray[4] = 4;
 
 							while($tagRow = pg_fetch_assoc($tagResults)) {
 					
