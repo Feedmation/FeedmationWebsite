@@ -53,7 +53,7 @@ include_once '../../loginFunctions.php';
 			$keepSearching = true;
 			
 			for ($i=1; $i<=4; $i++) {
-
+				echo "loop " . $i;
 				if ($keepSearching) {
 				
 					while( ($tagRow = pg_fetch_assoc($slotAmountResult)) ) {
