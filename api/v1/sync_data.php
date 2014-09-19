@@ -65,7 +65,7 @@ if(!$stmt)
  			case 'pull_settings':
  			
  				//Start query to get tag settings for a feeder
-				$tagQuery = "SELECT * FROM $GLOBALS[schema].rfid WHERE feeder_id = $1";
+				$tagQuery = "SELECT * FROM $GLOBALS[schema].rfid WHERE feeder_id = $1 ORDER BY tag_slot ASC";
 				$stmt = pg_prepare($dbConn,"tags",$tagQuery);
 
 				//if statement won't prepare then return error else execute statment
