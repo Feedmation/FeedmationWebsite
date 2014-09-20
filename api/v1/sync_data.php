@@ -138,10 +138,53 @@ if(!$stmt)
       
       		// function for providing pet feeder with feed now request info
       		case 'feed_now':
-				$feedNow = array('feedNow' => true,'feedAmount' => 2.25);
+      		
+      			//Start query to get feeder feed now data
+				$feederQuery = "SELECT * FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
+				$stmt = pg_prepare($dbConn,"feednow",$feederQuery);
+
+				//if statement won't prepare then return error else execute statment
+				if(!$stmt) {
+				
+					header('Content-Type: application/json');
+					echo json_encode(array("error" => "database query error"));
+					return;
+
+				} else {
 	
-				header('Content-Type: application/json');
-				echo json_encode($feedNow);
+					$feederResults =  pg_execute($dbConn,"feednow",array($feederid));
+					if(pg_num_rows($feederResults)==0) {
+					
+						header('Content-Type: application/json');
+			    		echo json_encode(array("error" => "no feed now data available for given feeder id"));
+			    			
+					} else {
+						
+						if(pg_num_rows($feederResults) == 1) {
+							
+								$feederData = pg_fetch_assoc($feederResults);
+								$feedNowSet = $feederData['feed_now_set'];
+								$feedNowAmount = $feederData['feed_now_amount'];
+								
+								//Boolean fix
+								if ( $feedNowSet == 'f' ) {
+									$feedNowSet = false;
+								} else {
+									$feedNowSet = true;
+								}
+								
+								$feedNowData = array('feedNow' => $feedNowSet,'feedAmount' => $feedNowAmount);
+								
+								header('Content-Type: application/json');
+								echo json_encode($feedNowData);
+								
+							}
+						}
+					}
+					
+					pg_free_result($feederResults);
+				}
+				
 			break;
 	
 			default:
