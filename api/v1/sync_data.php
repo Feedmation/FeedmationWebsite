@@ -175,8 +175,8 @@ if(!$stmt)
 				
 			break;
 			
-			//data loging function
-			case 'update_tag':
+			//function for receiving tag update response back from the micro controller
+			case 'tag_complete':
 			
 				//Start query to process tag update notification 
 				$updateTagQuery = "UPDATE $GLOBALS[schema].rfid SET has_changed = false WHERE feeder_id = $1 AND tag_id = $2";
@@ -186,11 +186,21 @@ if(!$stmt)
 				
 					pg_execute($dbConn,"updatetag",array($feederid, $tag_id));
 
-				} else {
-	
-					header('Content-Type: application/json');
-					echo json_encode(array("error" => "tag update was not successful"));
-					return;
+				}
+				
+        	break;
+        	
+        	//function for receiving tag update response back from the micro controller
+			case 'feednow_complete':
+			
+				//Start query to process that feednow has completed 
+				$feednowComplete = "UPDATE $GLOBALS[schema].feeders SET feed_now_set = false WHERE feeder_id = $1";
+				$stmt = pg_prepare($dbConn,"feednowComplete",$feednowComplete);
+
+				if($stmt) {
+				
+					pg_execute($dbConn,"feednowComplete",array($feederid));
+
 				}
 				
         	break;
