@@ -3,6 +3,7 @@ include_once('objects/tag.php');
 
 $feederid = $_GET['feederid'];
 $func = $_GET['function'];
+$tag_id = $_GET['tagid'];
 
 //variable for the schema used in the database.
 //store it here so we can easily change it if need be. 
@@ -113,17 +114,6 @@ if(!$stmt)
 								
 								$tag = new Tag($tagChange, $tagID, $amount, $slot1Start, $slot1End, $slot2Start, $slot2End);
 								$tagArray[$slotNum] = $tag->getArray();
-								
-								/*
-								//Now that the JSON has been sent to the feeder, set all it's tags has_chaged values to false
-			   					$setTags = "UPDATE $GLOBALS[schema].rfid SET has_changed = false WHERE feeder_id = $1 AND tag_id = $2 AND has_changed = $3";
-								$stmt = pg_prepare($dbConn,"tagUpdate",$setTags);
-								//if statement won't prepare then return error else execute statment
-								if($stmt) {
-									pg_execute($dbConn,"tagUpdate",array($feederid, $tagID, true));
-								}
-								*/	
-								
 							}
 							
 							header('Content-Type: application/json');
@@ -184,6 +174,26 @@ if(!$stmt)
 				}
 				
 			break;
+			
+			//data loging function
+			case 'update_tag':
+			
+				//Start query to process tag update notification 
+				$updateTagQuery = "UPDATE $GLOBALS[schema].rfid SET has_changed = false WHERE feeder_id = $1 AND tag_id = $2";
+				$stmt = pg_prepare($dbConn,"updatetag",$updateTagQuery);
+
+				if($stmt) {
+				
+					pg_execute($dbConn,"updatetag",array($feederid, $tag_id));
+
+				} else {
+	
+					header('Content-Type: application/json');
+					echo json_encode(array("error" => "tag update was not successful"));
+					return;
+				}
+				
+        	break;
 	
 			default:
 				header("HTTP/1.0 405 Method Not Allowed");
