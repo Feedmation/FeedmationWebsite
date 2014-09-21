@@ -79,46 +79,39 @@ if(!$stmt)
 				} else {
 	
 					$tagResults =  pg_execute($dbConn,"tags",array($feederid));
-					if(pg_num_rows($tagResults)==0) {
+						
+					if(pg_num_rows($tagResults) >= 0) {
+					
+						$tagArray = array();
+						$tagArray[1] = null;
+						$tagArray[2] = null;
+						$tagArray[3] = null;
+						$tagArray[4] = null;
+
+						while($tagRow = pg_fetch_assoc($tagResults)) {
+			
+							$tagChange = $tagRow['has_changed'];
+							$tagID = $tagRow['tag_id'];
+							$amount = $tagRow['feed_amount'];
+							$slot1Start = $tagRow['slot_one_start'];
+							$slot1End = $tagRow['slot_one_end'];
+							$slot2Start = $tagRow['slot_two_start'];
+							$slot2End = $tagRow['slot_two_end'];
+							$slotNum = $tagRow['tag_slot'];
+						
+							//Boolean fix
+							if ( $tagChange == 'f' ) {
+								$tagChange = false;
+							} else {
+								$tagChange = true;
+							}
+						
+							$tag = new Tag($tagChange, $tagID, $amount, $slot1Start, $slot1End, $slot2Start, $slot2End);
+							$tagArray[$slotNum] = $tag->getArray();
+						}
 					
 						header('Content-Type: application/json');
-			    		echo json_encode(array("error" => "no tags available for given feeder id"));
-			    			
-					} else {
-						
-						if(pg_num_rows($tagResults) > 0) {
-							
-							$tagArray = array();
-							$tagArray[1] = null;
-							$tagArray[2] = null;
-							$tagArray[3] = null;
-							$tagArray[4] = null;
-
-							while($tagRow = pg_fetch_assoc($tagResults)) {
-					
-								$tagChange = $tagRow['has_changed'];
-								$tagID = $tagRow['tag_id'];
-								$amount = $tagRow['feed_amount'];
-								$slot1Start = $tagRow['slot_one_start'];
-								$slot1End = $tagRow['slot_one_end'];
-								$slot2Start = $tagRow['slot_two_start'];
-								$slot2End = $tagRow['slot_two_end'];
-								$slotNum = $tagRow['tag_slot'];
-								
-								//Boolean fix
-								if ( $tagChange == 'f' ) {
-									$tagChange = false;
-								} else {
-									$tagChange = true;
-								}
-								
-								$tag = new Tag($tagChange, $tagID, $amount, $slot1Start, $slot1End, $slot2Start, $slot2End);
-								$tagArray[$slotNum] = $tag->getArray();
-							}
-							
-							header('Content-Type: application/json');
-			   				echo json_encode($tagArray);
-						}
+						echo json_encode($tagArray);
 					}
 					
 					pg_free_result($tagResults);
