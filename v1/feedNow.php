@@ -18,6 +18,31 @@
 		$("#buttonBar").hide();
 		$(".errorMessage").empty();
 	});
+	
+	$('#feedNowForm').on('submit', function (e) {
+
+		e.preventDefault();
+		  
+		$.ajax({
+			url: 'assets/form_processing/updateFeedNow.php',
+			type: "POST",
+			dataType: 'text',
+			data: $("#feedNowForm").serialize(),
+			success: function(data) {
+				var error = "pendingRequest";
+				if(data.match(error)) {
+					alert(data);
+					window.scrollTo(0,0);
+					$(".errorMessage").hide().empty().html("You already have a Feed Now request pending.\nResubmit this request once that one executes.").fadeIn('slow');
+				} else {
+					$("#feeders").html(data);
+					$(".errorMessage").empty().html("Your Feed Now request has been submitted!");
+					$("#buttonBar").show();
+					$("#feedNow").show();
+				}
+			}
+		});	
+	});
 </script>
 
 </head>
