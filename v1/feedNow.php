@@ -31,7 +31,6 @@
 			success: function(data) {
 				var error = "pendingRequest";
 				if(data.match(error)) {
-					alert(data);
 					window.scrollTo(0,0);
 					$(".errorMessage").hide().empty().html("You already have a Feed Now request pending.\nResubmit this request once that one executes.").fadeIn('slow');
 				} else {
