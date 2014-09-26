@@ -46,3 +46,9 @@
 		<select name = 'pet' class="form-control">
 		  <option value="" selected>----------------------------</option>
 		</select>
+		<br><br><br>
+	<button id="deletePetBtn" class='btn btn-default' name='deletePet' data-inline="true">Delete Pet</button>
+	<br><a href="index.php">Feedmation</a><br><br>
+	
+		
+		
