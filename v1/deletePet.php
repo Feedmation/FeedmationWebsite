@@ -1,3 +1,12 @@
+<?php
+	session_start();
+	$loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
+	if ($loggedIn == false) {
+		header("Location: index.php");
+		exit;
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,3 +53,42 @@
 
 </body>
 </html>
+
+<?php
+
+include_once 'loginFunctions.php';
+
+	$dbConn = dbconnect();
+	$tagID = $_GET['tag_id'];
+	
+	//delete the feeder from the feeder table
+	$petDelete = "DELETE FROM $GLOBALS[schema].feeders WHERE tag_id = $1";
+	
+	$petDeletePrep = pg_prepare($dbConn, "petDelete", $petDelete);
+	
+	if($petDeletePrep) { 
+		$petDeleteResult = pg_execute($dbConn, "petDelete", array($petID));	
+	} 
+	else 
+	{
+		echo "<p>Couldn't delete your pet from the feeder. </p>";
+	}
+
+	//delete from stats table
+	$statsTblDelete = "DELETE FROM $GLOBALS[schema].stats WHERE tag_id = $1";
+	
+	$statsDeletePrep = pg_prepare($dbConn, "deleteStatsTbl", $statsTblDelete);
+	
+	if($statsDeletePrep) { 
+		$statsTblDeleteResult = pg_execute($dbConn, "deleteStatsTbl", array($feederId));	
+	} else {
+		echo "<p>Couldn't delete your pet's stats from the stats table</p>";
+	}
+	
+	//once all the necessary data has been delete, repopulate the feeder list on home.php
+	$data = populateFeeders();
+	echo $data;
+	
+?>
+
+
