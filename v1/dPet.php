@@ -50,5 +50,51 @@
 	<center><button id="deletePetBtn" class='btn btn-default' name='deletePet' data-inline="true">Delete Pet</button></center>
 	<center><br><a href="index.php">Feedmation</a><br><br></center>
 	
+	<?php
+		$user =  $_SESSION['user'];
+		$dbConn = dbconnect();
 		
+		//delete the feeder from the feeder table
+		$getPets = "SELECT feeder_name FROM $GLOBALS[schema].feeders WHERE user_email = $1";
+			
+		$getPetsPrep = pg_prepare($dbConn, "getPets", $grabPets);
+	
+	if($getPetsPrep) { 
+		$getPetsResult = pg_execute($dbConn, "getPets", array($user));
+		
+		if($getPetsResult >0){
+		?>
+		<br>
+		<label for='feeder'>Select a Feeder:</label>
+		<br>
+		<select name = 'feeder' class="form-control">
+		  <option value="" selected>----------------------------</option>
+		  
+		  <?
+		  while ($row = pg_fetch_assoc($getPetsResult)) 
+		  {
+            echo '<option value="'.htmlspecialchars($row['feeder_name']).'"></option>';
+          }
+		  ?>
+		  <option value="favMovie">What is your favorite movie? </option>
+		</select>
+		
+		<?php
+		
+		
+		}
+			
+			
+	} else {
+		echo "<p>Couldn't delete your pet from the feeder table</p>";
+	}
+	
+		
+		
+		
+		
+		
+		
+		
+		?>
 		
