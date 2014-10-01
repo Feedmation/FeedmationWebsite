@@ -38,46 +38,41 @@
 		</select>
 		<br><br>
 	<?php
-		$user =  $_SESSION['user'];
-		$dbConn = dbconnect();
-		
-		//delete the feeder from the feeder table
-		$getPets = "SELECT feeder_name FROM $GLOBALS[schema].feeders WHERE user_email = $1";
-			
-		$getPetsPrep = pg_prepare($dbConn, "getPets", $grabPets);
 	
-	if($getPetsPrep) { 
-		$getPetsResult = pg_execute($dbConn, "getPets", array($user));
+		$dbconn = dbconnect();
+	
 		
-		if($getPetsResult >0){
-		?>
-		<br>
-		<label for='feeder'>Select a Feeder:</label>
-		<br>
-		<select name = 'feeder' class="form-control">
-		  <option value="" selected>----------------------------</option>
-		  
-		  <?
-		  while ($row = pg_fetch_assoc($getPetsResult)) 
-		  {
-            echo '<option value="'.htmlspecialchars($row['feeder_name']).'"></option>';
-          }
-		  ?>
-		  <option value="favMovie">What is your favorite movie? </option>
-		</select>
+		$dbconn = dbconnect();
+	
+		$selectPets = "SELECT * FROM $GLOBALS[schema].rfid WHERE user_email = $1 and feeder_id = $2";
 		
-		<?php
+		$selectPetsPrep = pg_prepare($dbconn, "pets", $selectPets);
 		
-		
+		if($selectPetsPrep) {
+			$petsResult = pg_execute($dbconn, "pets", array($_SESSION['user'], $_GET['feederId']));
+		} else {
+			echo "Could not sanitize user name. Try again later.";
 		}
-			
-			
-	} else {
-		echo "<p>Couldn't delete your pet from the feeder table</p>";
-	}
 		
-		
-		?>
+		if($petsResult) {
+			$pets = '';
+			$i = 0;
+			while($row = pg_fetch_assoc($petsResult)) {
+				$pets.= "
+							<option value='$row[tag_id]'>$row[pet_name]</option>
+						   ";			
+				$i++;
+			}
+			pg_free_result($petsResult);
+			echo $pets;
+			
+		} else {
+			echo "Could not query for Pets. Try refreshing the page";
+		}	
+	
+	
+	
+	?>
 			<center><br><a href="index.php">Feedmation</a><br><br></center>
 
 		
