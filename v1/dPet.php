@@ -69,10 +69,10 @@
 		}
 		$selected_Fdr = $_POST['feederId'];
 		
-		echo "Your selected value is " .$selected_Fdr;
-		?>
-		
-		<?
+		//echo "Your selected value is " .$selected_Fdr;
+	
+	
+	//Pets
 		$selectPets = "SELECT * FROM $GLOBALS[schema].rfid WHERE user_email = $1 and feeder_id = $2";
 		
 		$selectPetsPrep = pg_prepare($dbconn, "pets", $selectPets);
