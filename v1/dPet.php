@@ -107,11 +107,6 @@
 			echo "Could not query for Pets. Try refreshing the page";
 		}	
 		?>
-		
-
-		
-		
-?>
 		<br><br>
 			<center><br><a href="index.php">Feedmation</a><br><br></center>
 		
