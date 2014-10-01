@@ -71,7 +71,7 @@
 		}
 		$selected_Fdr = $_POST['feederId'];
 		
-		echo "Your selected value is " $selected_Fdr;
+		echo "Your selected value is " .$selected_Fdr;
 ?>
 		<br><br>
 			<center><br><a href="index.php">Feedmation</a><br><br></center>
