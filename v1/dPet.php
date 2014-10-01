@@ -44,7 +44,7 @@
 		  <option value="" selected>----------------------------</option>
 		</select>
 		<br><br><br>
-	<center><button id="deletePetBtn" class='btn btn-default' name='deletePet' data-inline="true">Delete Pet</button></center--!>	
+	<center><button id="deletePetBtn" class='btn btn-default' name='deletePet' data-inline="true">Delete Pet</button></center-->	
 	<?php
 		$user =  $_SESSION['user'];
 		$dbConn = dbconnect();
