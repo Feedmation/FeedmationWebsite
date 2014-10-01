@@ -65,9 +65,13 @@
 			pg_free_result($feedersResult);
 		///	echo $feeders;
 			
-		} else {
+		} else 
+		{
 			echo "Could not query for Pet Feeders. Try refreshing the page";
 		}
+		$selected_Fdr = $_POST['feederId'];
+		
+		echo "Your selected value is " $selected_Fdr;
 ?>
 		<br><br>
 			<center><br><a href="index.php">Feedmation</a><br><br></center>
