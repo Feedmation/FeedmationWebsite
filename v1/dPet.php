@@ -30,18 +30,45 @@
 
 
 <br>
+<? 
 
+		$dbconn = dbconnect();
+	
+		$selectFeeders = "SELECT * FROM $GLOBALS[schema].feeders WHERE user_email = $1";
+		
+		$selectFeedersPrep = pg_prepare($dbconn, "feeders", $selectFeeders);
+		
+		if($selectFeedersPrep) {
+			$feedersResult = pg_execute($dbconn, "feeders", array($_SESSION['user']));
+		} else {
+			echo "Could not sanitize user name. Try again later.";
+		}
+		
+		if($feedersResult) 
+		{
+			$feeders = '';
+			$i = 0;
+			while($row = pg_fetch_assoc($feedersResult)) 
+			{
+				$feeders.= "
+							<option value='$row[feeder_id]' selected>$row[feeder_name]</option>";	
+?>
 <label for='Feeder'>Select a Feeder:</label>
 		<br>
 		<select name="feederId" required="required" class="form-control" id="feederId">
-			<?php populateFeedersSelectBox(); ?>
-		</select>
+		<?echo $feeders ?>
+				</select>
 		<br><br>
-		
-		<?php 
-			$selected_Fdr = $_POST['feederId'];
-			echo  "You have selected :" .$selected_Fdr;
-			?>
+		<?				   
+				$i++;
+			}
+			pg_free_result($feedersResult);
+		///	echo $feeders;
+			
+		} else {
+			echo "Could not query for Pet Feeders. Try refreshing the page";
+		}
+?>
 		<br><br>
 			<center><br><a href="index.php">Feedmation</a><br><br></center>
 		
