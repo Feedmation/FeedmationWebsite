@@ -44,9 +44,7 @@
 		  <option value="" selected>----------------------------</option>
 		</select>
 		<br><br><br>
-	<center><button id="deletePetBtn" class='btn btn-default' name='deletePet' data-inline="true">Delete Pet</button></center--!>
-	<center><br><a href="index.php">Feedmation</a><br><br></center>
-	
+	<center><button id="deletePetBtn" class='btn btn-default' name='deletePet' data-inline="true">Delete Pet</button></center--!>	
 	<?php
 		$user =  $_SESSION['user'];
 		$dbConn = dbconnect();
@@ -85,13 +83,10 @@
 	} else {
 		echo "<p>Couldn't delete your pet from the feeder table</p>";
 	}
-	
-		
-		
-		
-		
-		
 		
 		
 		?>
+			<center><br><a href="index.php">Feedmation</a><br><br></center>
+
+		
 		
