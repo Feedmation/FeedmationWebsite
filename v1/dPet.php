@@ -31,7 +31,7 @@
 
 <br>
 
-<label for='Pet'>Select a Feeder:</label>
+<!--label for='Pet'>Select a Feeder:</label>
 		<br>
 		<select name = 'feeder' class="form-control">
 		  <option value="" selected>----------------------------</option>
@@ -44,7 +44,7 @@
 		  <option value="" selected>----------------------------</option>
 		</select>
 		<br><br><br>
-	<center><button id="deletePetBtn" class='btn btn-default' name='deletePet' data-inline="true">Delete Pet</button></center>
+	<center><button id="deletePetBtn" class='btn btn-default' name='deletePet' data-inline="true">Delete Pet</button></center--!>
 	<center><br><a href="index.php">Feedmation</a><br><br></center>
 	
 	<?php
