@@ -31,20 +31,12 @@
 
 <br>
 
-<!--label for='Pet'>Select a Feeder:</label>
+<label for='Pet'>Select a Feeder:</label>
 		<br>
-		<select name = 'feeder' class="form-control">
-		  <option value="" selected>----------------------------</option>
+		<select name="feederId" required="required" class="form-control" id="feederId">
+			<?php populateFeedersSelectBox(); ?>
 		</select>
-		<br>
-		<br>
-		<label for='Pet'>Select a Pet:</label>
-		<br>
-		<select name = 'pet' class="form-control">
-		  <option value="" selected>----------------------------</option>
-		</select>
-		<br><br><br>
-	<center><button id="deletePetBtn" class='btn btn-default' name='deletePet' data-inline="true">Delete Pet</button></center-->	
+		<br><br>
 	<?php
 		$user =  $_SESSION['user'];
 		$dbConn = dbconnect();
