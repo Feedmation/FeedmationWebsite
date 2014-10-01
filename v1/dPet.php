@@ -95,7 +95,7 @@
 <label for='Feeder'>Select a Pet:</label>
 		<br>
 		<select name="petId" required="required" class="form-control" id="petId">
-		<?echo $feeders ?>
+		<?echo $pets ?>
 				</select>
 		<br><br>
 <?							
