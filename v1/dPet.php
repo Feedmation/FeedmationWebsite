@@ -61,7 +61,7 @@
 				$i++;
 			}
 			pg_free_result($petsResult);
-			echo $pets;
+		//	echo $pets;
 			
 		} else {
 			echo "Could not query for Pets. Try refreshing the page";
