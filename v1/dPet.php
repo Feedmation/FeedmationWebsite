@@ -40,10 +40,9 @@
 		
 		<?php 
 			$selected_Fdr = $_POST['feederId'];
-			echo $selected_Fdr;
+			echo  "You have selected :" .$selected_Fdr;
 			?>
 		<br><br>
 			<center><br><a href="index.php">Feedmation</a><br><br></center>
-
 		
 		
