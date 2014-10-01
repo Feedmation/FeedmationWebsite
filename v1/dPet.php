@@ -30,6 +30,12 @@
 
 
 <br>
+
+<label for='Pet'>Select a Feeder:</label>
+		<br>
+		<select name = 'feeder' class="form-control">
+		  <option value="" selected>----------------------------</option>
+		</select>
 		<br>
 		<br>
 		<label for='Pet'>Select a Pet:</label>
