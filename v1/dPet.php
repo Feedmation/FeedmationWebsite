@@ -80,16 +80,14 @@ $('select').change(function() '
 		
 		if($feedersResult) 
 		{ 
+		echo " <label for='Feeder'>Select a Feeder:</label> ";
 		echo " <select name='feederId' required='required' class='form-control' id='feederId'>";
 			$feeders = '';
 			$i = 0;
 			while($row = pg_fetch_assoc($feedersResult)) 
 			{
-				$feeders.= "
-							<option value='$row[feeder_id]' selected>$row[feeder_name]</option>";	
+				$feeders.= "<option value='$row[feeder_id]' selected>$row[feeder_name]</option>";	
 ?>
-
-<label for='Feeder'>Select a Feeder:</label>
 		<br>
 		<?echo $feeders ?>
 		</select>
