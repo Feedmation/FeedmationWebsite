@@ -155,6 +155,7 @@ $('select').change(function() '
 		
 		?>
 		<br><br>
-			<center><br><a href="index.php">Feedmation</a><br><br></center>
+			<center><a href="home.php" data-inline='true' class='btn btn-default backButton'>Go back to Feedmation Home</a></center>
+
 		
 		
