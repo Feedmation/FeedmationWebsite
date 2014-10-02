@@ -55,7 +55,6 @@
 $(document).ready(function() {	
 $('select').change(function() '
 {
-			
 			var e = document.getElementById("feederId");
 			var feederId = e.options[selectBox.selectedIndex].value;
 });
@@ -80,7 +79,8 @@ $('select').change(function() '
 		}
 		
 		if($feedersResult) 
-		{
+		{ 
+		echo " <select name='feederId' required='required' class='form-control' id='feederId'>";
 			$feeders = '';
 			$i = 0;
 			while($row = pg_fetch_assoc($feedersResult)) 
@@ -91,11 +91,8 @@ $('select').change(function() '
 
 <label for='Feeder'>Select a Feeder:</label>
 		<br>
-		
-		<select name="feederId" required="required" class="form-control" id="feederId">
 		<?echo $feeders ?>
-		
-				</select>
+		</select>
 		<br><br>
 		<?				   
 				$i++;
