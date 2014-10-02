@@ -149,7 +149,7 @@ $('select').change(function() '
 	}
 	
 	//once all the necessary data has been delete, repopulate the feeder list on home.php
-	$data = populateFeeders();
+//	$data = populateFeeders();
 //	echo $data;
 
 		
