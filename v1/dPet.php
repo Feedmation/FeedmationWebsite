@@ -34,7 +34,7 @@
 
 	function loadPetsSelect(feederId) {
 		$.ajax({
-			url: 'assets/php_functions/phpFunctions.php',
+			url: 'dPet.php',
 			type: "GET",
 			data: {	populatePetsSelect: 'true',
 					feederId : feederId},
@@ -119,9 +119,8 @@ $('select').change(function() '
 		} else {
 			echo "Could not sanitize user name. Try again later.";
 		}
-		
 		if($petsResult) 
-			{
+		{
 			$pets = '';
 			$i = 0;
 			while($row = pg_fetch_assoc($petsResult)) 
@@ -129,7 +128,7 @@ $('select').change(function() '
 				$pets.= "<option value='$row[tag_id]'>$row[pet_name]</option>";
 
 ?>
-<label for='Pets'>Select a Pet:</label>
+		<label for='Pets'>Select a Pet:</label>
 		<br>
 		<select name="petId" required="required" class="form-control" id='petSelect'>
 		<div data-role="main" id="main-content" class="ui-content">
