@@ -29,6 +29,21 @@
 <?php include_once 'loginFunctions.php'; ?>	
 
 
+
+<script>
+
+$(document).ready(function() {	
+$('select').change(function() '
+{
+			
+			var e = document.getElementById("feederId");
+			var feederId = e.options[selectBox.selectedIndex].value;
+});
+		});
+
+</script>
+
+
 <br>
 <? 
 
@@ -94,7 +109,7 @@
 ?>
 <label for='Feeder'>Select a Pet:</label>
 		<br>
-		<select name="petId" required="required" class="form-control" id="petId">
+		<select name="petId" required="required" class="form-control" id='petSelect'>
 		<?echo $pets ?>
 				</select>
 		<br><br>
@@ -104,7 +119,40 @@
 			}
 			else {
 			echo "Could not query for Pets. Try refreshing the page";
-		}	
+		}
+
+	//tagID had to be value
+	$tagID = $_GET['tag_id'];
+	
+	//delete the feeder from the feeder table
+	$petDelete = "DELETE FROM $GLOBALS[schema].feeders WHERE tag_id = $1";
+	
+	$petDeletePrep = pg_prepare($dbConn, "petDelete", $petDelete);
+	
+	if($petDeletePrep) { 
+		$petDeleteResult = pg_execute($dbConn, "petDelete", array($petID));	
+	} 
+	else 
+	{
+		echo "<p>Couldn't delete your pet from the feeder. </p>";
+	}
+
+	//delete from stats table
+	$statsTblDelete = "DELETE FROM $GLOBALS[schema].stats WHERE tag_id = $1";
+	
+	$statsDeletePrep = pg_prepare($dbConn, "deleteStatsTbl", $statsTblDelete);
+	
+	if($statsDeletePrep) { 
+		$statsTblDeleteResult = pg_execute($dbConn, "deleteStatsTbl", array($feederId));	
+	} else {
+		echo "<p>Couldn't delete your pet's stats from the stats table</p>";
+	}
+	
+	//once all the necessary data has been delete, repopulate the feeder list on home.php
+	$data = populateFeeders();
+//	echo $data;
+
+		
 		?>
 		<br><br>
 			<center><br><a href="index.php">Feedmation</a><br><br></center>
