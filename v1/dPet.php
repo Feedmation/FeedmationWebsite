@@ -33,6 +33,7 @@
 <script>
 
 	function loadPetsSelect(feederId) {
+		alert("test ");
 		$.ajax({
 			url: 'dPet.php',
 			type: "GET",
@@ -113,6 +114,8 @@ $('select').change(function() '
 		$selectPets = "SELECT * FROM $GLOBALS[schema].rfid WHERE user_email = $1 and feeder_id = $2";
 		
 		$selectPetsPrep = pg_prepare($dbconn, "pets", $selectPets);
+		
+		echo $_GET['feederId'];
 		
 		if($selectPetsPrep) {
 			$petsResult = pg_execute($dbconn, "pets", array($_SESSION['user'], $_GET['feederId']));
