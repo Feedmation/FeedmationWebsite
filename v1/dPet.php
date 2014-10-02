@@ -146,6 +146,8 @@ $('select').change(function() '
 
 	//tagID had to be value
 	$tagID = $_GET['tag_id'];
+	
+	
 	if($tagID>0)
 	{
 	//delete the feeder from the feeder table
