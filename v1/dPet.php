@@ -32,6 +32,25 @@
 
 <script>
 
+	function loadPetsSelect(feederId) {
+		$.ajax({
+			url: 'assets/php_functions/phpFunctions.php',
+			type: "GET",
+			data: {	populatePetsSelect: 'true',
+					feederId : feederId},
+			success: function(data) {
+				var error = 'error';
+				if(data.match(error)) {
+					window.scrollTo(0,0);
+					$(".errorMessage").hide().html("There was an error populating dropdown for pets. Try again later.").fadeIn('slow');
+				} else {
+					$(".errorMessage").empty();
+					$("#statsTable").html(data);
+				}
+			}
+		});
+	}
+
 $(document).ready(function() {	
 $('select').change(function() '
 {
@@ -68,10 +87,13 @@ $('select').change(function() '
 				$feeders.= "
 							<option value='$row[feeder_id]' selected>$row[feeder_name]</option>";	
 ?>
+
 <label for='Feeder'>Select a Feeder:</label>
 		<br>
+		
 		<select name="feederId" required="required" class="form-control" id="feederId">
 		<?echo $feeders ?>
+		
 				</select>
 		<br><br>
 		<?				   
@@ -107,11 +129,13 @@ $('select').change(function() '
 				$pets.= "<option value='$row[tag_id]'>$row[pet_name]</option>";
 
 ?>
-<label for='Feeder'>Select a Pet:</label>
+<label for='Pets'>Select a Pet:</label>
 		<br>
 		<select name="petId" required="required" class="form-control" id='petSelect'>
+		<div data-role="main" id="main-content" class="ui-content">
 		<?echo $pets ?>
-				</select>
+		</div>
+		</select>
 		<br><br>
 <?							
 				$i++;
