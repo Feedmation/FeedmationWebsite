@@ -86,10 +86,10 @@ $('select').change(function() '
 			$i = 0;
 			while($row = pg_fetch_assoc($feedersResult)) 
 			{
-				$feeders.= "<option value='$row[feeder_id]' selected>$row[feeder_name]</option>";	
+				$feeders.= " <option value='$row[feeder_id]' selected>$row[feeder_name]</option>";	
 ?>
 		<br>
-		<?echo $feeders ?>
+		<?echo $feeders; ?>
 		</select>
 		<br><br>
 		<?				   
