@@ -146,7 +146,8 @@ $('select').change(function() '
 
 	//tagID had to be value
 	$tagID = $_GET['tag_id'];
-	
+	if($tagID>0)
+	{
 	//delete the feeder from the feeder table
 	$petDelete = "DELETE FROM $GLOBALS[schema].feeders WHERE tag_id = $1";
 	
@@ -160,15 +161,17 @@ $('select').change(function() '
 		echo "<p>Couldn't delete your pet from the feeder. </p>";
 	}
 
-	//delete from stats table
-	$statsTblDelete = "DELETE FROM $GLOBALS[schema].stats WHERE tag_id = $1";
+		//delete from stats table
+		$statsTblDelete = "DELETE FROM $GLOBALS[schema].stats WHERE tag_id = $1";
+		
+		$statsDeletePrep = pg_prepare($dbConn, "deleteStatsTbl", $statsTblDelete);
+		
+		if($statsDeletePrep) { 
+			$statsTblDeleteResult = pg_execute($dbConn, "deleteStatsTbl", array($feederId));	
+		} else {
+			echo "<p>Couldn't delete your pet's stats from the stats table</p>";
+		}
 	
-	$statsDeletePrep = pg_prepare($dbConn, "deleteStatsTbl", $statsTblDelete);
-	
-	if($statsDeletePrep) { 
-		$statsTblDeleteResult = pg_execute($dbConn, "deleteStatsTbl", array($feederId));	
-	} else {
-		echo "<p>Couldn't delete your pet's stats from the stats table</p>";
 	}
 	
 	//once all the necessary data has been delete, repopulate the feeder list on home.php
