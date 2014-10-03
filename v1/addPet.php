@@ -106,7 +106,7 @@ include_once 'loginFunctions.php';
         <input type="text" required="required" class="form-control" name="name">    
         <br>
         <label for="number">Tag Number:</label>
-        <input type="text" required="required" class="form-control" name="number"> 
+        <input type="text" min="10" max="10" required="required" class="form-control" name="number"> 
         <br>
 		<label for="feederId">Which Feeder will the new pet use?</label>
 		<select name="feederId" required="required" class="form-control" id="feederId">

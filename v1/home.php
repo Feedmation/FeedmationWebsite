@@ -72,13 +72,14 @@ function feedNow() {
 			<div class="navbar-header pull-left">
 				<p class="navbarText brand navbar-text"><?php echo "$_SESSION[fname]'s Feedmation Home"; ?></p>
 			</div>
-			<div class="navbar-header pull-right">
-				<p class="navbar-text">
-					<a href="changeP.php" class='btn btn-default pull-right'>Change Password</a>  
-					<a href="logout.php" class="btn btn-default pull-right">Logout</a>
-				</p>	
-			</div>
-		</div>
+			<ul class='nav navbar-nav pull-right'>	
+			<li class='divider'>
+			<a href="changeP.php">Change Password</a>  
+			</li>
+			<li>
+                        <a href="logout.php">Logout</a>
+                        </li>
+			</ul>
 	</nav>
 	<br><br><br><br>
 	
