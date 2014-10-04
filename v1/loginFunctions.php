@@ -1,15 +1,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
-<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.0/jquery-ui.min.js"></script>
 <link rel="stylesheet" media="all" type="text/css" href="assets/jquery-timepicker-master/jquery.timepicker.css" />
 <script type="text/javascript" src="assets/jquery-timepicker-master/jquery.timepicker.js"></script>
-
-<script>
-//$( document ).ajaxStart(function() { $('body').addClass('loading'); });
-//$( document ).ajaxStop(function() { $('body').removeClass('loading'); });    
-</script>
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css">

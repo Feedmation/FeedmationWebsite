@@ -14,6 +14,14 @@
 
 
 <script>
+
+$(document).ajaxStart(function() { 
+	
+	});
+	
+$(document).ajaxStart(function() { 
+		//$('#feedmationNavbar').show();
+	});
 	
 function addFeeder() {
 	$.ajax({
@@ -73,20 +81,28 @@ function feedNow() {
 				<p class="navbarText brand navbar-text"><?php echo "$_SESSION[fname]'s Feedmation Home"; ?></p>
 			</div>
 			<ul class='nav navbar-nav pull-right'>	
-			<li class='divider'>
-			<a href="changeP.php">Change Password</a>  
-			</li>
-			<li>
-                        <a href="logout.php">Logout</a>
-                        </li>
+				<li id='navbarDropdown' class='dropdown'>
+					<a href="#" class="dropdown-toggle glyphicon glyphicon-cog" data-toggle="dropdown"></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href='#' id='feedNow' name='feedNow' onclick='feedNow(); return false;'><span class='glyphicon glyphicon-time'></span> Feed Now!</a></li>
+						<li><a href='#' name='addFeeder' onclick="addFeeder(); return false;"><span class='glyphicon glyphicon-plus'></span> Add Feeder</a></li>
+						<li><a href='#' name='deleteFeeder' onclick="deleteFeeder(); return false;" ><span class='glyphicon glyphicon-trash'></span> Delete Feeder</a></li>
+						<li><a href='#' name='addPet' onclick="addPet(); return false;"><span class='glyphicon glyphicon-plus'></span> Add Pet</a></li>
+						<li><a href='dPet.php' id="deletePetBtn" name='deletePet'><span class='glyphicon glyphicon-trash'></span> Delete Pet</a></li>
+						<li class="divider"></li>
+						<li><a href="changeP.php"><span class='glyphicon glyphicon-user'></span> Change Password</a></li>
+						<li><a href="logout.php"><span class='glyphicon glyphicon-off'></span> Logout</a></li>				
+					</ul>
+				</li>				
 			</ul>
+		</div>	
 	</nav>
+	<!-- end navbar -->
 	<br><br><br><br>
 	
 <div class="container">
 	
 	<div data-role="main" id="main-content" class="ui-content">
-		<button id='feedNow' class='btn btn-danger' name='feedNow' onclick='feedNow();'>Feed Now!</button>
 		<center>
 			<div class="errorMessage"></div><br>
 			<div id="feeders">
@@ -96,11 +112,6 @@ function feedNow() {
 	</div>
 	<br><br>	
 	<center id="buttonBar">
-	<button id="addFeederBtn" class='btn btn-default' name='addFeeder' onclick="addFeeder();" data-inline="true">Add Feeder</button>
-	<button id="deleteFeederBtn" class='btn btn-default marginLeft' name='deleteFeeder' onclick="deleteFeeder();" data-inline="true">Delete Feeder</button>
-	<button id="addPetBtn" class='btn btn-default marginLeft' name='addPet' onclick="addPet();" data-inline="true">Add Pet</button>
-	<button id="deletePetBtn" class='btn btn-default marginLeft' name='deletePet' onclick="location.href = 'dPet.php';" data-inline="true">Delete Pet</button>
-
 	</center>
 
 </div>

@@ -119,8 +119,7 @@ body.loading .loadingModal {
 }	
 
 #feedNow {
-	position: absolute;
-	left: 0;
+	color: red;
 }
 					
 </style>

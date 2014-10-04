@@ -5,14 +5,25 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 
 <!DOCTYPE html>
 
-<!-- navbar -->
-	<nav class="navbar navbar-default navbar-fixed-top">
+	<!-- navbar -->
+	<nav class="navbar-default navbar-fixed-top">
 		<div class='container'>
-			<div class="navbar-header">
-				<p class="navbarText brand navbar-text">Change Password</p>
+			<div class="navbar-header pull-left">
+				<p class="navbarText brand navbar-text"><?php echo "$_SESSION[fname]'s Feedmation Home"; ?></p>
 			</div>
-		</div>
+			<ul class='nav navbar-nav pull-right'>	
+				<li class='dropdown'>
+				<a href="#" class="dropdown-toggle glyphicon glyphicon-cog" data-toggle="dropdown"></a>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="changeP.php">Change Password</a></li>
+					<li><a href='feedNow.php' id='feedNow' name='feedNow' onclick='feedNow(); return false;'>Feed Now!</a></li>
+					<li class="divider"></li>
+					<li><a href="logout.php">Logout</a></li>				
+				</ul>				
+			</ul>
+		</div>	
 	</nav>
+	<!-- end navbar -->
 	<br><br><br>
 	
 	<html>
