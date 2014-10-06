@@ -60,6 +60,13 @@ $('select').change(function() '
 			var feederId = e.options[selectBox.selectedIndex].value;
 });
 		});
+		
+function checkData()
+{
+	var e = document.getElementById("feederId");
+	var feederId = e.options[selectBox.selectedIndex].value;
+ }		
+		
 
 </script>
 
@@ -69,7 +76,7 @@ $('select').change(function() '
 	?>
 	<!--Feeder-->
 	<label for='pet'>Select a Feeder:</label>
-	<select class="form-control" id='feederSelect' name='feeder'>
+	<select class="form-control" id='feederSelect' name='feeder' onChange="checkData();">
 		<?php populateFeedersSelectBox(); ?>
 	</select>
 	<br><br>
