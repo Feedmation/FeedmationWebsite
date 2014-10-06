@@ -129,7 +129,7 @@ if(session_id() == '') {
 			$i = 0;
 			while($row = pg_fetch_assoc($feedersResult)) {
 				$feeders.= "
-							<option value='$row[feeder_id]' selected>$row[feeder_name]</option>
+							<option value='$row[feeder_id]'>$row[feeder_name]</option>
 						   ";			
 				$i++;
 			}
