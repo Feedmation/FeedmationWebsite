@@ -76,7 +76,9 @@ $('select').change(function() '
 	
 	<?
 		$feederID = $_POST['feeder'];
-		echo $feederID;
+		
+		if($feederID!=5)
+			echo $feederID;
 	?>
 	
 	<!--Pets-->
