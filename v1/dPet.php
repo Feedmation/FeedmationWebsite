@@ -72,6 +72,11 @@ $('select').change(function() '
 		<?php populateFeedersSelectBox(); ?>
 	</select>
 	<br><br>
+	<label for='pet'>Select a Pet:</label>
+	<select class="form-control" id='petSelect' name='pet'>
+		<?php populatePetsSelectBox(); ?>
+	</select>
+	<br><br>
 			<center><button type='submit' name='deletePet' class='btn btn-default'>Delete Pet From Feeder</button>
 		<br><br>
 			<center><a href="home.php" data-inline='true' class='btn btn-default backButton'>Go back to Feedmation Home</a></center>
