@@ -45,7 +45,9 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 		<input type='password' class="form-control" pattern=".{8,16}"  name='conPassword' title="Must be between 8 and 16 characters" required="required" id='conPassword'>
 		<br><br>
 		<center><button type='submit' name='update' class='btn btn-default'>Change Password</button>
-		<br>
+		<br><br>
+					<center><a href="home.php" data-inline='true' class='btn btn-default backButton'>Go back to Feedmation Home</a></center>
+				<br>
     </form>
   </div>
  
