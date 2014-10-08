@@ -65,7 +65,7 @@ if(!$stmt)
 				
 				//Start insert
 				
-				$logInsert = "INSERT INTO $GLOBALS[schema].stats (entry_id, tag_id, feeder_id, amtfedcups, event_time) VALUES ($1, $2, $3, $4)";
+				$logInsert = "INSERT INTO $GLOBALS[schema].stats (entry_id, tag_id, feeder_id, amtfedcups, event_time) VALUES ($1, $2, $3, $4, $5)";
 
 				$logPrep = pg_prepare($dbConn, "insertLog", $logInsert);
 
