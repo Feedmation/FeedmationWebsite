@@ -217,6 +217,36 @@ if(!$stmt)
 				}
 			
 			break;
+			
+			//function for receiving when food tank is empty from the micro controller
+			case 'tank_empty':
+		
+				//Start query
+				$foodTankEmpty = "UPDATE $GLOBALS[schema].feeders SET empty = true WHERE feeder_id = $1";
+				$stmt = pg_prepare($dbConn,"foodTankEmpty",$foodTankEmpty);
+
+				if($stmt) {
+			
+					pg_execute($dbConn,"foodTankEmpty",array($feederid));
+
+				}
+			
+			break;
+			
+			//function for receiving when food tank is full from the micro controller
+			case 'tank_full':
+		
+				//Start query
+				$foodTankFull = "UPDATE $GLOBALS[schema].feeders SET empty = false WHERE feeder_id = $1";
+				$stmt = pg_prepare($dbConn,"foodTankFull",$foodTankFull);
+
+				if($stmt) {
+			
+					pg_execute($dbConn,"foodTankFull",array($feederid));
+
+				}
+			
+			break;
 
 			default:
 				header("HTTP/1.0 405 Method Not Allowed");
