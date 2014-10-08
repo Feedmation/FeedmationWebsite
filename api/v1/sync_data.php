@@ -71,10 +71,12 @@ if(!$stmt)
 
 				if($logPrep) {
 					
-					pg_execute($dbConn, "insertLog", array($tag_id, $feederid, $amount, $time);	
-					
+					$logResult = pg_execute($dbConn, "insertLog", array($tag_id, $feederid, $amount, $time);	
+				
 					header('Content-Type: application/json');
 					echo json_encode(array("logData" => "Submited"));
+					
+					pg_free_result($logResult);
 				
 				} else {
 					header('Content-Type: application/json');
