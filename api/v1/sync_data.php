@@ -62,24 +62,25 @@ if(!$stmt)
 		{
 			//data loging function
 			case 'log_data':
-				$parameters = array();
-				$body = file_get_contents("php://input");
-				$body_params = json_decode($body);
-			
-				if($body_params) {
-					foreach($body_params as $param_name => $param_value) 
-					{
-						$parameters[$param_name] = $param_value;
-					}
-				header('Content-Type: application/json');
-				echo json_encode(array("logData" => "Submited"));
-			
+				
+				//Start insert
+				
+				$logInsert = "INSERT INTO $GLOBALS[schema].stats (tag_id, feederid, amtfedcups, event_time) VALUES ($1, $2, $3, $4)";
+
+				$logPrep = pg_prepare($dbConn, "insertLog", $logInsert);
+
+				if($logPrep) {
+					
+					pg_execute($dbConn, "insertLog", array($tag_id, $feederid, $amount, $time);	
+					
+					header('Content-Type: application/json');
+					echo json_encode(array("logData" => "Submited"));
+				
 				} else {
-			
-				header('Content-Type: application/json');
-				echo json_encode(array("logdata" => "failed"));
-			
+					header('Content-Type: application/json');
+					echo json_encode(array("logdata" => "failed"));
 				}
+				
 			break;
 		
 			// function for providing per feeder with tag settings
