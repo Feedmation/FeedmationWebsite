@@ -65,13 +65,13 @@ if(!$stmt)
 				
 				//Start insert
 				
-				$logInsert = "INSERT INTO $GLOBALS[schema].stats (entry_id, tag_id, feeder_id, amtfedcups, amtatecups, amtateweight, petweight, event_time) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)";
+				$logInsert = "INSERT INTO $GLOBALS[schema].stats (tag_id, feeder_id, amtfedcups, amtatecups, amtateweight, petweight, event_time) VALUES ($1, $2, $3, $4, $5, $6, $7)";
 
 				$logPrep = pg_prepare($dbConn, "insertLog", $logInsert);
 
 				if($logPrep) {
 					
-					pg_execute($dbConn, "insertLog", array(1, $tag_id, $feederid, $amount, NULL, NULL, NULL, $time));	
+					pg_execute($dbConn, "insertLog", array($tag_id, $feederid, $amount, NULL, NULL, NULL, $time));	
 				
 					header('Content-Type: application/json');
 					echo json_encode(array("logData" => "Submited"));
