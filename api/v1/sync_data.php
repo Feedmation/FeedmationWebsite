@@ -71,7 +71,7 @@ if(!$stmt)
 
 				if($logPrep) {
 					
-					pg_execute($dbConn, "insertLog", array(NULL, $tag_id, $feederid, $amount, NULL, NULL, NULL, $time));	
+					pg_execute($dbConn, "insertLog", array(1, $tag_id, $feederid, $amount, NULL, NULL, NULL, $time));	
 				
 					header('Content-Type: application/json');
 					echo json_encode(array("logData" => "Submited"));
