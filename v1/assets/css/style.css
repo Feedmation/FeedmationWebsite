@@ -32,28 +32,39 @@ div.ui-btn.ui-input-btn.ui-corner-all.ui-shadow.ui-btn-inline {
 	margin-bottom:20px !important;
 }
 
-#feeders button.btn.online.btn-default {
+#feeders button.btn.online.btn-block {
+	display: inline-block;
+	width:85%;		
+	padding: 20px 0px;
+	color: black;
+	font-weight: bold;
+	font-size: 12pt;
 	background-image: linear-gradient(to bottom,#EAFDE5 0,#CDFFC8 100%);	
 }
 	
-#feeders button.btn.offline.btn-default {
+#feeders button.btn.offline.btn-block {
+	display: inline-block;
+	font-size: 12pt;
+	padding: 20px 0px;
+	font-weight: bold;
+	width:85%;
 	background-image: linear-gradient(to bottom,#F18D8D 0,#FD6B6B 100%);
 	color: white;
 }
 
-#feeders button.btn.online.btn-default:focus {
+#feeders button.btn.online.btn-block:focus {
 	background-color: #CDFFC8;
 }		
 	
-#feeders button.btn.online.btn-default:hover {
+#feeders button.btn.online.btn-block:hover {
 	background-color: #CDFFC8;
 }
 	
-#feeders button.btn.offline.btn-default:focus {
+#feeders button.btn.offline.btn-block:focus {
 	background-color: #FD6B6B;
 }
 	
-#feeders button.btn.offline.btn-default:hover {
+#feeders button.btn.offline.btn-block:hover {
 	background-color: #FD6B6B;
 }
 		
