@@ -47,7 +47,7 @@ if(session_id() == '') {
 										});	
 									
 									} else {
-										$('.errorMessage').hide().html('You have not assigned any pets to this feeder.<br>Add a pet using the button below').fadeIn('slow');
+										$('.errorMessage').hide().html('You have not assigned any pets to this feeder.<br>Add a pet using the menu in the top right corner!').fadeIn('slow');
 									}
 		
 								  }
