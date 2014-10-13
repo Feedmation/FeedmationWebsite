@@ -41,7 +41,7 @@ include_once 'loginFunctions.php';
 							$tag_id = $row['tag_id'];
 								$petName = $row['pet_name'];
 								
-								$eventQ = "SELECT tag_id FROM $GLOBALS[schema].stats WHERE tag_id = '$tag_id' AND event_time = '2014-10-12'";
+								$eventQ = "SELECT tag_id FROM $GLOBALS[schema].stats WHERE tag_id = '$tag_id' AND event_time = '2014-10-12 08:30:20'";
 								//$eventPrep = pg_prepare($dbconn,"event", $eventQ);
 								$eventResult = pg_query($dbconn,$eventQ);
 								
