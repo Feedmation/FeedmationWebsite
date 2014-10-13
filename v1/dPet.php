@@ -29,7 +29,8 @@
 <?php include_once 'loginFunctions.php'; ?>	
 <?php include_once './assets/php_functions/phpFunctions.php'; ?>	
 	
-
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
 
 <script>
