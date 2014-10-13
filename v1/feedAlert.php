@@ -27,7 +27,7 @@ include_once 'loginFunctions.php';
 				}
 				else
 				{
-					while($feederResult==TRUE && $feederRow= pg_fetch_assoc($feederResult))
+					while($feederRow= pg_fetch_assoc($feederResult))
 					{
 						$feederID= $feederRow['feeder_id'];
 						$feederName = $feederRow['feeder_name'];
@@ -36,7 +36,7 @@ include_once 'loginFunctions.php';
 						$tagPrep = pg_prepare($dbconn, "tag", $tagQ);
 						$tagResult = pg_execute($dbconn,"tag",array($feederID));
 						echo "Found feeder " .$feederID;
-						while($tagResult==TRUE && $row = pg_fetch_assoc($tagResult))
+						while($row = pg_fetch_assoc($tagResult))
 						{
 						
 						echo "tag result is true.";
