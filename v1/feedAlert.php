@@ -31,7 +31,7 @@ include_once 'loginFunctions.php';
 					{
 						$feederRow= pg_fetch_assoc($feederResult);
 						$feederID= $feederRow['feeder_id'];
-						$feederName = $feeder['feeder_name'];
+						$feederName = $feederRow['feeder_name'];
 						$user= $feederRow['user_email'];
 						$tagQ = "SELECT tag_id, pet_name FROM $GLOBALS[schema].rfid WHERE feeder_id = $1";
 						$tagPrep = pg_prepare($dbconn, "tag", $tagQ);
