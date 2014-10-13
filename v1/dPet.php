@@ -68,6 +68,7 @@
 	<!--Feeder-->
 	<label for='pet'>Select a Feeder:</label>
 	<select class="form-control" id='feederSelect' name='feeder' onchange="loadPetsSelect();">
+	<option value="">--Please Select a Feeder--</option>
 		<?php
 		$dbconn = dbconnect();
 	
