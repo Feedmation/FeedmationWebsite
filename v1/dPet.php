@@ -26,7 +26,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<?php include_once 'loginFunctions.php'; ?>	
 <?php include_once 'phpFunctions.php'; ?>	
 
 
