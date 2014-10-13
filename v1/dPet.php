@@ -40,8 +40,6 @@
 		var e = document.getElementById("feederSelect");
 		var feederId = e.options[e.selectedIndex].value;
 		
-		alert("test ");
-		console.dir("test");
 		$.ajax({
 			url:'dPetHandler.php',
 			type: "GET",
