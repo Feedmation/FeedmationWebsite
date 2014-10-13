@@ -60,6 +60,7 @@ include_once 'loginFunctions.php';
 									- Feedmation";
 									$header = "From: info@feedmation.com \r\n";
 									$retval = mail($user, $subject, $message,$header);
+									echo"Email sent!!!!" . $petName $tag_id;
 								}
 								pg_free_result($eventResult);
 					}
