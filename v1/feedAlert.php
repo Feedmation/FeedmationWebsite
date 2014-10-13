@@ -6,7 +6,7 @@
 		exit;
 	} */
 	
-//include_once 'loginFunctions.php';
+include_once 'loginFunctions.php';
 ?>
 
 <html>
@@ -14,8 +14,7 @@
 
 <?php
 				//connects to the db
-				$dbConnString = "host=173.254.28.90 options='--client_encoding=UTF8' user=feedmati_user dbname=feedmati_system password=PZi0wuz9n+XX";
-				$dbConn = pg_connect($dbConnString ) or die("Problem with connection to PostgreSQL:".pg_last_error());
+				$dbconn = dbconnect();
 				
 				$feederQ =  "SELECT feeder_id, feeder_name,user_email FROM $GLOBALS[schema].feeders";
 				$feederPrep = pg_prepare($dbconn, "empty", $feederQ);
