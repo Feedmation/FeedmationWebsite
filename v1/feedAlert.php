@@ -19,7 +19,7 @@ include_once 'loginFunctions.php';
 				$feederQ =  "SELECT feeder_id, feeder_name,user_email FROM $GLOBALS[schema].feeders";
 				$feederPrep = pg_prepare($dbconn, "empty", $feederQ);
 				//execute the query
-				$feederResult = pg_execute($dbconn,"empty");
+				$feederResult = pg_execute($dbconn,"empty",array());
 			
 				if(!$feederResult) 
 				{
