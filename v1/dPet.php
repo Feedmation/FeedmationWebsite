@@ -87,6 +87,7 @@
 				$feeders.= "
 							<option value='$row[feeder_id]' onclick = 'loadPetsSelect(\'$row[feeder_id]\')'>$row[feeder_name]</option>
 						   ";			
+						  
 				$i++;
 			}
 			pg_free_result($feedersResult);
