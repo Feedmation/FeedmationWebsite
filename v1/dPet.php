@@ -58,7 +58,7 @@
 				}
 			}
 		});
-	}	
+	}
 </script>
 
 <br>
@@ -67,7 +67,7 @@
 	?>
 	<!--Feeder-->
 	<label for='pet'>Select a Feeder:</label>
-	<select class="form-control" id='feederSelect' name='feeder'>
+	<select class="form-control" id='feederSelect' name='feeder' onchange="loadPetsSelect();">
 		<?php
 		$dbconn = dbconnect();
 	
@@ -100,13 +100,6 @@
 		
 		?>
 	</select>
-	<script>
-	var x = document.getElementById("feederSelect").options;
-	console.dir(x);
-	for(var i = 0 ; i < x.length ; i++){
-		x[i].onchange=function(){loadPetsSelect(x[i].value)};
-	}
-	</script>
 	<br><br>
 
 	<!--Pets-->
