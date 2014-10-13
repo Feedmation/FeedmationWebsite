@@ -1,5 +1,6 @@
 <?php
 include_once('objects/tag.php');
+date_default_timezone_set('America/Chicago');
 
 $feederid = null;
 $func = null;
@@ -136,6 +137,17 @@ if(!$stmt)
 					}
 				
 					pg_free_result($tagResults);
+				}
+				
+				//Start query to update last synced time stamp
+				$now = date("Y-m-d H:i:s");
+				$lastSynced = "UPDATE $GLOBALS[schema].feeders SET last_synced = '$now' WHERE feeder_id = $1";
+				$stmt = pg_prepare($dbConn,"lastSynced",$lastSynced);
+
+				if($stmt) {
+			
+					pg_execute($dbConn,"lastSynced",array($feederid));
+
 				}
 			
 			break;
