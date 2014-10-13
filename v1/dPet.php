@@ -32,7 +32,6 @@
 
 
 <script>
-
 	function loadPetsSelect(feederId) {
 		alert("test ");
 		$.ajax({
@@ -76,7 +75,7 @@ function checkData()
 	?>
 	<!--Feeder-->
 	<label for='pet'>Select a Feeder:</label>
-	<select class="form-control" id='feederSelect' name='feeder' onChange="checkData();">
+	<select class="form-control" id='feederSelect' name='feeder'>
 		<?php populateFeedersSelectBox(); ?>
 	</select>
 	<br><br>
