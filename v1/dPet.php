@@ -26,7 +26,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<?php include_once 'phpFunctions.php'; ?>	
+<?php include_once './assets/php_functions/phpFunctions.php'; ?>	
 
 
 
