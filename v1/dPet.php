@@ -26,7 +26,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<?php include_once 'loginFunctions.php'; ?>	
 <?php include_once './assets/php_functions/phpFunctions.php'; ?>	
+	
 
 
 
