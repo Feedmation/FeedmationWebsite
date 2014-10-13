@@ -63,6 +63,8 @@
 <? 
 		$dbconn = dbconnect();
 	?>
+	
+	<form id="delete" action="dPet.php" method="POST">
 	<!--Feeder-->
 	<label for='pet'>Select a Feeder:</label>
 	<select class="form-control" id='feederSelect' name='feeder' onchange="loadPetsSelect();">
@@ -103,29 +105,20 @@
 	<!--Pets-->
 	<label for='pet'>Select a Pet:</label>
 	<select class="form-control" id='petSelect' name='pet'>
-		<?php /*populatePetsSelectBox();
-
-		*/
-			?>
-			
 			<label for='pet'>Select a Pet:</label>
-	<select class="form-control" id='petSelect' name='pet'>
-		<?php 
-			/**/	
-		?>
 	</select>
 	<?
 	if(isset($_POST['submit']))
 	{
-		$tagID = $_GET['tag_id'];
-		
-		//delete the feeder from the feeder table
-		$petDelete = "DELETE FROM $GLOBALS[schema].feeders WHERE tag_id = $1";
+		$tagID = $_POST['pet'];
+		$feederID = $_POST['feeder'];
+		//delete the feeder from the rfid table
+		$petDelete = "DELETE FROM $GLOBALS[schema].rfid WHERE feeder_id = $1 AND tag_id = $2";
 		
 		$petDeletePrep = pg_prepare($dbConn, "petDelete", $petDelete);
 		
 		if($petDeletePrep) { 
-			$petDeleteResult = pg_execute($dbConn, "petDelete", array($petID));	
+			$petDeleteResult = pg_execute($dbConn, "petDelete", array($feederID,$tagID));	
 		} 
 		else 
 		{
@@ -138,7 +131,7 @@
 		$statsDeletePrep = pg_prepare($dbConn, "deleteStatsTbl", $statsTblDelete);
 		
 		if($statsDeletePrep) { 
-			$statsTblDeleteResult = pg_execute($dbConn, "deleteStatsTbl", array($feederId));	
+			$statsTblDeleteResult = pg_execute($dbConn, "deleteStatsTbl", array($tagID));	
 		} else {
 			echo "<p>Couldn't delete your pet's stats from the stats table</p>";
 		}
@@ -153,6 +146,7 @@
 	
 	<br><br>
 			<center><button type='submit' name='deletePet' class='btn btn-default'>Delete Pet From Feeder</button>
+		</form>
 		<br><br>
 			<center><a href="home.php" data-inline='true' class='btn btn-default backButton'>Go back to Feedmation Home</a></center>
 			

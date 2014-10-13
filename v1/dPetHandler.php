@@ -32,4 +32,8 @@ if($petsResult)
 	} else {
 		echo "Could not query for Pets. Try refreshing the page";
 	}
+	
+	
+	
+	
 ?>
