@@ -112,6 +112,8 @@
 	{
 		$tagID = $_POST['pet'];
 		$feederID = $_POST['feeder'];
+		
+		$dbConn = dbconnect();
 		//delete the feeder from the rfid table
 		$petDelete = "DELETE FROM $GLOBALS[schema].rfid WHERE feeder_id = $1 AND tag_id = $2";
 		
