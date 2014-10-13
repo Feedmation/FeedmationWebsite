@@ -61,7 +61,7 @@ include_once 'loginFunctions.php';
 										$retval = mail($user, $subject, $message,$header);
 										echo "Email sent!!!! ".$tag_id;
 									} 
-									//pg_free_result($eventResult);
+									pg_free_result($eventResult);
 									//	echo "tag result is true.";
 						}
 						pg_free_result($tagResult);
