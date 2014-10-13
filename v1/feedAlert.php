@@ -62,7 +62,7 @@ include_once 'loginFunctions.php';
 										echo "Email sent!!!! ".$tag_id. "/n";
 									}  
 									pg_free_result($eventResult);
-									$eventPrep=NULL:
+									$eventPrep=NULL;
 									//	echo "tag result is true.";
 						}
 						pg_free_result($tagResult);
