@@ -40,7 +40,7 @@
 		
 		alert("test ");
 		$.ajax({
-			url: 'dPetHandler.php',
+			url: 'phpFunctions.php',
 			type: "GET",
 			data: {	populatePetsSelect: 'true',
 					feederId : feederId},
