@@ -64,7 +64,7 @@
 		$dbconn = dbconnect();
 	?>
 	
-	<form id="delete" action="dPet.php" method="POST">
+	<form id="delete" name="delete" action="dPet.php" method="POST">
 	<!--Feeder-->
 	<label for='pet'>Select a Feeder:</label>
 	<select class="form-control" id='feederSelect' name='feeder' onchange="loadPetsSelect();">
@@ -108,7 +108,7 @@
 			<label for='pet'>Select a Pet:</label>
 	</select>
 	<?
-	if(isset($_POST['submit']))
+	if(isset($_POST['delete']))
 	{
 		$tagID = $_POST['pet'];
 		$feederID = $_POST['feeder'];
@@ -138,6 +138,9 @@
 	
 		//once all the necessary data has been delete, repopulate the feeder list on home.php
 		$data = populateFeeders();
+		
+		header('Location: index.php');
+		
 	}
 	?>
 	
