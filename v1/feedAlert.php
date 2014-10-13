@@ -16,41 +16,53 @@ include_once 'loginFunctions.php';
 				//connects to the db
 				$dbconn = dbconnect();
 				
-				$feedQ = "SELECT tag_id,user_id,slot_one_start,slot_one_end, slot_two_start, slot_two_end 
-							FROM $GLOBALS[schema].rfid";
-				$feedPrep = pg_prepare($dbconn, "empty", $feedQ);
-					//execute the query
-					$feedResult = pg_execute($dbconn,"empty", array($user));
-				
+				$feederQ =  "SELECT feeder_id, feeder_name,user_email FROM $GLOBALS[schema].feeders";
+				$feederPrep = pg_prepare($dbconn, "empty", $feederQ);
+				//execute the query
+				$feederResult = pg_execute($dbconn,"empty", NULL);
+			
 				if(!$feedResult) 
 				{
 					exit;
 				}
-				else
+				while($feederResult==TRUE)
 				{
-					while ($row = pg_fetch_row($emptyResult))
-					{
-						$tag_id = $row[0];
-						$user = row[1];
-						$firstStartTime = row[2];
-						$firstEndTime= row[3];
-						$secondStartTime = row[4];
-						$secondEndTime= row[5];
-						
-						//Have not eaten b/w two time slots
-						if()
-						{
+					$feederRow= pg_fetch_assoc($feederResult);
+					$feederID= $feederRow['feeder_id'];
+					$user= $feederRow['user_email'];
+					$tagQ = "SELECT tag_id, pet_name FROM $GLOBALS[schema].rfid WHERE feeder_id = $1";
+					$tagPrep = pg_prepare($dbconn, "tag", $tagQ);
+					$tagResult = pg_execute($dbconn,"tag",array($feederID);
 					
-							//free result in case we want to use it again
-							//pg_free_result($prepResult);	
+					while($tagResult==TRUE && $row = pg_fetch_assoc($tagResult))
+					{
+						
+							$tag_id = $row['tag_id'];
+							$petName = $row['pet_name'];
 							
-							$subject = "Feedmation - Feeding Reminder";
-							$message = "Hey. $tag_id did not eat at all today. \n\n Please be sure to 
-										check on $tag_id and make sure your pet receives a meal for today. 
-											.\n\n\n\n
-							- Feedmation";
-							$header = "From: info@feedmation.com \r\n";
-							$retval = mail($user, $subject, $message,$header);
-						}
+							$eventQ = "SELECT tag_id FROM $GLOBALS[schema].stats";
+							$eventPrep = pg_prepare($dbconn, "tag",$eventQ);
+							$eventResult = pg_execute($dbconn,"tag",array($tag_id));
+							
+								//Have not eaten b/w two time slots
+								if(pg_num_rows($eventResult) ==0)
+								{
+							
+									//free result in case we want to use it again
+									//pg_free_result($prepResult);	
+									
+									$subject = "Feedmation - Feeding Reminder";
+									$message = "Hey your pet did not eat . \n\n Please be sure to 
+												check on and make sure your pet receives a meal for today. 
+													.\n\n\n\n
+									- Feedmation";
+									$header = "From: info@feedmation.com \r\n";
+									$retval = mail($user, $subject, $message,$header);
+								}
+								pg_free_result($eventResult);
 					}
+						pg_free_result($tagResult);
+				}
+				pg_free_result($feederResult);
+
   ?>
