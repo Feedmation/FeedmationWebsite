@@ -43,8 +43,8 @@ include_once 'loginFunctions.php';
 							$petName = $row['pet_name'];
 							
 							$eventQ = "SELECT tag_id FROM $GLOBALS[schema].stats WHERE tag_id = $1";
-							$eventPrep = pg_prepare($dbconn, "tag",$eventQ);
-							$eventResult = pg_execute($dbconn,"tag",array($tag_id));
+							$eventPrep = pg_prepare($dbconn, "event",$eventQ);
+							$eventResult = pg_execute($dbconn,"event",array($tag_id));
 							
 								//Have not eaten b/w two time slots
 								if(pg_num_rows($eventResult) ==0)
