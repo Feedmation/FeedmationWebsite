@@ -86,7 +86,7 @@
 			$i = 0;
 			while($row = pg_fetch_assoc($feedersResult)) {
 				$feeders.= "
-							<option value='$row[feeder_id]' onselect = \"loadPetsSelect('$row[feeder_id]')\">$row[feeder_name]</option>
+							<option value='$row[feeder_id]'>$row[feeder_name]</option>
 						   ";			
 						  
 				$i++;
@@ -100,6 +100,13 @@
 		
 		?>
 	</select>
+	<script>
+	var x = document.getElementById("feederSelect").options;
+	console.dir(x);
+	for(var i = 0 ; i < x.length ; i++){
+		x[i].onselect=function(){loadPetsSelect(x[i].value)};
+	}
+	</script>
 	<br><br>
 
 	<!--Pets-->
