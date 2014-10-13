@@ -29,6 +29,7 @@ include_once 'loginFunctions.php';
 				{
 					$feederRow= pg_fetch_assoc($feederResult);
 					$feederID= $feederRow['feeder_id'];
+					$feederName = $feeder['feeder_name'];
 					$user= $feederRow['user_email'];
 					$tagQ = "SELECT tag_id, pet_name FROM $GLOBALS[schema].rfid WHERE feeder_id = $1";
 					$tagPrep = pg_prepare($dbconn, "tag", $tagQ);
@@ -53,7 +54,7 @@ include_once 'loginFunctions.php';
 									//pg_free_result($prepResult);	
 									
 									$subject = "Feedmation - Feeding Reminder";
-									$message = "Hey your pet did not eat . \n\n Please be sure to 
+									$message = "Hey your pet, $petName did not eat from your feeder $feederName . \n\n Please be sure to 
 												check on and make sure your pet receives a meal for today. 
 													.\n\n\n\n
 									- Feedmation";
