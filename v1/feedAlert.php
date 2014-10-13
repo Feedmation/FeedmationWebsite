@@ -37,9 +37,11 @@ include_once 'loginFunctions.php';
 						$tagPrep = pg_prepare($dbconn, "tag", $tagQ);
 						$tagResult = pg_execute($dbconn,"tag",array($feederID));
 						echo "Found feeder " .$feederID;
-						while($tagResult==TRUE)
+						while($tagResult==TRUE && $row = pg_fetch_assoc($tagResult))
 						{
-							$row = pg_fetch_assoc($tagResult);
+						
+						echo "tag result is true.";
+							/* 
 							
 								$tag_id = $row['tag_id'];
 								$petName = $row['pet_name'];
@@ -63,10 +65,10 @@ include_once 'loginFunctions.php';
 										$header = "From: info@feedmation.com \r\n";
 										$retval = mail($user, $subject, $message,$header);
 										echo "Email sent!!!! ".$tag_id;
-									}
+									} */
 									//pg_free_result($eventResult);
 						}
-							pg_free_result($tagResult);
+						pg_free_result($tagResult);
 					}
 				}
 				pg_free_result($feederResult);
