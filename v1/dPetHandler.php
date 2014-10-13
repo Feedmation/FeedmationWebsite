@@ -1,6 +1,8 @@
 <?php
 
 $feederID = $_REQUEST['feederID'];
+if ($feederID)
+	echo "yay";
 $selectPets = "SELECT * FROM $GLOBALS[schema].rfid WHERE user_email = $1 and feeder_id = $2";
 		
 $selectPetsPrep = pg_prepare($dbconn, "pets", $selectPets);
