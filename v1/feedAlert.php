@@ -27,9 +27,8 @@ include_once 'loginFunctions.php';
 				}
 				else
 				{
-					while($feederResult==TRUE)
+					while($feederResult==TRUE && $feederRow= pg_fetch_assoc($feederResult))
 					{
-						$feederRow= pg_fetch_assoc($feederResult);
 						$feederID= $feederRow['feeder_id'];
 						$feederName = $feederRow['feeder_name'];
 						$user= $feederRow['user_email'];
