@@ -140,10 +140,6 @@
 			<label for='pet'>Select a Pet:</label>
 	<select class="form-control" id='petSelect' name='pet'>
 		<?php 
-			echo $pets;	
-		} else {
-			echo "Could not query for Pets. Try refreshing the page";
-		}	
 		?>
 	</select>
 	<?
