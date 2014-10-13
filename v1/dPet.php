@@ -104,7 +104,7 @@
 	var x = document.getElementById("feederSelect").options;
 	console.dir(x);
 	for(var i = 0 ; i < x.length ; i++){
-		x[i].onclick=function(){alert(x[i].value};
+		x[i].onclick=function(){alert(x[i].value)};
 		//x[i].onclick=function(){loadPetsSelect(x[i].value)};
 	}
 	</script>
