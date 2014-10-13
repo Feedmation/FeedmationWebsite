@@ -4,15 +4,13 @@ if(session_id() == '') {
 }
 	$sitePath = dirname(dirname(__FILE__));
 	include_once("loginFunctions.php");
-	
-$feederID = $_REQUEST['feederID'];
 
 $selectPets = "SELECT * FROM $GLOBALS[schema].rfid WHERE user_email = $1 and feeder_id = $2";
 		
 $selectPetsPrep = pg_prepare($dbconn, "pets", $selectPets);
 		
 if($selectPetsPrep) {
-	$petsResult = pg_execute($dbconn, "pets", array($_SESSION['user'], $feederID));
+	$petsResult = pg_execute($dbconn, "pets", array($_SESSION['user'], $_REQUEST['feederId']));
 } else {
 		echo "Could not sanitize user name. Try again later.";
 }
