@@ -45,7 +45,7 @@ include_once 'loginFunctions.php';
 								$petName = $row['pet_name'];
 								
 								$eventQ = "SELECT tag_id FROM $GLOBALS[schema].stats WHERE tag_id = $1";
-								$eventPrep = pg_prepare($dbconn, "event",$eventQ);
+								$eventPrep = pg_prepare($dbconn,"event", $eventQ);
 								$eventResult = pg_execute($dbconn,"event",array($tag_id));
 								
 									//Have not eaten b/w two time slots
@@ -61,10 +61,10 @@ include_once 'loginFunctions.php';
 														.\n\n\n\n
 										- Feedmation";
 										$header = "From: info@feedmation.com \r\n";
-										//$retval = mail($user, $subject, $message,$header);
+										$retval = mail($user, $subject, $message,$header);
 										echo "Email sent!!!! ".$tag_id;
 									}
-									pg_free_result($eventResult);
+									//pg_free_result($eventResult);
 						}
 							pg_free_result($tagResult);
 					}
