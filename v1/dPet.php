@@ -108,7 +108,7 @@
 			<label for='pet'>Select a Pet:</label>
 	</select>
 	<?
-	if(isset($_POST['delete']))
+	if(isset($_POST['deletePet']))
 	{
 		$tagID = $_POST['pet'];
 		$feederID = $_POST['feeder'];
