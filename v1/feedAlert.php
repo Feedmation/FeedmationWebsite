@@ -20,7 +20,7 @@ include_once 'loginFunctions.php';
 				$feederPrep = pg_prepare($dbconn, "empty", $feederQ);
 				//execute the query
 				$feederResult = pg_execute($dbconn,"empty",array());
-			
+				echo"Starting query here ";
 				if(!$feederResult) 
 				{
 					echo "Did not run query";
