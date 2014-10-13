@@ -53,7 +53,7 @@
 	}
 
 $(document).ready(function() {	
-$('select').change(function() '
+$('select').change(function()
 {
 			var e = document.getElementById("feederSelect");
 			var feederId = e.options[selectBox.selectedIndex].value;
