@@ -231,6 +231,35 @@ if(!$stmt)
 					pg_execute($dbConn,"foodTankEmpty",array($feederid));
 
 				}
+				
+			    //Start query to get email and feeder info
+				$emailQuery = "SELECT * FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
+				$stmt = pg_prepare($dbConn,"email",$emailQuery);
+
+				//if statement prepares then execute statement
+				if($stmt) {
+					$feederResults =  pg_execute($dbConn,"email",array($feederid));
+					//if a match is found, then get info and send email
+					if(pg_num_rows($feederResults)==1) 
+					{
+						$feederData = pg_fetch_assoc($feederResults);
+						$userEmail = $feederData['user_email'];
+						$feederName = $feederData['feeder_name'];
+						
+						$to = $userEmail;
+						$fName = "Info Feedmation";
+						$femail = "info@feedmation.com";
+						$subject = "Feedmation Alert: Empty Feeder";
+						$message = "Hey, $feederName feeder is out of food.\n\n\n- Feedmation Alerts";
+
+						$headers = "From: \"".$fName."\" <".$femail.">\n"; 
+						$headers .= "Return-Path: <".$femail.">\n"; 
+
+						mail($to, $subject, $message, $headers);
+						
+					}
+					pg_free_result($feederResults);
+				}
 			
 			break;
 			
