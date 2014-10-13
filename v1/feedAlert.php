@@ -32,7 +32,7 @@ include_once 'loginFunctions.php';
 						$feederID= $feederRow['feeder_id'];
 						$feederName = $feederRow['feeder_name'];
 						$user= $feederRow['user_email'];
-						$tagQ = "SELECT tag_id, pet_name FROM $GLOBALS[schema].rfid WHERE feeder_id = $1";
+						$tagQ = "SELECT tag_id, pet_name FROM $GLOBALS[schema].rfid WHERE feeder_id = " . $feederID;
 						//$tagPrep = pg_prepare($dbconn, "tag", $tagQ);
 						$tagResult = pg_query($dbconn,$tagQ);
 						//echo "Found feeder " .$feederID;
@@ -41,7 +41,7 @@ include_once 'loginFunctions.php';
 							$tag_id = $row['tag_id'];
 								$petName = $row['pet_name'];
 								
-								$eventQ = "SELECT tag_id FROM $GLOBALS[schema].stats WHERE tag_id = $1";
+								$eventQ = "SELECT tag_id FROM $GLOBALS[schema].stats WHERE tag_id = " . $tag_id;
 								//$eventPrep = pg_prepare($dbconn,"event", $eventQ);
 								$eventResult = pg_query($dbconn,$eventQ);
 								
