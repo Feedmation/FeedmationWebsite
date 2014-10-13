@@ -5,6 +5,8 @@ if(session_id() == '') {
 	$sitePath = dirname(dirname(__FILE__));
 	include_once("loginFunctions.php");
 
+$dbconn = dbconnect();	
+	
 $selectPets = "SELECT * FROM $GLOBALS[schema].rfid WHERE user_email = $1 and feeder_id = $2";
 		
 $selectPetsPrep = pg_prepare($dbconn, "pets", $selectPets);
