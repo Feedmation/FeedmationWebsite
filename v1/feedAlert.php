@@ -32,7 +32,7 @@ include_once 'loginFunctions.php';
 					$user= $feederRow['user_email'];
 					$tagQ = "SELECT tag_id, pet_name FROM $GLOBALS[schema].rfid WHERE feeder_id = $1";
 					$tagPrep = pg_prepare($dbconn, "tag", $tagQ);
-					$tagResult = pg_execute($dbconn,"tag",array($feederID);
+					$tagResult = pg_execute($dbconn,"tag",array($feederID));
 					
 					while($tagResult==TRUE && $row = pg_fetch_assoc($tagResult))
 					{
