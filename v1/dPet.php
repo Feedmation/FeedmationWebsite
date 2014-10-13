@@ -32,7 +32,12 @@
 
 
 <script>
-	function loadPetsSelect(feederId) {
+	function loadPetsSelect(feederId) 
+	{
+		
+		var e = document.getElementById("feederSelect");
+		var feederId = e.options[selectBox.selectedIndex].value;
+		
 		alert("test ");
 		$.ajax({
 			url: 'dPet.php',
@@ -50,21 +55,7 @@
 				}
 			}
 		});
-	}
-
-$(document).ready(function() {	
-$('select').change(function()
-{
-			var e = document.getElementById("feederSelect");
-			var feederId = e.options[selectBox.selectedIndex].value;
-});
-		});
-		
-function checkData()
-{
-	var e = document.getElementById("feederId");
-	var feederId = e.options[selectBox.selectedIndex].value;
-}		
+	}	
 		
 
 </script>
