@@ -33,8 +33,8 @@ include_once 'loginFunctions.php';
 						$feederName = $feederRow['feeder_name'];
 						$user= $feederRow['user_email'];
 						$tagQ = "SELECT tag_id, pet_name FROM $GLOBALS[schema].rfid WHERE feeder_id = $1";
-						$tagPrep = pg_prepare($dbconn, "tag", $tagQ);
-						$tagResult = pg_execute($dbconn,"tag",array($feederID));
+						//$tagPrep = pg_prepare($dbconn, "tag", $tagQ);
+						$tagResult = pg_execute($dbconn,$tagQ);
 						//echo "Found feeder " .$feederID;
 						while($row = pg_fetch_assoc($tagResult))
 						{
@@ -42,8 +42,8 @@ include_once 'loginFunctions.php';
 								$petName = $row['pet_name'];
 								
 								$eventQ = "SELECT tag_id FROM $GLOBALS[schema].stats WHERE tag_id = $1";
-								$eventPrep = pg_prepare($dbconn,"event", $eventQ);
-								$eventResult = pg_execute($dbconn,"event",array($tag_id));
+								//$eventPrep = pg_prepare($dbconn,"event", $eventQ);
+								$eventResult = pg_query($dbconn,$eventQ);
 								
 									//Have not eaten b/w two time slots
 									if(pg_num_rows($eventResult) ==0)
@@ -59,7 +59,7 @@ include_once 'loginFunctions.php';
 										- Feedmation";
 										$header = "From: info@feedmation.com \r\n";
 										$retval = mail($user, $subject, $message,$header);
-										echo "Email sent!!!! ".$tag_id. "/n";
+										echo "Email sent!!!! ".$tag_id. "\n";
 									}  
 									pg_free_result($eventResult);
 									$eventPrep=NULL;
