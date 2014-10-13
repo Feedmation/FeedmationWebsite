@@ -61,7 +61,7 @@ include_once 'loginFunctions.php';
 														.\n\n\n\n
 										- Feedmation";
 										$header = "From: info@feedmation.com \r\n";
-										$retval = mail($user, $subject, $message,$header);
+										//$retval = mail($user, $subject, $message,$header);
 										echo "Email sent!!!! ".$tag_id;
 									}
 									pg_free_result($eventResult);
