@@ -57,7 +57,7 @@ include_once 'loginFunctions.php';
 										
 										$subject = "Feedmation - Feeding Reminder";
 										$message = "Hey your pet, $petName did not eat from your feeder $feederName . \n\n Please be sure to 
-													check on and make sure your pet receives a meal for today. 
+													check on $petName and make sure your pet receives a meal for today. 
 														.\n\n\n\n
 										- Feedmation";
 										$header = "From: info@feedmation.com \r\n";
