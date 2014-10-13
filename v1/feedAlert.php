@@ -17,7 +17,7 @@ include_once 'loginFunctions.php';
 				$dbconn = dbconnect();
 				
 				$feederQ =  "SELECT feeder_id, feeder_name,user_email FROM $GLOBALS[schema].feeders";
-				$feederPrep = pg_prepare($dbconn, "empty", $feederQ);
+				//$feederPrep = pg_prepare($dbconn, "empty", $feederQ);
 				//execute the query
 				$feederResult = pg_execute($dbconn,"empty",array());
 				//echo"Starting query here ";
@@ -33,7 +33,7 @@ include_once 'loginFunctions.php';
 						$feederName = $feederRow['feeder_name'];
 						$user= $feederRow['user_email'];
 						$tagQ = "SELECT tag_id, pet_name FROM $GLOBALS[schema].rfid WHERE feeder_id = $1";
-						$tagPrep = pg_prepare($dbconn, "tag", $tagQ);
+						//$tagPrep = pg_prepare($dbconn, "tag", $tagQ);
 						$tagResult = pg_execute($dbconn,"tag",array($feederID));
 						//echo "Found feeder " .$feederID;
 						while($row = pg_fetch_assoc($tagResult))
@@ -42,7 +42,7 @@ include_once 'loginFunctions.php';
 								$petName = $row['pet_name'];
 								
 								$eventQ = "SELECT tag_id FROM $GLOBALS[schema].stats WHERE tag_id = $1";
-								$eventPrep = pg_prepare($dbconn,"event", $eventQ);
+								//$eventPrep = pg_prepare($dbconn,"event", $eventQ);
 								$eventResult = pg_execute($dbconn,"event",array($tag_id));
 								
 									//Have not eaten b/w two time slots
