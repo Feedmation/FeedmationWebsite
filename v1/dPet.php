@@ -39,8 +39,9 @@
 		var feederId = e.options[selectBox.selectedIndex].value;
 		
 		alert("test ");
+		console.dir("test");
 		$.ajax({
-			url: 'phpFunctions.php',
+			url:'dPetHandler.php',
 			type: "GET",
 			data: {	populatePetsSelect: 'true',
 					feederId : feederId},
