@@ -100,15 +100,7 @@
 		?>
 	</select>
 	<br><br>
-	
-	<?
-	
-		$feederID = $_POST['feeder'];
-		
-		if($feederID!=5)
-			echo $feederID;
-	?>
-	
+
 	<!--Pets-->
 	<label for='pet'>Select a Pet:</label>
 	<select class="form-control" id='petSelect' name='pet'>
