@@ -46,7 +46,7 @@
 					$(".errorMessage").hide().html("There was an error populating dropdown for pets. Try again later.").fadeIn('slow');
 				} else {
 					$(".errorMessage").empty();
-					$("#statsTable").html(data);
+					$("#petSelect").html(data);
 				}
 			}
 		});
@@ -55,7 +55,7 @@
 $(document).ready(function() {	
 $('select').change(function() '
 {
-			var e = document.getElementById("feederId");
+			var e = document.getElementById("feederSelect");
 			var feederId = e.options[selectBox.selectedIndex].value;
 });
 		});
@@ -76,7 +76,36 @@ function checkData()
 	<!--Feeder-->
 	<label for='pet'>Select a Feeder:</label>
 	<select class="form-control" id='feederSelect' name='feeder'>
-		<?php populateFeedersSelectBox(); ?>
+		<?php
+		$dbconn = dbconnect();
+	
+		$selectFeeders = "SELECT * FROM $GLOBALS[schema].feeders WHERE user_email = $1";
+		
+		$selectFeedersPrep = pg_prepare($dbconn, "feeders", $selectFeeders);
+		
+		if($selectFeedersPrep) {
+			$feedersResult = pg_execute($dbconn, "feeders", array($_SESSION['user']));
+		} else {
+			echo "Could not sanitize user name. Try again later.";
+		}
+		
+		if($feedersResult) {
+			$feeders = '';
+			$i = 0;
+			while($row = pg_fetch_assoc($feedersResult)) {
+				$feeders.= "
+							<option value='$row[feeder_id]' onclick = 'loadPetsSelect($row[feeder_id])'>$row[feeder_name]</option>
+						   ";			
+				$i++;
+			}
+			pg_free_result($feedersResult);
+			echo $feeders;
+			
+		} else {
+			echo "Could not query for Pet Feeders. Try refreshing the page";
+		}
+		
+		?>
 	</select>
 	<br><br>
 	
