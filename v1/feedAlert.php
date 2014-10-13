@@ -34,13 +34,14 @@ include_once 'loginFunctions.php';
 					$tagPrep = pg_prepare($dbconn, "tag", $tagQ);
 					$tagResult = pg_execute($dbconn,"tag",array($feederID));
 					
-					while($tagResult==TRUE && $row = pg_fetch_assoc($tagResult))
+					while($tagResult==TRUE)
 					{
+						$row = pg_fetch_assoc($tagResult);
 						
 							$tag_id = $row['tag_id'];
 							$petName = $row['pet_name'];
 							
-							$eventQ = "SELECT tag_id FROM $GLOBALS[schema].stats";
+							$eventQ = "SELECT tag_id FROM $GLOBALS[schema].stats WHERE tag_id = $1";
 							$eventPrep = pg_prepare($dbconn, "tag",$eventQ);
 							$eventResult = pg_execute($dbconn,"tag",array($tag_id));
 							
