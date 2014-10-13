@@ -85,7 +85,7 @@
 			$i = 0;
 			while($row = pg_fetch_assoc($feedersResult)) {
 				$feeders.= "
-							<option value='$row[feeder_id]' onclick = \"loadPetsSelect('$row[feeder_id]')\">$row[feeder_name]</option>
+							<option value='$row[feeder_id]' onselect = \"loadPetsSelect('$row[feeder_id]')\">$row[feeder_name]</option>
 						   ";			
 						  
 				$i++;
@@ -112,7 +112,7 @@
 	<!--Pets-->
 	<label for='pet'>Select a Pet:</label>
 	<select class="form-control" id='petSelect' name='pet'>
-		<?php populatePetsSelectBox();
+		<?php /*populatePetsSelectBox();
 
 		$selectPets = "SELECT * FROM $GLOBALS[schema].rfid WHERE user_email = $1 and feeder_id = $2";
 		
@@ -134,7 +134,7 @@
 						   ";			
 				$i++;
 			}
-			pg_free_result($petsResult);
+			pg_free_result($petsResult);*/
 			?>
 			
 			<label for='pet'>Select a Pet:</label>
