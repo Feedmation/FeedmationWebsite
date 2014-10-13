@@ -19,9 +19,9 @@ include_once 'loginFunctions.php';
 				$feederQ =  "SELECT feeder_id, feeder_name,user_email FROM $GLOBALS[schema].feeders";
 				$feederPrep = pg_prepare($dbconn, "empty", $feederQ);
 				//execute the query
-				$feederResult = pg_execute($dbconn,"empty", NULL);
+				$feederResult = pg_execute($dbconn,"empty");
 			
-				if(!$feedResult) 
+				if(!$feederResult) 
 				{
 					exit;
 				}
