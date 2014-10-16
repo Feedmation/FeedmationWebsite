@@ -15,13 +15,6 @@
 
 <script>
 
-$(document).ajaxStart(function() { 
-	
-	});
-	
-$(document).ajaxStart(function() { 
-		//$('#feedmationNavbar').show();
-	});
 	
 function addFeeder() {
 	$.ajax({
@@ -50,15 +43,24 @@ function addPet() {
 
 function deleteFeeder() {
 	$('.errorMessage').empty();
-	if($('.delete').is(':visible')) {
-		$('.delete').hide();
-		$('#deleteFeederBtn').html('Delete Feeder');
+	
+	if(!$('.feederBtn').is(':visible')) {
+		$.ajax({
+			url: 'assets/form_processing/fetchFeeders.php',
+			type: "GET",
+			success: function(data) {
+				$('#feedNow').hide();
+				$("#feeders").html(data);
+				$('.btn').addClass('focus');
+				$('.delete').show();
+			}
+		});	
 	} else {
 		$('.btn').addClass('focus');
-		$('.delete').show();
-		$('#deleteFeederBtn').html('Cancel Delete');
+		$('.delete').show();	
 	}
 }
+
 
 function feedNow() {
 	$.ajax({
@@ -71,30 +73,40 @@ function feedNow() {
 	});	
 }
 
+$(document).ready(function () {
+    $("#navbar li a").click(function(event) {
+    // check if window is small enough so dropdown is created
+		$("#navbarCollapse").removeClass("in").addClass("collapse");
+    });
+});
+
+
 </script>
 </head>
 <body>
 	<!-- navbar -->
-	<nav class="navbar-default navbar-fixed-top">
+	<nav id='navbar' role="navigation" class="navbar navbar-default navbar-fixed-top">
 		<div class='container'>
-			<div class="navbar-header pull-left">
-				<p class="navbarText brand navbar-text"><?php echo "$_SESSION[fname]'s Feedmation Home"; ?></p>
+			<div class="navbar-header">
+				<p class="navbarText pull-left navbar-text"><?php echo "$_SESSION[fname]'s Feedmation Home"; ?></p>
+				<a data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
 			</div>
-			<ul class='nav navbar-nav pull-right'>	
-				<li id='navbarDropdown' class='dropdown'>
-					<a href="#" class="dropdown-toggle glyphicon glyphicon-cog" data-toggle="dropdown"></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href='#' id='feedNow' name='feedNow' onclick='feedNow(); return false;'><span class='glyphicon glyphicon-time'></span> Feed Now!</a></li>
-						<li><a href='#' name='addFeeder' onclick="addFeeder(); return false;"><span class='glyphicon glyphicon-plus'></span> Add Feeder</a></li>
-						<li><a href='#' name='deleteFeeder' onclick="deleteFeeder(); return false;" ><span class='glyphicon glyphicon-trash'></span> Delete Feeder</a></li>
-						<li><a href='#' name='addPet' onclick="addPet(); return false;"><span class='glyphicon glyphicon-plus'></span> Add Pet</a></li>
-						<li><a href='dPet.php' id="deletePetBtn" name='deletePet'><span class='glyphicon glyphicon-trash'></span> Delete Pet</a></li>
-						<li class="divider"></li>
-						<li><a href="changeP.php"><span class='glyphicon glyphicon-user'></span> Change Password</a></li>
-						<li><a href="logout.php"><span class='glyphicon glyphicon-off'></span> Logout</a></li>				
-					</ul>
-				</li>				
-			</ul>
+			<div id="navbarCollapse" class="collapse navbar-collapse">
+				<ul id='navList' class='nav navbar-nav pull-right'>					
+					<li><a href='#' id='feedNow' name='feedNow' onclick='feedNow(); return false;'><span class='glyphicon glyphicon-time'></span> Feed Now!</a></li>
+					<li><a href='#' name='addFeeder' onclick="addFeeder(); return false;"><span class='glyphicon glyphicon-plus'></span> Add Feeder</a></li>
+					<li><a href='#' name='deleteFeeder' onclick="deleteFeeder(); return false;" ><span class='glyphicon glyphicon-trash'></span> Delete Feeder</a></li>
+					<li><a href='#' name='addPet' onclick="addPet(); return false;"><span class='glyphicon glyphicon-plus'></span> Add Pet</a></li>
+					<li><a href='dPet.php' id="deletePetBtn" name='deletePet'><span class='glyphicon glyphicon-trash'></span> Delete Pet</a></li>
+					<li class="divider"></li>
+					<li><a href="changeP.php"><span class='glyphicon glyphicon-user'></span> Change Password</a></li>
+					<li><a href="logout.php"><span class='glyphicon glyphicon-off'></span> Logout</a></li>				
+				</ul>
+			</div>
 		</div>	
 	</nav>
 	<!-- end navbar -->

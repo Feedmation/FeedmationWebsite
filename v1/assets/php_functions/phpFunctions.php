@@ -93,7 +93,7 @@ if(session_id() == '') {
 							}
 							
 							</script>
-							<a onclick='goToStats$i()'><button class='btn $onlineStatus btn-block'>$row[feeder_name]<span class='pull-right marginRight glyphicon glyphicon-chevron-right'></span></button></a>
+							<a onclick='goToStats$i()'><button class='feederBtn btn $onlineStatus btn-block'>$row[feeder_name]<span class='pull-right marginRight glyphicon glyphicon-chevron-right'></span></button></a>
 							<a onclick='deleteFeeder$i()' class='delete'><img src='assets/images/delete.png' height='34' width='34'></a>
 							<br><br>
 							";
