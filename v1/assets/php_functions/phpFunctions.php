@@ -28,10 +28,15 @@ if(session_id() == '') {
 			$feeders = '';
 			$i = 0;
 			while($row = pg_fetch_assoc($feedersResult)) {
-				$onlineStatus = ($row['online_status']) ? 'online' : 'offline';
+				$lastSynced = strtotime($row['last_synced']);		
+				$thirtyMinsAgo = strtotime('-30 minutes', time());
+				if($lastSynced >= $thirtyMinsAgo) {
+					$onlineStatus = "online";
+				} else {
+					$onlineStatus = "offline";
+				}
 				$feeders.= "<script>
 							function goToStats$i() {
-							
 								var feeder = '$row[feeder_id]';
 								$.ajax({
 								  url: 'assets/php_functions/phpFunctions.php?feeder=$row[feeder_id]',
