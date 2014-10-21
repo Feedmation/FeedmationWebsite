@@ -29,7 +29,7 @@ if(session_id() == '') {
 			$i = 0;
 			while($row = pg_fetch_assoc($feedersResult)) {
 				$lastSynced = strtotime($row['last_synced']);		
-				$thirtyMinsAgo = strtotime('-30 minutes', time());
+				$thirtyMinsAgo = strtotime('-30 minutes');
 				if($lastSynced >= $thirtyMinsAgo) {
 					$onlineStatus = "online";
 				} else {
