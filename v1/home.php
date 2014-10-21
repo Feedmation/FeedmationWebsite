@@ -89,7 +89,7 @@ $(document).ready(function () {
 		<div class='container'>
 			<div class="navbar-header">
 				<p class="navbarText pull-left navbar-text"><?php echo "$_SESSION[fname]'s Feedmation Home"; ?></p>
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
