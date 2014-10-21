@@ -23,6 +23,7 @@
 <?php
 include_once 'assets/php_functions/phpFunctions.php';
 date_default_timezone_set('America/Chicago');
+
 //variable for the schema used in the database.
 //store it here so we can easily change it if need be. 
 //to access it from ANY scope of ANY file use:

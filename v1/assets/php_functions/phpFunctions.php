@@ -35,7 +35,6 @@ if(session_id() == '') {
 				} else {
 					$onlineStatus = "offline";
 				}
-				echo $thirtyMinsAgo . " " . $lastSynced;
 				$feeders.= "<script>
 							function goToStats$i() {
 								var feeder = '$row[feeder_id]';
