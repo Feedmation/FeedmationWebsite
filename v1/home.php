@@ -89,11 +89,11 @@ $(document).ready(function () {
 		<div class='container'>
 			<div class="navbar-header">
 				<p class="navbarText pull-left navbar-text"><?php echo "$_SESSION[fname]'s Feedmation Home"; ?></p>
-				<a data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
-				</a>
+				</button>
 			</div>
 			<div id="navbarCollapse" class="collapse navbar-collapse">
 				<ul id='navList' class='nav navbar-nav pull-right'>					
