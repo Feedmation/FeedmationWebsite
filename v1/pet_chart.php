@@ -37,7 +37,7 @@ include_once 'loginFunctions.php';
 	</script>
 	
 	<!-- Canvas on which the pet chart will be drawn -->
-	<canvas id="petChart"></canvas>
+	<canvas id="petChart" width="50%" height="50%"></canvas>
 	
 	<!-- Draw chart -->
 	<script>
