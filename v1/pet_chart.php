@@ -18,7 +18,7 @@ include_once 'loginFunctions.php';
 	
 	<!-- CSS -->
 	<style>
-		canvas {
+		canvas #petChart{
 			padding-left: 0;
 			padding-right: 0;
 			margin-left: auto;
