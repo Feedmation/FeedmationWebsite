@@ -160,7 +160,7 @@ include_once 'loginFunctions.php';
 	
 	<!-- Draw chart -->
 	<script>
-	var data = {
+		var data = {
 			labels: ["January", "February", "March", "April", "May", "June", "July"],
 			datasets: [
 				{
@@ -187,7 +187,7 @@ include_once 'loginFunctions.php';
 		};
 		
 		var ctx = document.getElementById("petChart").getContext("2d");
-		var newChart = new Chart(ctx).PolarArea(data);
+		var newChart = new Chart(ctx).Line(data);
 		
 		
 	</script>
