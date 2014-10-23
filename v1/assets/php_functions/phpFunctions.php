@@ -147,6 +147,7 @@ if(session_id() == '') {
 	
 	}
 	
+	//this function will populate a select box with every pet the logged in user has registered to the given feederId. 
 	function populatePetsSelectBox() {
 		
 		$dbconn = dbconnect();
@@ -157,6 +158,40 @@ if(session_id() == '') {
 		
 		if($selectPetsPrep) {
 			$petsResult = pg_execute($dbconn, "pets", array($_SESSION['user'], $_GET['feederId']));
+		} else {
+			echo "Could not sanitize user name. Try again later.";
+		}
+		
+		if($petsResult) {
+			$pets = '';
+			$i = 0;
+			while($row = pg_fetch_assoc($petsResult)) {
+				$pets.= "
+							<option value='$row[tag_id]'>$row[pet_name]</option>
+						   ";			
+				$i++;
+			}
+			pg_free_result($petsResult);
+			echo $pets;
+			
+		} else {
+			echo "Could not query for Pets. Try refreshing the page";
+		}	
+	
+	}
+	
+	//this function will populate a select box with every pet the logged in user has registered.
+	//this is different from the function above because it doesn't limit the results to the feederId. 
+	function populateAllPetsSelectBox() {
+		
+		$dbconn = dbconnect();
+	
+		$selectPets = "SELECT * FROM $GLOBALS[schema].rfid WHERE user_email = $1";
+		
+		$selectPetsPrep = pg_prepare($dbconn, "pets", $selectPets);
+		
+		if($selectPetsPrep) {
+			$petsResult = pg_execute($dbconn, "pets", array($_SESSION['user']));
 		} else {
 			echo "Could not sanitize user name. Try again later.";
 		}
@@ -321,6 +356,57 @@ if(session_id() == '') {
 		} else {
 			echo "error";
 		}		
+	}
+	
+	//this will populate the edit form for editing a pet with the current settings for the selected pet
+	if(isset($_POST['populateEditForm']) && !empty($_POST['populateEditForm'])) {
+		$dbconn = dbconnect();
+		
+		$tagId = $_POST['editTag'];	
+		
+		//select the defaults for the current tagId
+		$selectDefaults = "SELECT * FROM $GLOBALS[schema].rfid WHERE tag_id = $1 AND user_email = $2";
+		$selectDefaultsPrep = pg_prepare($dbconn, "selectDefaults", $selectDefaults);
+		
+		if($selectDefaultsPrep) {
+			$selectDefaultsResult = pg_execute($dbconn, "selectDefaults", array($tagId, $_SESSION['user']));
+			$row = pg_fetch_assoc($selectDefaultsResult);		
+		} else {
+			echo "error";
+		}
+		
+		echo "
+			<form method='POST' id='addPetForm'>		  
+				<label for='name'>Name of your Pet:</label>
+				<input type='text' required='required' class='form-control' name='name' value='$row[pet_name]'>    
+				<br>
+				<label for='feederId'>Which Feeder should your pet use?</label>
+				<select name='feederId' required='required' class='form-control' id='feederId'>";
+				populateFeedersSelectBox(); 
+				echo "	
+				</select>
+				<br><br>
+				<label for='firstTimeSlot'>Select time slot for first eating window:</label>
+				<div class='well' name='firstTimeSlot'>
+					<label for='startTime1'>Start Time:</label>
+					<input type='text' required='required' class='form-control' name='startTime1' id='startTime1' placeholder='Pick a Time'><br> 
+					<label for='endTime1'>End Time:</label>
+					<input type='text' required='required' class='form-control' name='endTime1' id='endTime1' placeholder='Pick a Time'> 
+				</div>
+				<label for='firstTimeSlot'>Select time slot for second eating window:</label>
+				<div class='well' name='secondTimeSlot'>
+					<label for='startTime2'>Start Time:</label>
+					<input type='text' required='required' class='form-control timepicker' name='startTime2' id='startTime2' placeholder='Pick a Time'><br> 
+					<label for='endTime2'>End Time:</label>
+					<input type='text' required='required' class='form-control' name='endTime2' id='endTime2' placeholder='Pick a Time'> 
+				</div> 
+				<label for='feedAmount'>How many cups of food per eating window?</label>
+				<input type='number' step='0.01' min='0.5' max='8' required='required' class='form-control' name='feedAmount'> 
+				<br><br>         
+				<center><a href='home.php' data-inline='true' class='btn btn-default backButton marginRight'>Cancel Submission</a> <button type='submit' id='addFeederSubmitBtn' class='btn btn-default marginLeft'>Update Pet Info</button></center>
+			</form>
+		";
+		
 	}
 
 ?>

@@ -26,19 +26,53 @@ function addFeeder() {
 	});	
 }
 
-function addPet() {
-	if($('#feeders :button').length == 0) {
-		$('.errorMessage').hide().html("Add a feeder first so you can assign your pet to it!").fadeIn('slow');
-		return;
-	}
-	
+function editPet() {
 	$.ajax({
-      url: 'addPet.php',
+      url: 'editPet.php',
       type: "GET",
       success: function(data) {
 		$("#feeders").html(data);
       }
-	});	
+	});
+}
+
+function addPet() {
+	$('.errorMessage').empty();
+	
+	if(!$('.feederBtn').is(':visible')) {
+		$.ajax({
+			url: 'assets/form_processing/fetchFeeders.php',
+			type: "GET",
+			success: function(data) {
+				$("#feeders").html(data);
+				if($('#feeders :button').length == 0) {
+					$('.errorMessage').hide().html("Add a feeder first so you can assign your pet to it!").fadeIn('slow');
+					return;
+				}
+
+				$.ajax({
+				  url: 'addPet.php',
+				  type: "GET",
+				  success: function(data) {
+					$("#feeders").html(data);
+				  }
+				});	
+			}
+		});	
+	} else {
+		if($('#feeders :button').length == 0) {
+			$('.errorMessage').hide().html("Add a feeder first so you can assign your pet to it!").fadeIn('slow');
+			return;
+		}
+
+		$.ajax({
+		  url: 'addPet.php',
+		  type: "GET",
+		  success: function(data) {
+			$("#feeders").html(data);
+		  }
+		});	
+	}
 }
 
 function deleteFeeder() {
@@ -101,6 +135,7 @@ $(document).ready(function () {
 					<li><a href='#' name='addFeeder' onclick="addFeeder(); return false;"><span class='glyphicon glyphicon-plus'></span> Add Feeder</a></li>
 					<li><a href='#' name='deleteFeeder' onclick="deleteFeeder(); return false;" ><span class='glyphicon glyphicon-trash'></span> Delete Feeder</a></li>
 					<li><a href='#' name='addPet' onclick="addPet(); return false;"><span class='glyphicon glyphicon-plus'></span> Add Pet</a></li>
+					<li><a href='#' name='addPet' onclick="editPet(); return false;"><span class='glyphicon glyphicon-cog'></span> Edit Pet</a></li>
 					<li><a href='dPet.php' id="deletePetBtn" name='deletePet'><span class='glyphicon glyphicon-trash'></span> Delete Pet</a></li>
 					<li class="divider"></li>
 					<li><a href="changeP.php"><span class='glyphicon glyphicon-user'></span> Change Password</a></li>

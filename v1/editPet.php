@@ -13,11 +13,6 @@ include_once 'loginFunctions.php';
 <head>
 	
 <script>
-
-	$( document ).ready(function() {
-		$(".errorMessage").empty();
-	});
-
 	$('#addPetForm').on('submit', function (e) {
 
 		e.preventDefault();
@@ -94,43 +89,49 @@ include_once 'loginFunctions.php';
 								'minTime':'12:00pm',
 								'maxTime':'11:00pm',
 								'step':60});
+								
+	$(document).ready(function() {	
+		$('.errorMessage').empty();
+		
+		var selectBox = document.getElementById("petSelect");
+		var tagId = selectBox.options[selectBox.selectedIndex].value;
+		loadEditForm(tagId);
+		
+		$('select').change(function() {
+			tagId = selectBox.options[selectBox.selectedIndex].value;
+			loadEditForm(tagId);
+		});
+		
+	});
+	
+	function loadEditForm(tagId) {
+		$.ajax({
+			url: 'assets/php_functions/phpFunctions.php',
+			type: "POST",
+			data: {	populateEditForm: 'true',
+					editTag : tagId},
+			success: function(data) {
+				var error = 'error';
+				if(data.match(error)) {
+					window.scrollTo(0,0);
+					$(".errorMessage").hide().html("There was an error populating the current settings for your pet. Please try again later.").fadeIn('slow');
+				} else {
+					$(".errorMessage").empty();
+					$("#editForm").html(data);
+				}
+			}
+		});
+	}
 	
 </script>	
 
 </head>
 <body>
-    
-	<form method="POST" id="addPetForm">		  
-		<label for="name">Name of your Pet:</label>
-        <input type="text" required="required" class="form-control" name="name">    
-        <br>
-        <label for="number">Tag Number:</label>
-        <input type="text" min="10" max="10" required="required" class="form-control" name="number"> 
-        <br>
-		<label for="feederId">Which Feeder will the new pet use?</label>
-		<select name="feederId" required="required" class="form-control" id="feederId">
-			<?php populateFeedersSelectBox(); ?>
-		</select>
-		<br><br>
-		<label for='firstTimeSlot'>Select time slot for first eating window:</label>
-		<div class='well' name='firstTimeSlot'>
-			<label for="startTime1">Start Time:</label>
-			<input type="text" required="required" class="form-control" name="startTime1" id="startTime1" placeholder="Pick a Time"><br> 
-			<label for="endTime1">End Time:</label>
-			<input type="text" required="required" class="form-control" name="endTime1" id="endTime1" placeholder="Pick a Time"> 
-		</div>
-		<label for='firstTimeSlot'>Select time slot for second eating window:</label>
-		<div class='well' name='secondTimeSlot'>
-			<label for="startTime2">Start Time:</label>
-			<input type="text" required="required" class="form-control timepicker" name="startTime2" id="startTime2" placeholder="Pick a Time"><br> 
-			<label for="endTime2">End Time:</label>
-			<input type="text" required="required" class="form-control" name="endTime2" id="endTime2" placeholder="Pick a Time"> 
-		</div> 
-		<label for='feedAmount'>How many cups of food per eating window?</label>
-        <input type="number" step='0.01' min='0.5' max='8' required="required" class="form-control" name="feedAmount"> 
-        <br><br>         
-        <center><a href="home.php" data-inline='true' class='btn btn-default backButton marginRight'>Cancel Submission</a> <button type='submit' id='addFeederSubmitBtn' class="btn btn-default marginLeft">Submit Pet Info</button></center>
-    </form>
-
+    <label for='pet'>Select a pet:</label>
+	<select class="form-control" id='petSelect' name='pet'>
+		<?php populateAllPetsSelectBox(); ?>
+	</select>
+	<br>
+	<div id='editForm'></div>
 </body>
 </html>
