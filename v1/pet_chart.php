@@ -33,7 +33,6 @@ include_once 'loginFunctions.php';
 <body>
 	<!-- Chart.js global settings -->
 	<script>
-		//Chart.defaults.global.responsive = true;
 	</script>
 	
 	<!-- Canvas on which the pet chart will be drawn -->
