@@ -25,8 +25,6 @@ include_once 'assets/php_functions/phpFunctions.php';
 			margin-left: auto;
 			margin-right: auto;
 			display: block;
-			width: 50%;
-			height:50%;
 		}
 	</style>
 </head>
