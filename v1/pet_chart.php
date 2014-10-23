@@ -30,6 +30,7 @@ include_once 'assets/php_functions/phpFunctions.php';
 </head>
 
 <body>
+	<h3>Pet Chart (Test)</h3>
 	<!-- Chart.js global settings -->
 	<script>
 	</script>
