@@ -370,7 +370,24 @@ if(session_id() == '') {
 		
 		if($selectDefaultsPrep) {
 			$selectDefaultsResult = pg_execute($dbconn, "selectDefaults", array($tagId, $_SESSION['user']));
-			$row = pg_fetch_assoc($selectDefaultsResult);		
+			$row = pg_fetch_assoc($selectDefaultsResult);	
+			//get all the time values to pre-populate the timepickers
+			$startTime1 = $row['slot_one_start'] . ":00am";
+			$endTime1 = $row['slot_one_end'] . ":00am";
+			$startTime2 = intval($row['slot_two_start']);
+			$endTime2 = intval($row['slot_two_end']);
+			
+			if($startTime2 != 12) {
+				$startTime2 -= 12;
+			}
+			
+			if($endTime2 != 12) {
+				$endTime2 -= 12;
+			}
+			
+			$startTime2 = strval($startTime2) . ":00pm";
+			$endTime2 = strval($endTime2) . ":00pm";
+						
 		} else {
 			echo "error";
 		}
@@ -382,31 +399,57 @@ if(session_id() == '') {
 				<br>
 				<label for='feederId'>Which Feeder should your pet use?</label>
 				<select name='feederId' required='required' class='form-control' id='feederId'>";
-				populateFeedersSelectBox(); 
+				$selectFeeders = "SELECT * FROM $GLOBALS[schema].feeders WHERE user_email = $1";
+				
+				$selectFeedersPrep = pg_prepare($dbconn, "feeders", $selectFeeders);
+				
+				if($selectFeedersPrep) {
+					$feedersResult = pg_execute($dbconn, "feeders", array($_SESSION['user']));
+				} else {
+					echo "Could not sanitize user name. Try again later.";
+				}
+				
+				if($feedersResult) {
+					$feeders = '';
+					$i = 0;
+					while($feederRow = pg_fetch_assoc($feedersResult)) {
+						if($feederRow['feeder_id'] == $row['feeder_id']) {
+							$feeders.= "
+									<option selected='selected' value='$feederRow[feeder_id]'>$feederRow[feeder_name]</option>
+								   ";	
+						} else {
+							$feeders.= "
+									<option value='$feederRow[feeder_id]'>$feederRow[feeder_name]</option>
+								   ";		
+						}		
+						$i++;
+					}
+					pg_free_result($feedersResult);
+					echo $feeders;	
+				}
 				echo "	
 				</select>
 				<br><br>
 				<label for='firstTimeSlot'>Select time slot for first eating window:</label>
 				<div class='well' name='firstTimeSlot'>
 					<label for='startTime1'>Start Time:</label>
-					<input type='text' required='required' class='form-control' name='startTime1' id='startTime1' placeholder='Pick a Time'><br> 
+					<input type='text' required='required' class='form-control' name='startTime1' id='startTime1' value=$startTime1><br> 
 					<label for='endTime1'>End Time:</label>
-					<input type='text' required='required' class='form-control' name='endTime1' id='endTime1' placeholder='Pick a Time'> 
+					<input type='text' required='required' class='form-control' name='endTime1' id='endTime1' value=$endTime1> 
 				</div>
 				<label for='firstTimeSlot'>Select time slot for second eating window:</label>
 				<div class='well' name='secondTimeSlot'>
 					<label for='startTime2'>Start Time:</label>
-					<input type='text' required='required' class='form-control timepicker' name='startTime2' id='startTime2' placeholder='Pick a Time'><br> 
+					<input type='text' required='required' class='form-control timepicker' name='startTime2' id='startTime2' value=$startTime2><br> 
 					<label for='endTime2'>End Time:</label>
-					<input type='text' required='required' class='form-control' name='endTime2' id='endTime2' placeholder='Pick a Time'> 
+					<input type='text' required='required' class='form-control' name='endTime2' id='endTime2' value=$endTime2> 
 				</div> 
 				<label for='feedAmount'>How many cups of food per eating window?</label>
-				<input type='number' step='0.01' min='0.5' max='8' required='required' class='form-control' name='feedAmount'> 
+				<input type='number' step='0.01' min='0.5' max='8' required='required' class='form-control' name='feedAmount' value=$row[feed_amount]> 
 				<br><br>         
 				<center><a href='home.php' data-inline='true' class='btn btn-default backButton marginRight'>Cancel Submission</a> <button type='submit' id='addFeederSubmitBtn' class='btn btn-default marginLeft'>Update Pet Info</button></center>
 			</form>
 		";
-		
 	}
 
 ?>

@@ -72,23 +72,6 @@ include_once 'loginFunctions.php';
 		}
 	});	
 	});
-	
-	$('#startTime1').timepicker({'disableTouchKeyboard':true,
-								'minTime':'00:00am',
-								'maxTime':'11:00am',
-								'step':60});
-	$('#endTime1').timepicker({'disableTouchKeyboard':true,
-								'minTime':'00:00am',
-								'maxTime':'11:00am',
-								'step':60});
-	$('#startTime2').timepicker({'disableTouchKeyboard':true,
-								'minTime':'12:00pm',
-								'maxTime':'11:00pm',
-								'step':60});
-	$('#endTime2').timepicker({'disableTouchKeyboard':true,
-								'minTime':'12:00pm',
-								'maxTime':'11:00pm',
-								'step':60});
 								
 	$(document).ready(function() {	
 		$('.errorMessage').empty();
@@ -101,7 +84,6 @@ include_once 'loginFunctions.php';
 			tagId = selectBox.options[selectBox.selectedIndex].value;
 			loadEditForm(tagId);
 		});
-		
 	});
 	
 	function loadEditForm(tagId) {
@@ -116,11 +98,31 @@ include_once 'loginFunctions.php';
 					window.scrollTo(0,0);
 					$(".errorMessage").hide().html("There was an error populating the current settings for your pet. Please try again later.").fadeIn('slow');
 				} else {
-					$(".errorMessage").empty();
+					$(".errorMessage").empty();	
 					$("#editForm").html(data);
+					finishFormSetup();
 				}
 			}
 		});
+	}
+	
+	function finishFormSetup() {
+		$('#startTime1').timepicker({'disableTouchKeyboard':true,
+								'minTime':'00:00am',
+								'maxTime':'11:00am',
+								'step':60});
+		$('#endTime1').timepicker({'disableTouchKeyboard':true,
+								'minTime':'00:00am',
+								'maxTime':'11:00am',
+								'step':60});
+		$('#startTime2').timepicker({'disableTouchKeyboard':true,
+								'minTime':'12:00pm',
+								'maxTime':'11:00pm',
+								'step':60});
+		$('#endTime2').timepicker({'disableTouchKeyboard':true,
+								'minTime':'12:00pm',
+								'maxTime':'11:00pm',
+								'step':60});
 	}
 	
 </script>	

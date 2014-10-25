@@ -31,7 +31,7 @@ function editPet() {
       url: 'editPet.php',
       type: "GET",
       success: function(data) {
-		$("#feeders").html(data);
+		$("#feeders").html(data);	
       }
 	});
 }
