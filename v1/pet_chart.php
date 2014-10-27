@@ -33,7 +33,6 @@ include_once 'assets/php_functions/phpFunctions.php';
 	<h3>Pet Chart (Test)</h3>
 	<!-- Chart.js global settings -->
 	<script>
-		Chart.defaults.global.responsive = true;
 	</script>
 	
 	<!-- Canvas on which the pet chart will be drawn -->
