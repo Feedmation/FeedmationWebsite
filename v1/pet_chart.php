@@ -36,7 +36,7 @@ include_once 'assets/php_functions/phpFunctions.php';
 	</script>
 	
 	<!-- Canvas on which the pet chart will be drawn -->
-	<canvas id="petChart" width="400" height="300"></canvas>
+	<canvas id="petChart" width="640" height="480"></canvas>
 	
 	<!-- Draw chart -->
 	<script>
