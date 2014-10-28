@@ -78,9 +78,9 @@ require_once "loginFunctions.php";
 		}
 		
 		// Parse stats data
-		var_dump($petStats);
-		foreach ($petStats as $stat){
-			$petWeight .= $stat['petweight'];
+		$petWeight = array();
+		foreach ($petStats as $num=>$stat){
+			array_push($petWeight,$petStats[$num]['petweight']);
 		}
 	?>
 	
