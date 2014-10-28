@@ -71,6 +71,7 @@ require_once "loginFunctions.php";
 		$petStats = array();
 		while($row = pg_fetch_assoc($Result)) {
 			array_push($petStats, $row);
+			echo $row;
 		}
 		pg_free_result($petStatsResult);
 		} else {
