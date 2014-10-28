@@ -89,6 +89,7 @@ require_once "loginFunctions.php";
 	
 	<!-- Draw chart -->
 	<?php
+		$string = '';
 		$string = "<script>
 			var data = {
 				labels: ['10/11','10/12','10/13','10/14','10/15','10/16','10/17','10/18','10/19'],  //-- HARD CODED --//
