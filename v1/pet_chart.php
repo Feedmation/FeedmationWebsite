@@ -37,7 +37,7 @@ require_once "loginFunctions.php";
 	
 	<!-- Get pet stats -->
 	<?php
-		$dbConn = dbconnect();
+		$dbconn = dbconnect();
 	
 		// Select feeder
 		$selectFeeders = "SELECT * FROM $GLOBALS[schema].feeders WHERE user_email = $1";
