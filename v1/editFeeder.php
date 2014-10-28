@@ -9,23 +9,6 @@
 include_once 'loginFunctions.php';
 ?>
 
-<!-- navbar -->
-	<nav class="navbar-default navbar-fixed-top">
-		<div class='container'>
-			<div class="navbar-header pull-left">
-				<p class="navbarText brand navbar-text"><?php echo "$_SESSION[fname]'s Feedmation Home"; ?></p>
-			</div>
-			<div class="navbar-header pull-right">
-				<p class="navbar-text">
-					<a href="changeP.php" class='btn btn-default pull-right'>Change Password</a>  
-					<a href="logout.php" class="btn btn-default pull-right">Logout</a>
-				</p>	
-			</div>
-		</div>
-	</nav>
-	<br><br><br>
-
-
 
 <html>
 <head>
@@ -58,6 +41,52 @@ include_once 'loginFunctions.php';
 		}
 	});	
 	});
+	
+	
+	
+	<?
+	$dbConn = dbconnect();
+	
+			//update the feeder in the feeder table
+			$nameUpdate = "UPDATE FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
+			$nameUpdatePrep = pg_prepare($dbConn, "deleteFeederTbl", $nameUpdate);
+	
+			$costUpdate = "UPDATE FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
+			$costUpdatePrep = pg_prepare($dbConn, "deleteFeederTbl", $costUpdate);
+			
+			$weightUpdate = "UPDATE FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
+			$weightUpdatePrep = pg_prepare($dbConn, "deleteFeederTbl", $weightUpdate);
+			
+	if(isset($_POST['update']))
+	{
+	
+		//update the feeder in the feeder table
+			$nameUpdate = "UPDATE FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
+			$nameUpdatePrep = pg_prepare($dbConn, "nameUpdate", $nameUpdate);
+	
+			$costUpdate = "UPDATE FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
+			$costUpdatePrep = pg_prepare($dbConn, "costUpdate", $costUpdate);
+			
+			$weightUpdate = "UPDATE FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
+			$weightUpdatePrep = pg_prepare($dbConn, "weightUpdate", $weightUpdate);
+			
+		if(!empty($_POST['feederName']))
+		{
+			$nameResult = pg_execute($dbConn, "nameUpdate", array($tagID));
+		}
+		if(!empty($_POST['cost']))
+		{
+			
+			$costResult = pg_execute($dbConn, "costUpdate", array($tagID));
+		}
+		if(!empty($_POST['weight']))
+		{
+			$weightResult = pg_execute($dbConn, "weightUpdate", array($tagID));
+		}
+	
+	}
+	
+	?>
 
 </script>	
 
@@ -76,12 +105,12 @@ include_once 'loginFunctions.php';
 	<br>
 	
 	<label for='cost'>Update bag of food cost?:</label>
-	<input type='number' name='cost' class="form-control" step='0.01' pattern='[0-9]*' > 
+	<input type='number' name='cost' class="form-control" step='0.01' pattern='[0-9]*' placeholder='example: 4.50' > 
 	<br>
 	<label for='weight'>Update the weight of the bag of food? (in pounds):</label>
-	<input type='number' name='weight' class="form-control" step='0.01' pattern='[0-9]*'> 
+	<input type='number' name='weight' class="form-control" step='0.01' pattern='[0-9]*'placeholder='example: 5.50'> 
 	<br>
-	<center><a href="home.php" data-inline='true' class='btn btn-default backButton marginRight'>Cancel Update</a> <button type='submit' id='updateSubmitBtn' class="btn btn-default marginLeft">Submit Feeder Update</button></center>
+	<center><a href="home.php" data-inline='true' class='btn btn-default backButton marginRight'>Cancel Update</a> <button type='submit' id='updateSubmitBtn' name = 'update' class="btn btn-default marginLeft">Submit Feeder Update</button></center>
  
 	</form>
 
