@@ -5,8 +5,8 @@
 		header("Location: index.php");
 		exit;
 	}*/
-include_once 'loginFunctions.php';
-include_once 'assets/php_functions/phpFunctions.php';
+require_once "loginFunctions.php";
+//include_once 'assets/php_functions/phpFunctions.php';
 ?>
 <!DOCTYPE html>
 <html>
