@@ -80,7 +80,6 @@ require_once "loginFunctions.php";
 		// Parse stats data
 		$petWeight = array();
 		foreach ($petStats as $num=>$stat){
-			echo $petStats[$num]['petweight'];
 			array_push($petWeight,$petStats[$num]['petweight']);
 		}
 	?>
@@ -115,6 +114,7 @@ require_once "loginFunctions.php";
 			var newChart = new Chart(ctx).Line(data);
 		
 		</script>";
+	var_dump($string);
 	echo $string;
 	?>
 </body>
