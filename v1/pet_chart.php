@@ -105,7 +105,7 @@ require_once "loginFunctions.php";
 						data: [";
 						foreach ($petWeight as $weight)
 							$string += "'$weight',";
-						rtrim($string,',');
+						//rtrim($string,',');
 						$string += "]
 					}
 				]
@@ -115,7 +115,6 @@ require_once "loginFunctions.php";
 			var newChart = new Chart(ctx).Line(data);
 		
 		</script>";
-	var_dump($string);
 	echo $string;
 	?>
 </body>
