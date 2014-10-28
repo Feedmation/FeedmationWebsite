@@ -9,6 +9,13 @@
 include_once 'loginFunctions.php';
 ?>
 
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+
 
 <html>
 <head>
@@ -41,53 +48,6 @@ include_once 'loginFunctions.php';
 		}
 	});	
 	});
-	
-	
-	
-	<?
-	$dbConn = dbconnect();
-	
-			//update the feeder in the feeder table
-			$nameUpdate = "UPDATE FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
-			$nameUpdatePrep = pg_prepare($dbConn, "deleteFeederTbl", $nameUpdate);
-	
-			$costUpdate = "UPDATE FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
-			$costUpdatePrep = pg_prepare($dbConn, "deleteFeederTbl", $costUpdate);
-			
-			$weightUpdate = "UPDATE FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
-			$weightUpdatePrep = pg_prepare($dbConn, "deleteFeederTbl", $weightUpdate);
-			
-	if(isset($_POST['update']))
-	{
-	
-		//update the feeder in the feeder table
-			$nameUpdate = "UPDATE FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
-			$nameUpdatePrep = pg_prepare($dbConn, "nameUpdate", $nameUpdate);
-	
-			$costUpdate = "UPDATE FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
-			$costUpdatePrep = pg_prepare($dbConn, "costUpdate", $costUpdate);
-			
-			$weightUpdate = "UPDATE FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
-			$weightUpdatePrep = pg_prepare($dbConn, "weightUpdate", $weightUpdate);
-			
-		if(!empty($_POST['feederName']))
-		{
-			$nameResult = pg_execute($dbConn, "nameUpdate", array($tagID));
-		}
-		if(!empty($_POST['cost']))
-		{
-			
-			$costResult = pg_execute($dbConn, "costUpdate", array($tagID));
-		}
-		if(!empty($_POST['weight']))
-		{
-			$weightResult = pg_execute($dbConn, "weightUpdate", array($tagID));
-		}
-	
-	}
-	
-	?>
-
 </script>	
 
 </head>
@@ -116,3 +76,48 @@ include_once 'loginFunctions.php';
 
 </body>
 </html>
+
+	<?
+	$dbConn = dbconnect();
+			
+	if(isset($_POST['update']))
+	{
+		$feederID = $_POST['feeder'];
+	
+		    //update the feeder in the feeder table
+			$nameUpdate = "UPDATE feeder SET FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
+			$nameUpdatePrep = pg_prepare($dbConn, "nameUpdate", $nameUpdate);
+	
+			$costUpdate = "UPDATE food_bag_cost FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
+			$costUpdatePrep = pg_prepare($dbConn, "costUpdate", $costUpdate);
+			
+			$weightUpdate = "UPDATE food_bag_weight FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
+			$weightUpdatePrep = pg_prepare($dbConn, "weightUpdate", $weightUpdate);
+			
+		if(!empty($_POST['feederName']))
+		{
+			//update the feeder name in the feeder table
+			$nameUpdate = "UPDATE FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
+			$nameUpdatePrep = pg_prepare($dbConn, "deleteFeederTbl", $nameUpdate);
+			$nameResult = pg_execute($dbConn, "nameUpdate", array($feederID));
+		}
+		if(!empty($_POST['cost']))
+		{
+			//update feeder's food cost
+			$costUpdate = "UPDATE FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
+			$costUpdatePrep = pg_prepare($dbConn, "deleteFeederTbl", $costUpdate);
+			$costResult = pg_execute($dbConn, "costUpdate", array($feederID));
+		}
+		if(!empty($_POST['weight']))
+		{
+			//update food weight
+			$weightUpdate = "UPDATE FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
+			$weightUpdatePrep = pg_prepare($dbConn, "deleteFeederTbl", $weightUpdate);
+			$weightResult = pg_execute($dbConn, "weightUpdate", array($feederID));
+		}
+	
+	}
+	
+	?>
+
+
