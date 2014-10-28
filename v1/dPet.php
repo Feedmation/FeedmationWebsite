@@ -65,6 +65,7 @@
 	?>
 	
 	<form id="delete" name="delete" action="dPet.php" method="POST">
+	<br><br><br>
 	<!--Feeder-->
 	<label for='pet'>Select a Feeder:</label>
 	<select class="form-control" id='feederSelect' name='feeder' onchange="loadPetsSelect();">
