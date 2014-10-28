@@ -9,6 +9,24 @@
 include_once 'loginFunctions.php';
 ?>
 
+<!-- navbar -->
+	<nav class="navbar-default navbar-fixed-top">
+		<div class='container'>
+			<div class="navbar-header pull-left">
+				<p class="navbarText brand navbar-text"><?php echo "$_SESSION[fname]'s Feedmation Home"; ?></p>
+			</div>
+			<div class="navbar-header pull-right">
+				<p class="navbar-text">
+					<a href="changeP.php" class='btn btn-default pull-right'>Change Password</a>  
+					<a href="logout.php" class="btn btn-default pull-right">Logout</a>
+				</p>	
+			</div>
+		</div>
+	</nav>
+	<br><br><br>
+
+
+
 <html>
 <head>
 	
