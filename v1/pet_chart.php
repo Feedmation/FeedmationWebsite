@@ -69,7 +69,7 @@ require_once "loginFunctions.php";
 		}
 		if($petStatsResult) {
 		$petStats = array();
-		while($row = pg_fetch_assoc($Result)) {
+		while($row = pg_fetch_assoc($petStatsResult)) {
 			array_push($petStats, $row);
 			var_dump($row);
 		}
