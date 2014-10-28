@@ -37,13 +37,13 @@ require_once "loginFunctions.php";
 	
 	<!-- Get pet stats -->
 	<?php
-		$dbconn = dbconnect();
+		$dbConn = dbconnect();
 	
 		// Select feeder
 		$selectFeeders = "SELECT * FROM $GLOBALS[schema].feeders WHERE user_email = $1";
-		$selectFeedersPrep = pg_prepare($dbconn, "feeders", $selectFeeders);
+		$selectFeedersPrep = pg_prepare($dbConn, "feeders", $selectFeeders);
 		if($selectFeedersPrep) {
-			$feedersResult = pg_execute($dbconn, "feeders", array("meow@meow.com"));  //-- HARD CODED --//
+			$feedersResult = pg_execute($dbConn, "feeders", array("meow@meow.com"));  //-- HARD CODED --//
 		} else {
 			echo "Could not sanitize user name. Try again later.";
 		}
