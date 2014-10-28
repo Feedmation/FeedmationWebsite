@@ -35,43 +35,84 @@ include_once 'assets/php_functions/phpFunctions.php';
 	<script>
 	</script>
 	
+	<!-- Get pet stats -->
+	<?php
+		$dbConn = dbconnect();
+	
+		// Select feeder
+		$selectFeeders = "SELECT * FROM $GLOBALS[schema].feeders WHERE user_email = $1";
+		$selectFeedersPrep = pg_prepare($dbconn, "feeders", $selectFeeders);
+		if($selectFeedersPrep) {
+			$feedersResult = pg_execute($dbconn, "feeders", array("meow@meow.com"));  //-- HARD CODED --//
+		} else {
+			echo "Could not sanitize user name. Try again later.";
+		}
+		if($feedersResult) {
+			while($row = pg_fetch_assoc($feedersResult)) {
+				$feeders .= $row[feeder_id];
+			}
+			pg_free_result($feedersResult);
+		} else {
+			echo "Could not query for Pet Feeders. Try refreshing the page";
+		}
+		
+		// Select pet stats
+		$petStatsQuery = "SELECT * FROM $GLOBALS[schema].stats WHERE feeder_id = $1";
+		$petStatsPrep = pg_prepare($dbConn, "petStatsQuery", $petStatsQuery);
+		if($petStatsPrep) { 
+			$petStatsResult = pg_execute($dbConn, "petStatsQuery", array($feeders[0]);	//-- HARD CODED --//
+		} 
+		else 
+		{
+			echo "<p>Couldn't get info of feeder with id $feeders[0]. </p>";  //-- HARD CODED --//
+		}
+		if($petStatsResult) {
+		while($row = pg_fetch_assoc($Result)) {
+			$petStats .= $row;
+		}
+		pg_free_result($feedersResult);
+		} else {
+			echo "Could not query for Pet stats. Try refreshing the page";
+		}
+		
+		// Parse stats data
+		foreach ($petStats as $stat){
+			$petWeight .= $stat['petweight'];
+		}
+	?>
+	
 	<!-- Canvas on which the pet chart will be drawn -->
 	<canvas id="petChart"></canvas>
 	
 	<!-- Draw chart -->
-	<script>
-		var data = {
-			labels: ["January", "February", "March", "April", "May", "June", "July"],
-			datasets: [
-				{
-					label: "My First dataset",
-					fillColor: "rgba(220,220,220,0.2)",
-					strokeColor: "rgba(220,220,220,1)",
-					pointColor: "rgba(220,220,220,1)",
-					pointStrokeColor: "#fff",
-					pointHighlightFill: "#fff",
-					pointHighlightStroke: "rgba(220,220,220,1)",
-					data: [65, 59, 80, 81, 56, 55, 40]
-				},
-				{
-					label: "My Second dataset",
-					fillColor: "rgba(151,187,205,0.2)",
-					strokeColor: "rgba(151,187,205,1)",
-					pointColor: "rgba(151,187,205,1)",
-					pointStrokeColor: "#fff",
-					pointHighlightFill: "#fff",
-					pointHighlightStroke: "rgba(151,187,205,1)",
-					data: [28, 48, 40, 19, 86, 27, 90]
-				}
-			]
-		};
+	<?php
+		$string = "<script>
+			var data = {
+				labels: ['10/11','10/12','10/13','10/14','10/15','10/16','10/17','10/18','10/19'],  //-- HARD CODED --//
+				datasets: [
+					{
+						label: 'Pet Weight',
+						fillColor: 'rgba(220,220,220,0.2)',
+						strokeColor: 'rgba(220,220,220,1)',
+						pointColor: 'rgba(220,220,220,1)',
+						pointStrokeColor: '#fff',
+						pointHighlightFill: '#fff',
+						pointHighlightStroke: 'rgba(220,220,220,1)',
+						data: [";
+						foreach ($petWeight as $weight)
+							$string += "'$weight',";
+						rtrim($string,',');
+						$string += "]
+					}
+				]
+			};
+			
+			var ctx = document.getElementById('petChart').getContext('2d');
+			var newChart = new Chart(ctx).Line(data);
 		
-		var ctx = document.getElementById("petChart").getContext("2d");
-		var newChart = new Chart(ctx).Line(data);
-		
-		
-	</script>
-	
+		</script>"
+	echo $string;
+	?>
 </body>
 
 </html>
