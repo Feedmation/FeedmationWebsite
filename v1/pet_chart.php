@@ -110,7 +110,7 @@ include_once 'assets/php_functions/phpFunctions.php';
 			var ctx = document.getElementById('petChart').getContext('2d');
 			var newChart = new Chart(ctx).Line(data);
 		
-		</script>"
+		</script>";
 	echo $string;
 	?>
 </body>
