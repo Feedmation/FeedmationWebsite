@@ -60,11 +60,11 @@ require_once "loginFunctions.php";
 		$petStatsQuery = "SELECT * FROM $GLOBALS[schema].stats WHERE feeder_id = $1";
 		$petStatsPrep = pg_prepare($dbConn, "petStatsQuery", $petStatsQuery);
 		if($petStatsPrep) { 
-			$petStatsResult = pg_execute($dbConn, "petStatsQuery", array($feeders[0]));	//-- HARD CODED --//
+			$petStatsResult = pg_execute($dbConn, "petStatsQuery", array($feeders));	//-- HARD CODED --//
 		} 
 		else 
 		{
-			echo "<p>Couldn't get info of feeder with id $feeders[0]. </p>";  //-- HARD CODED --//
+			echo "<p>Couldn't get info of feeder with id $feeders. </p>";  //-- HARD CODED --//
 		}
 		if($petStatsResult) {
 		while($row = pg_fetch_assoc($Result)) {
