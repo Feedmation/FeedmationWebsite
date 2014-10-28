@@ -60,7 +60,7 @@ include_once 'assets/php_functions/phpFunctions.php';
 		$petStatsQuery = "SELECT * FROM $GLOBALS[schema].stats WHERE feeder_id = $1";
 		$petStatsPrep = pg_prepare($dbConn, "petStatsQuery", $petStatsQuery);
 		if($petStatsPrep) { 
-			$petStatsResult = pg_execute($dbConn, "petStatsQuery", array($feeders[0]);	//-- HARD CODED --//
+			$petStatsResult = pg_execute($dbConn, "petStatsQuery", array($feeders[0]));	//-- HARD CODED --//
 		} 
 		else 
 		{
