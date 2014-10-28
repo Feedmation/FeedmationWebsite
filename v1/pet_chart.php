@@ -49,7 +49,7 @@ require_once "loginFunctions.php";
 		}
 		if($feedersResult) {
 			while($row = pg_fetch_assoc($feedersResult)) {
-				$feeders .= $row[feeder_id];
+				$feeders .= $row['feeder_id'];
 			}
 			pg_free_result($feedersResult);
 		} else {
