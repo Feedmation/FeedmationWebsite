@@ -48,6 +48,7 @@ require_once "loginFunctions.php";
 			echo "Could not sanitize user name. Try again later.";
 		}
 		if($feedersResult) {
+			$feeders = '';
 			while($row = pg_fetch_assoc($feedersResult)) {
 				$feeders .= $row['feeder_id'];
 			}
@@ -67,15 +68,17 @@ require_once "loginFunctions.php";
 			echo "<p>Couldn't get info of feeder with id $feeders. </p>";  //-- HARD CODED --//
 		}
 		if($petStatsResult) {
+		$petStats = array();
 		while($row = pg_fetch_assoc($Result)) {
-			$petStats .= $row;
+			array_push($petStats, $row);
 		}
-		pg_free_result($feedersResult);
+		pg_free_result($petStatsResult);
 		} else {
 			echo "Could not query for Pet stats. Try refreshing the page";
 		}
 		
 		// Parse stats data
+		var_dump($petStats);
 		foreach ($petStats as $stat){
 			$petWeight .= $stat['petweight'];
 		}
