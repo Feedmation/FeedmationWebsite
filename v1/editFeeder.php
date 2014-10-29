@@ -74,7 +74,6 @@ include_once 'loginFunctions.php';
 			
 	if(isset($_POST['update']))
 	{
-		
 		$foodCost = $_POST['cost'];
 		$foodWeight = $_POST['weight'];
 		$feederName = $_POST['feederName'];
