@@ -74,37 +74,31 @@ include_once 'loginFunctions.php';
 			
 	if(isset($_POST['update']))
 	{
+		
+		$foodCost = $_POST['cost'];
+		$foodWeight = $_POST['weight'];
+		$feederName = $_POST['feederName'];
 		$feederID = $_POST['feeder'];
 	
-		    //update the feeder in the feeder table
-			$nameUpdate = "UPDATE feeder SET FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
-			$nameUpdatePrep = pg_prepare($dbConn, "nameUpdate", $nameUpdate);
-	
-			$costUpdate = "UPDATE food_bag_cost FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
-			$costUpdatePrep = pg_prepare($dbConn, "costUpdate", $costUpdate);
-			
-			$weightUpdate = "UPDATE food_bag_weight FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
-			$weightUpdatePrep = pg_prepare($dbConn, "weightUpdate", $weightUpdate);
-			
 		if(!empty($_POST['feederName']))
 		{
 			//update the feeder name in the feeder table
-			$nameUpdate = "UPDATE FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
-			$nameUpdatePrep = pg_prepare($dbConn, "deleteFeederTbl", $nameUpdate);
+			$nameUpdate = "UPDATE $GLOBALS[schema].feeders SET feeder_name = $feederName WHERE feeder_id = $1";
+			$nameUpdatePrep = pg_prepare($dbConn, "nameUpdate", $nameUpdate);
 			$nameResult = pg_execute($dbConn, "nameUpdate", array($feederID));
 		}
 		if(!empty($_POST['cost']))
 		{
 			//update feeder's food cost
-			$costUpdate = "UPDATE FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
-			$costUpdatePrep = pg_prepare($dbConn, "deleteFeederTbl", $costUpdate);
+			$costUpdate = "UPDATE $GLOBALS[schema].feeders SET food_bag_cost = $foodCost WHERE feeder_id = $1";
+			$costUpdatePrep = pg_prepare($dbConn, "costUpdate", $costUpdate);
 			$costResult = pg_execute($dbConn, "costUpdate", array($feederID));
 		}
 		if(!empty($_POST['weight']))
 		{
 			//update food weight
-			$weightUpdate = "UPDATE FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
-			$weightUpdatePrep = pg_prepare($dbConn, "deleteFeederTbl", $weightUpdate);
+			$weightUpdate = "UPDATE $GLOBAL[schema].feeders SET food_bag_weight = $foodWeight WHERE feeder_id = $1";
+			$weightUpdatePrep = pg_prepare($dbConn, "weightUpdate", $weightUpdate);
 			$weightResult = pg_execute($dbConn, "weightUpdate", array($feederID));
 		}
 	
