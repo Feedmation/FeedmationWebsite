@@ -79,7 +79,7 @@ include_once 'loginFunctions.php';
 		$feederName = $_POST['newFeederName'];
 		$feederID = $_POST['feeder'];
 	
-		if(!empty($_POST['feederName']))
+		if(!empty($_POST['newFeederName']))
 		{
 			//update the feeder name in the feeder table
 			$nameUpdate = "UPDATE $GLOBALS[schema].feeders SET feeder_name = $1 WHERE feeder_id = $2";
