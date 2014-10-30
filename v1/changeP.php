@@ -41,7 +41,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 
 	</head>
 	<body>
-	<br><br><br>
+	<br><br><br><br><br>
 	<div data-role="main" class="container">
     <form method="post" action="changeP.php">
 		<label for='password'>Password:</label>
