@@ -44,7 +44,7 @@ include_once 'loginFunctions.php';
 
 </head>
 <body>
-	
+	<br><br><br>
 	<form method='POST' id='updateFeederForm' action="editFeeder.php">
 	<label for='feeder'>Select a Feeder :</label>
 	<select class="form-control" id='feederSelect' name='feeder'>
