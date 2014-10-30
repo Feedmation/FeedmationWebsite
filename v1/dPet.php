@@ -79,7 +79,7 @@
 <? 
 		$dbconn = dbconnect();
 	?>
-	
+	<br><br><br>
 	<form id="delete" name="delete" action="dPet.php" method="POST">
 	<br><br><br>
 	<!--Feeder-->
