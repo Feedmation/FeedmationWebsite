@@ -45,7 +45,7 @@ include_once 'loginFunctions.php';
 
 </head>
 <body>
-	
+	<br><br><br>
 	<form method='POST' id='addFeederForm'>
 		<label for='feederId'>Enter Unique Pet Feeder ID:</label>
         <input type='text' required='required' id="feederID" class="form-control" name='feederId'>      
