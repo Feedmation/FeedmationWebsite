@@ -82,23 +82,23 @@ include_once 'loginFunctions.php';
 		if(!empty($_POST['feederName']))
 		{
 			//update the feeder name in the feeder table
-			$nameUpdate = "UPDATE $GLOBALS[schema].feeders SET feeder_name = \"$feederName\" WHERE feeder_id = $1";
+			$nameUpdate = "UPDATE $GLOBALS[schema].feeders SET feeder_name = $1 WHERE feeder_id = $2";
 			$nameUpdatePrep = pg_prepare($dbConn, "nameUpdate", $nameUpdate);
-			$nameResult = pg_execute($dbConn, "nameUpdate", array($feederID));
+			$nameResult = pg_execute($dbConn, "nameUpdate", array($feederName,$feederID));
 		}
 		if(!empty($_POST['cost']))
 		{
 			//update feeder's food cost
-			$costUpdate = "UPDATE $GLOBALS[schema].feeders SET food_bag_cost = $foodCost WHERE feeder_id = $1";
+			$costUpdate = "UPDATE $GLOBALS[schema].feeders SET food_bag_cost = $1 WHERE feeder_id = $2";
 			$costUpdatePrep = pg_prepare($dbConn, "costUpdate", $costUpdate);
-			$costResult = pg_execute($dbConn, "costUpdate", array($feederID));
+			$costResult = pg_execute($dbConn, "costUpdate", array($foodCost,$feederID));
 		}
 		if(!empty($_POST['weight']))
 		{
 			//update food weight
-			$weightUpdate = "UPDATE $GLOBAL[schema].feeders SET food_bag_weight = $foodWeight WHERE feeder_id = $1";
+			$weightUpdate = "UPDATE $GLOBAL[schema].feeders SET food_bag_weight = $1 WHERE feeder_id = $2";
 			$weightUpdatePrep = pg_prepare($dbConn, "weightUpdate", $weightUpdate);
-			$weightResult = pg_execute($dbConn, "weightUpdate", array($feederID));
+			$weightResult = pg_execute($dbConn, "weightUpdate", array($foodWeight,$feederID));
 		}
 	
 		header('Location: index.php');
