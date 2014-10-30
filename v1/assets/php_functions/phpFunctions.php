@@ -4,7 +4,7 @@ if(session_id() == '') {
 }
 	$sitePath = dirname(dirname(__FILE__));
 	include_once("../../loginFunctions.php");
-
+	
 	//function for populating the list of feeders on home.php
 	function populateFeeders() {
 		
@@ -387,13 +387,14 @@ if(session_id() == '') {
 			
 			$startTime2 = strval($startTime2) . ":00pm";
 			$endTime2 = strval($endTime2) . ":00pm";
-						
+							
 		} else {
 			echo "error";
 		}
 		
 		echo "
-			<form method='POST' id='addPetForm'>		  
+			<form method='POST' id='updatePetForm'>	
+				<input type='hidden' name='number' value=$tagId> 	  
 				<label for='name'>Name of your Pet:</label>
 				<input type='text' required='required' class='form-control' name='name' value='$row[pet_name]'>    
 				<br>
@@ -447,7 +448,7 @@ if(session_id() == '') {
 				<label for='feedAmount'>How many cups of food per eating window?</label>
 				<input type='number' step='0.01' min='0.5' max='8' required='required' class='form-control' name='feedAmount' value=$row[feed_amount]> 
 				<br><br>         
-				<center><a href='home.php' data-inline='true' class='btn btn-default backButton marginRight'>Cancel Submission</a> <button type='submit' id='addFeederSubmitBtn' class='btn btn-default marginLeft'>Update Pet Info</button></center>
+				<center><a href='home.php' data-inline='true' class='btn btn-default backButton marginRight'>Cancel Submission</a> <button type='submit' id='updatePetSubmitBtn' onclick='updatePet();return false;' class='btn btn-default marginLeft'>Update Pet Info</button></center>
 			</form>
 		";
 	}

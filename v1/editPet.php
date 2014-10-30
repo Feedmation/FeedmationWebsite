@@ -13,9 +13,8 @@ include_once 'loginFunctions.php';
 <head>
 	
 <script>
-	$('#addPetForm').on('submit', function (e) {
+	function updatePet() {
 
-		e.preventDefault();
 		var start1String = $('#startTime1').val();
 		var start1Split = start1String.split(":");
 		var start1Int = parseInt(start1Split[0]);
@@ -53,25 +52,18 @@ include_once 'loginFunctions.php';
 			$(".errorMessage").hide().html("The start time cannot be greater than or equal to the end time!").fadeIn('slow');
 			return;
 		} 
-          
+		
 		$.ajax({
-		url: 'assets/form_processing/insert_pet.php',
+		url: 'assets/form_processing/update_pet.php',
 		type: "POST",
 		dataType: 'text',
-		data: $("#addPetForm").serialize(),
-		success: function(data) {
-			var error = 'petExists';
-			if(data.match(error)) {
-				window.scrollTo(0,0);
-				$(".errorMessage").hide().html("That pet tag has already been registered.<br>Try typing it again.").fadeIn('slow');
-			} else {
-				$(".errorMessage").empty();
-				$("#feeders").html(data);
-				$("#buttonBar").show();
-			}
+		data: $("#updatePetForm").serialize(),
+		success: function(data) {	
+			$(".errorMessage").empty();
+			$("#feeders").html(data);
 		}
 	});	
-	});
+	}
 								
 	$(document).ready(function() {	
 		$('.errorMessage').empty();
