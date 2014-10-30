@@ -45,7 +45,7 @@ include_once 'loginFunctions.php';
 </head>
 <body>
 	
-	<form method='POST' id='updateFeederForm'>
+	<form method='POST' id='updateFeederForm' action="editFeeder.php">
 	<label for='feeder'>Select a Feeder :</label>
 	<select class="form-control" id='feederSelect' name='feeder'>
 		<?php populateFeedersSelectBox(); ?>
@@ -53,7 +53,7 @@ include_once 'loginFunctions.php';
 	<br>
 	
 	<label for='feederName'>Update Name for your Feeder:</label>
-	<input type='text' name='feederName' class="form-control" required='required'>  
+	<input type='text' name='newFeederName' class="form-control" required='required'>  
 	<br>
 	
 	<label for='cost'>Update bag of food cost?:</label>
@@ -76,7 +76,7 @@ include_once 'loginFunctions.php';
 	{
 		$foodCost = $_POST['cost'];
 		$foodWeight = $_POST['weight'];
-		$feederName = $_POST['feederName'];
+		$feederName = $_POST['newFeederName'];
 		$feederID = $_POST['feeder'];
 	
 		if(!empty($_POST['feederName']))
@@ -101,6 +101,7 @@ include_once 'loginFunctions.php';
 			$weightResult = pg_execute($dbConn, "weightUpdate", array($feederID));
 		}
 	
+		header('Location: index.php');
 	}
 	
 	?>
