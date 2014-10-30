@@ -52,7 +52,7 @@ include_once 'loginFunctions.php';
 	</select>
 	<br>
 	
-	<label for='feederName'>Update Name for your Feeder:</label>
+	<label for='newFeederName'>Update Name for your Feeder:</label>
 	<input type='text' name='newFeederName' class="form-control" required='required'>  
 	<br>
 	
@@ -82,7 +82,7 @@ include_once 'loginFunctions.php';
 		if(!empty($_POST['feederName']))
 		{
 			//update the feeder name in the feeder table
-			$nameUpdate = "UPDATE $GLOBALS[schema].feeders SET feeder_name = $feederName WHERE feeder_id = $1";
+			$nameUpdate = "UPDATE $GLOBALS[schema].feeders SET feeder_name = \"$feederName\" WHERE feeder_id = $1";
 			$nameUpdatePrep = pg_prepare($dbConn, "nameUpdate", $nameUpdate);
 			$nameResult = pg_execute($dbConn, "nameUpdate", array($feederID));
 		}
