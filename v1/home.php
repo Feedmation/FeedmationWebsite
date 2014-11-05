@@ -26,6 +26,17 @@ function addFeeder() {
 	});	
 }
 
+function editFeeder() {
+	$.ajax({
+      url: 'editFeeder.php',
+      type: "GET",
+      success: function(data) {
+		$("#feeders").html(data);	
+      }
+	});
+}
+
+
 function editPet() {
 	$.ajax({
       url: 'editPet.php',
@@ -132,6 +143,7 @@ $(document).ready(function () {
 				<ul id='navList' class='nav navbar-nav pull-right'>					
 					<li><a href='#' id='feedNow' name='feedNow' onclick='feedNow(); return false;'><span class='glyphicon glyphicon-time'></span> Feed Now!</a></li>
 					<li><a href='#' name='addFeeder' onclick="addFeeder(); return false;"><span class='glyphicon glyphicon-plus'></span> Add Feeder</a></li>
+					<li><a href='#' name='editFeeder' onclick="editFeeder(); return false;"><span class='glyphicon glyphicon-cog'></span> Edit Feeder</a></li>
 					<li><a href='#' name='deleteFeeder' onclick="deleteFeeder(); return false;" ><span class='glyphicon glyphicon-trash'></span> Delete Feeder</a></li>
 					<li><a href='#' name='addPet' onclick="addPet(); return false;"><span class='glyphicon glyphicon-plus'></span> Add Pet</a></li>
 					<li><a href='#' name='addPet' onclick="editPet(); return false;"><span class='glyphicon glyphicon-cog'></span> Edit Pet</a></li>
