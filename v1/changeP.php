@@ -5,7 +5,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 
 <!DOCTYPE html>
 
-	<!-- navbar -->
+<!-- navbar -->
 	<nav id='navbar' role="navigation" class="navbar navbar-default navbar-fixed-top">
 		<div class='container'>
 			<div class="navbar-header">
@@ -20,6 +20,7 @@ $loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
 				<ul id='navList' class='nav navbar-nav pull-right'>					
 					<li><a href='#' id='feedNow' name='feedNow' onclick='feedNow(); return false;'><span class='glyphicon glyphicon-time'></span> Feed Now!</a></li>
 					<li><a href='#' name='addFeeder' onclick="addFeeder(); return false;"><span class='glyphicon glyphicon-plus'></span> Add Feeder</a></li>
+					<li><a href='#' name='editFeeder' onclick="editFeeder(); return false;"><span class='glyphicon glyphicon-cog'></span> Edit Feeder</a></li>
 					<li><a href='#' name='deleteFeeder' onclick="deleteFeeder(); return false;" ><span class='glyphicon glyphicon-trash'></span> Delete Feeder</a></li>
 					<li><a href='#' name='addPet' onclick="addPet(); return false;"><span class='glyphicon glyphicon-plus'></span> Add Pet</a></li>
 					<li><a href='#' name='addPet' onclick="editPet(); return false;"><span class='glyphicon glyphicon-cog'></span> Edit Pet</a></li>
