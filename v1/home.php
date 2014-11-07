@@ -12,139 +12,10 @@
 <head>
 <?php include_once 'loginFunctions.php'; ?>	
 
+<!-- Link to our JS file which contains ALL the JS needed 
+     to load pages via AJAX when clicked from the navbar -->
+<script src='assets/js/feedmation.js'></script>
 
-<script>
-	
-function addFeeder() {
-	$.ajax({
-      url: 'addFeeder.php',
-      type: "GET",
-      success: function(data) {
-		$("#feeders").html(data);
-      }
-	});	
-}
-
-function editFeeder() {
-	$.ajax({
-      url: 'editFeeder.php',
-      type: "GET",
-      success: function(data) {
-		$("#feeders").html(data);	
-      }
-	});
-}
-
-
-function editPet() {
-	$.ajax({
-      url: 'editPet.php',
-      type: "GET",
-      success: function(data) {
-		$("#feeders").html(data);	
-      }
-	});
-}
-
-function dPet() {
-	$.ajax({
-      url: 'dPet.php',
-      type: "GET",
-      success: function(data) {
-		$("#feeders").html(data);	
-      }
-	});
-}
-
-function addPet() {
-	$('.errorMessage').empty();
-	
-	if(!$('.feederBtn').is(':visible')) {
-		$.ajax({
-			url: 'assets/form_processing/fetchFeeders.php',
-			type: "GET",
-			success: function(data) {
-				$("#feeders").html(data);
-				if($('#feeders :button').length == 0) {
-					$('.errorMessage').hide().html("Add a feeder first so you can assign your pet to it!").fadeIn('slow');
-					return;
-				}
-
-				$.ajax({
-				  url: 'addPet.php',
-				  type: "GET",
-				  success: function(data) {
-					$("#feeders").html(data);
-				  }
-				});	
-			}
-		});	
-	} else {
-		if($('#feeders :button').length == 0) {
-			$('.errorMessage').hide().html("Add a feeder first so you can assign your pet to it!").fadeIn('slow');
-			return;
-		}
-
-		$.ajax({
-		  url: 'addPet.php',
-		  type: "GET",
-		  success: function(data) {
-			$("#feeders").html(data);
-		  }
-		});	
-	}
-}
-
-function deleteFeeder() {
-	$('.errorMessage').empty();
-	
-	if(!$('.feederBtn').is(':visible')) {
-		$.ajax({
-			url: 'assets/form_processing/fetchFeeders.php',
-			type: "GET",
-			success: function(data) {
-				$('#feedNow').hide();
-				$("#feeders").html(data);
-				$('.btn').addClass('focus');
-				$('.delete').show();
-			}
-		});	
-	} else {
-		$('.btn').addClass('focus');
-		$('.delete').show();	
-	}
-}
-
-
-function feedNow() {
-	$.ajax({
-      url: 'feedNow.php',
-      type: "GET",
-      success: function(data) {
-		$('#feedNow').hide();
-		$("#feeders").html(data);
-      }
-	});	
-}
-
-function changeP() {
-	$.ajax({
-      url: 'changeP.php',
-      type: "GET",
-      success: function(data) {
-		$("#feeders").html(data);
-      }
-	});	
-}
-
-$(document).ready(function () {
-    $("#navbar li a").click(function(event) {
-    // check if window is small enough so dropdown is created
-		$("#navbarCollapse").removeClass("in").addClass("collapse");
-    });
-});
-
-</script>
 </head>
 <body>
 	<!-- navbar -->
@@ -177,20 +48,18 @@ $(document).ready(function () {
 	<!-- end navbar -->
 	<br><br><br>
 	
-<div class="container">
-	
+<div class="container">	
 	<div data-role="main" id="main-content" class="ui-content">
 		<center>
-			<div class="errorMessage"></div><br>
+			<div class="errorMessage"></div>
+			<br>
 			<div id="feeders">
 			<?php populateFeeders(); ?>
 			</div>
 		</center>
 	</div>
 	<br><br>	
-	<center id="buttonBar">
-	</center>
-
+	<center id="buttonBar"></center>
 </div>
 <div class='loadingModal'><!-- this can be displayed when AJAX request are sent so the user knows something is happening --></div>
 </body>

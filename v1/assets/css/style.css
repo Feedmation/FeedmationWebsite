@@ -136,6 +136,10 @@ body.loading .loadingModal {
 #feedNow {
 	color: red;
 }
+
+.navbar-fixed-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse {
+	max-height: 500px !important;
+}
 					
 </style>
 
