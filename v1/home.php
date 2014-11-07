@@ -14,7 +14,6 @@
 
 
 <script>
-
 	
 function addFeeder() {
 	$.ajax({
@@ -40,6 +39,16 @@ function editFeeder() {
 function editPet() {
 	$.ajax({
       url: 'editPet.php',
+      type: "GET",
+      success: function(data) {
+		$("#feeders").html(data);	
+      }
+	});
+}
+
+function dPet() {
+	$.ajax({
+      url: 'dPet.php',
       type: "GET",
       success: function(data) {
 		$("#feeders").html(data);	
@@ -118,6 +127,16 @@ function feedNow() {
 	});	
 }
 
+function changeP() {
+	$.ajax({
+      url: 'changeP.php',
+      type: "GET",
+      success: function(data) {
+		$("#feeders").html(data);
+      }
+	});	
+}
+
 $(document).ready(function () {
     $("#navbar li a").click(function(event) {
     // check if window is small enough so dropdown is created
@@ -130,9 +149,9 @@ $(document).ready(function () {
 <body>
 	<!-- navbar -->
 	<nav id='navbar' role="navigation" class="navbar navbar-default navbar-fixed-top">
-		<div class='container'>
+		<div class='container feedmationNavbar'>
 			<div class="navbar-header">
-				<p class="navbarText pull-left navbar-text"><?php echo "$_SESSION[fname]'s Feedmation Home"; ?></p>
+				<a href='home.php'><p class="navbarText pull-left navbar-text"><?php echo "$_SESSION[fname]'s Feedmation Home"; ?></p></a>
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
@@ -147,16 +166,16 @@ $(document).ready(function () {
 					<li><a href='#' name='deleteFeeder' onclick="deleteFeeder(); return false;" ><span class='glyphicon glyphicon-trash'></span> Delete Feeder</a></li>
 					<li><a href='#' name='addPet' onclick="addPet(); return false;"><span class='glyphicon glyphicon-plus'></span> Add Pet</a></li>
 					<li><a href='#' name='addPet' onclick="editPet(); return false;"><span class='glyphicon glyphicon-cog'></span> Edit Pet</a></li>
-					<li><a href='dPet.php' id="deletePetBtn" name='deletePet'><span class='glyphicon glyphicon-trash'></span> Delete Pet</a></li>
+					<li><a href='#' id="deletePetBtn" onclick="dPet(); return false;" name='deletePet'><span class='glyphicon glyphicon-trash'></span> Delete Pet</a></li>
 					<li class="divider"></li>
-					<li><a href="changeP.php"><span class='glyphicon glyphicon-user'></span> Change Password</a></li>
+					<li><a href="#" name='changePassword' onclick="changeP(); return false;"><span class='glyphicon glyphicon-user'></span> Change Password</a></li>
 					<li><a href="logout.php"><span class='glyphicon glyphicon-off'></span> Logout</a></li>				
 				</ul>
 			</div>
 		</div>	
 	</nav>
 	<!-- end navbar -->
-	<br><br><br><br>
+	<br><br><br>
 	
 <div class="container">
 	

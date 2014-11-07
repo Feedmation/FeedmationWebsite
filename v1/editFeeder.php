@@ -11,39 +11,6 @@ include_once 'loginFunctions.php';
 
 <html>
 <head>
-	<!-- navbar -->
-	<nav id='navbar' role="navigation" class="navbar navbar-default navbar-fixed-top">
-		<div class='container'>
-			<div class="navbar-header">
-				<p class="navbarText pull-left navbar-text"><?php echo "$_SESSION[fname]'s Feedmation Home"; ?></p>
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-			</div>
-			<div id="navbarCollapse" class="collapse navbar-collapse">
-				<ul id='navList' class='nav navbar-nav pull-right'>					
-					<li><a href='#' id='feedNow' name='feedNow' onclick='feedNow(); return false;'><span class='glyphicon glyphicon-time'></span> Feed Now!</a></li>
-					<li><a href='#' name='addFeeder' onclick="addFeeder(); return false;"><span class='glyphicon glyphicon-plus'></span> Add Feeder</a></li>
-					<li><a href='#' name='editFeeder' onclick="editFeeder(); return false;"><span class='glyphicon glyphicon-cog'></span> Edit Feeder</a></li>
-					<li><a href='#' name='deleteFeeder' onclick="deleteFeeder(); return false;" ><span class='glyphicon glyphicon-trash'></span> Delete Feeder</a></li>
-					<li><a href='#' name='addPet' onclick="addPet(); return false;"><span class='glyphicon glyphicon-plus'></span> Add Pet</a></li>
-					<li><a href='#' name='addPet' onclick="editPet(); return false;"><span class='glyphicon glyphicon-cog'></span> Edit Pet</a></li>
-					<li><a href='dPet.php' id="deletePetBtn" name='deletePet'><span class='glyphicon glyphicon-trash'></span> Delete Pet</a></li>
-					<li class="divider"></li>
-					<li><a href="changeP.php"><span class='glyphicon glyphicon-user'></span> Change Password</a></li>
-					<li><a href="logout.php"><span class='glyphicon glyphicon-off'></span> Logout</a></li>				
-				</ul>
-			</div>
-		</div>	
-	</nav>
-	<!-- end navbar -->
-	
-	
-	
-	
-	
 	
 <script>
 	$( document ).ready(function() {
@@ -77,7 +44,6 @@ include_once 'loginFunctions.php';
 
 </head>
 <body>
-	<br><br><br><br><br><br><br>
 	<form method='POST' id='updateFeederForm' action="editFeeder.php">
 	<label for='feeder'>Select a Feeder :</label>
 	<select class="form-control" id='feederSelect' name='feeder'>

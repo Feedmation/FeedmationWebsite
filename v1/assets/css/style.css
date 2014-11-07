@@ -23,6 +23,10 @@ div.ui-btn.ui-input-btn.ui-corner-all.ui-shadow.ui-btn-inline {
 #formWrapper {
 	margin-bottom: 20px;
 }
+
+.feedmationNavbar {
+	width: 100% !important;
+}
 		
 .navbar-header .navbarText {
 	margin-left:20px !important;

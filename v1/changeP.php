@@ -1,65 +1,38 @@
 <?php
-session_start();
-$loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
+	session_start();
+	$loggedIn = empty($_SESSION['user']) ? false : $_SESSION['user'];
+	if ($loggedIn == false) {
+		header("Location: index.php");
+		exit;
+	}
+	
+include_once 'loginFunctions.php';
 ?>
 
 <!DOCTYPE html>
-
-<!-- navbar -->
-	<nav id='navbar' role="navigation" class="navbar navbar-default navbar-fixed-top">
-		<div class='container'>
-			<div class="navbar-header">
-				<p class="navbarText pull-left navbar-text"><?php echo "$_SESSION[fname]'s Feedmation Home"; ?></p>
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-			</div>
-			<div id="navbarCollapse" class="collapse navbar-collapse">
-				<ul id='navList' class='nav navbar-nav pull-right'>					
-					<li><a href='#' id='feedNow' name='feedNow' onclick='feedNow(); return false;'><span class='glyphicon glyphicon-time'></span> Feed Now!</a></li>
-					<li><a href='#' name='addFeeder' onclick="addFeeder(); return false;"><span class='glyphicon glyphicon-plus'></span> Add Feeder</a></li>
-					<li><a href='#' name='editFeeder' onclick="editFeeder(); return false;"><span class='glyphicon glyphicon-cog'></span> Edit Feeder</a></li>
-					<li><a href='#' name='deleteFeeder' onclick="deleteFeeder(); return false;" ><span class='glyphicon glyphicon-trash'></span> Delete Feeder</a></li>
-					<li><a href='#' name='addPet' onclick="addPet(); return false;"><span class='glyphicon glyphicon-plus'></span> Add Pet</a></li>
-					<li><a href='#' name='addPet' onclick="editPet(); return false;"><span class='glyphicon glyphicon-cog'></span> Edit Pet</a></li>
-					<li><a href='dPet.php' id="deletePetBtn" name='deletePet'><span class='glyphicon glyphicon-trash'></span> Delete Pet</a></li>
-					<li class="divider"></li>
-					<li><a href="changeP.php"><span class='glyphicon glyphicon-user'></span> Change Password</a></li>
-					<li><a href="logout.php"><span class='glyphicon glyphicon-off'></span> Logout</a></li>				
-				</ul>
-			</div>
-		</div>	
-	</nav>
-	<!-- end navbar -->
-
-	<br><br><br>
 	
-	<html>
-	<head>
-	<?php include_once 'loginFunctions.php'; ?>	
+<html>
+<head>
 
-	</head>
-	<body>
-	<br><br><br><br><br>
-	<div data-role="main" class="container">
-    <form method="post" action="changeP.php">
-		<label for='password'>Password:</label>
-		<input type='password' class="form-control" name='password' pattern=".{8,16}" title="Must be between 8 and 16 characters" required="required" id='password'>
-		<br>
-		<label for='repassword'>Enter a new Password:</label>
-		<input type='password' class="form-control" pattern=".{8,16}"  name='rePassword' title="Must be between 8 and 16 characters" required="required" id='repassword'>
-		<br>
-		<label for='rePassword'>Re-Enter your new Password:</label>
-		<input type='password' class="form-control" pattern=".{8,16}"  name='conPassword' title="Must be between 8 and 16 characters" required="required" id='conPassword'>
-		<br><br>
-		<center><button type='submit' name='update' class='btn btn-default'>Change Password</button>
-		<br><br>
-					<center><a href="home.php" data-inline='true' class='btn btn-default backButton'>Go back to Feedmation Home</a></center>
-				<br>
-    </form>
-  </div>
+</head>
+<body>
+<div data-role="main" class="container">
+<form method="post" action="changeP.php">
+	<label for='password'>Password:</label>
+	<input type='password' class="form-control" name='password' pattern=".{8,16}" title="Must be between 8 and 16 characters" required="required" id='password'>
+	<br>
+	<label for='repassword'>Enter a new Password:</label>
+	<input type='password' class="form-control" pattern=".{8,16}"  name='rePassword' title="Must be between 8 and 16 characters" required="required" id='repassword'>
+	<br>
+	<label for='rePassword'>Re-Enter your new Password:</label>
+	<input type='password' class="form-control" pattern=".{8,16}"  name='conPassword' title="Must be between 8 and 16 characters" required="required" id='conPassword'>
+	<br><br>
+	<center><button type='submit' name='update' class='btn btn-default'>Change Password</button>
+	<br><br>
+				<center><a href="home.php" data-inline='true' class='btn btn-default backButton'>Go back to Feedmation Home</a></center>
+			<br>
+</form>
+</div>
  
   <?php
 		
