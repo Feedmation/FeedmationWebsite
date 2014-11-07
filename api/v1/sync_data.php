@@ -21,9 +21,9 @@ if (!empty($_POST))
 	$feederid = empty($_POST['feederid']) ? '' : $_POST['feederid'];
 	$func = empty($_POST['function']) ? '' : $_POST['function'];
 	$tag_id = empty($_POST['tagid']) ? '' : $_POST['tagid'];
-	$amount = empty($_POST['amount']) ? '' : $_POST['amount'];
-	$eatenWeight = empty($_POST['eatenWeight']) ? '' : $_POST['eatenWeight'];
-	$time = empty($_POST['time']) ? '' : $_POST['time'];
+	$amount = empty($_POST['amount']) ? NULL : $_POST['amount'];
+	$eatenWeight = empty($_POST['eatenWeight']) ? NULL : $_POST['eatenWeight'];
+	$time = empty($_POST['time']) ? NULL : $_POST['time'];
 }
 
 //variable for the schema used in the database.
