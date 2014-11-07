@@ -22,6 +22,7 @@ if (!empty($_POST))
 	$func = empty($_POST['function']) ? '' : $_POST['function'];
 	$tag_id = empty($_POST['tagid']) ? '' : $_POST['tagid'];
 	$amount = empty($_POST['amount']) ? '' : $_POST['amount'];
+	$eatenWeight = empty($_POST['eatenWeight']) ? '' : $_POST['eatenWeight'];
 	$time = empty($_POST['time']) ? '' : $_POST['time'];
 }
 
@@ -72,7 +73,7 @@ if(!$stmt)
 
 				if($logPrep) {
 					
-					pg_execute($dbConn, "insertLog", array($tag_id, $feederid, $amount, NULL, NULL, NULL, $time));	
+					pg_execute($dbConn, "insertLog", array($tag_id, $feederid, $amount, NULL, $eatenWeight, NULL, $time));	
 				
 					header('Content-Type: application/json');
 					echo json_encode(array("logData" => "Submited"));
