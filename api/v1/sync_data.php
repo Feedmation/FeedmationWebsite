@@ -74,6 +74,7 @@ if(!$stmt)
 				if($logPrep) {
 					
 					pg_execute($dbConn, "insertLog", array($tag_id, $feederid, $amount, NULL, $eatenWeight, NULL, $time));	
+					
 				
 					header('Content-Type: application/json');
 					echo json_encode(array("logData" => "Submited"));
