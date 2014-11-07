@@ -14,12 +14,13 @@ include_once 'loginFunctions.php';
 
 <script>
 	
-	function loadStatsTable(tagId) {
+	function loadStatsTable(tagId, feederId) {
 		$.ajax({
 			url: 'assets/php_functions/phpFunctions.php',
 			type: "POST",
 			data: {	populateStatsTable: 'true',
-					statsTag : tagId},
+					statsTag : tagId,
+					feederId : feederId},
 			success: function(data) {
 				var error = 'error';
 				if(data.match(error)) {
@@ -36,14 +37,14 @@ include_once 'loginFunctions.php';
 	$(document).ready(function() {	
 		$("#buttonBar").hide();
 		$('.errorMessage').empty();
-		
+		var feederId = "<?php echo $_GET['feederId']; ?>";
 		var selectBox = document.getElementById("petSelect");
 		var tagId = selectBox.options[selectBox.selectedIndex].value;
-		loadStatsTable(tagId);
+		loadStatsTable(tagId, feederId);
 		
 		$('select').change(function() {
 			tagId = selectBox.options[selectBox.selectedIndex].value;
-			loadStatsTable(tagId);
+			loadStatsTable(tagId, feederId);
 		});
 		
 	});

@@ -326,13 +326,14 @@ if(session_id() == '') {
 		$dbconn = dbconnect();
 		
 		$tagId = $_POST['statsTag'];
+		$feederId = $_POST['feederId'];
 		
 		//select the stats for the current tagId
-		$selectStats = "SELECT * FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND user_email = $2";
+		$selectStats = "SELECT SUM(amtfedcups) AS amtfedcupssum, SUM(amtatecups) AS amtatecupsSum, SUM(amtateweight) AS amtateweightSum FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2";
 		$selectStatsPrep = pg_prepare($dbconn, "selectStats", $selectStats);
 		
 		if($selectStatsPrep) {
-			$selectStatsResult = pg_execute($dbconn, "selectStats", array($tagId, $_SESSION['user']));		
+			$selectStatsResult = pg_execute($dbconn, "selectStats", array($tagId, $feederId));		
 		} else {
 			echo "error";
 		}
@@ -345,10 +346,10 @@ if(session_id() == '') {
 				$row = pg_fetch_assoc($selectStatsResult);
 				echo "
 					<table class='table table-striped table-bordered table-hover'>
-						<tr><td>Cups of food dispensed</td><td>$row[amtfedcups]</td></tr>
-						<tr><td>Cups of food eaten</td><td>$row[amtatecups]</td></tr>
-						<tr><td>Pounds of food eaten</td><td>$row[amtateweight]</td></tr>
-						<tr><td>Pet weight (lbs.)</td><td>$row[petweight]</td></tr>
+						<tr><td>Cups of food dispensed</td><td>$row[amtfedcupssum]</td></tr>
+						<tr><td>Cups of food eaten</td><td>$row[amtatecupssum]</td></tr>
+						<tr><td>Pounds of food eaten</td><td>$row[amtateweightsum]</td></tr>
+					<!--	<tr><td>Pet weight (lbs.)</td><td>$row[petweight]</td></tr> -->
 					</table>
 					
 					";
