@@ -22,7 +22,9 @@ if (!empty($_POST))
 	$func = empty($_POST['function']) ? '' : $_POST['function'];
 	$tag_id = empty($_POST['tagid']) ? '' : $_POST['tagid'];
 	$amount = empty($_POST['amount']) ? NULL : $_POST['amount'];
+	$amount = ($amount \ 100.00); //convert to cups
 	$eatenWeight = empty($_POST['eatenWeight']) ? NULL : $_POST['eatenWeight'];
+	$eatenWeight = ($eatenWeight * .002205); // covert grams to lbs.
 	$time = empty($_POST['time']) ? NULL : $_POST['time'];
 }
 
