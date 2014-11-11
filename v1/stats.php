@@ -54,6 +54,10 @@ include_once 'loginFunctions.php';
 </head>
 
 <body>
+	<div class='well'>
+		<?php populateStatsPageHeader($_GET['feederId']); ?>
+	</div>
+	<br>
 	<label for='pet'>Select a pet:</label>
 	<select class="form-control" id='petSelect' name='pet'>
 		<?php populatePetsSelectBox(); ?>

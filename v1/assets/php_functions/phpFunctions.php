@@ -453,6 +453,44 @@ if(session_id() == '') {
 			</form>
 		";
 	}
+	
+	// called by stats.php
+	// this will display some basic feeder info on the stats page
+	function populateStatsPageHeader($feederId)
+	{		
+		$dbconn = dbconnect();
+		
+		$selectFeederStats = "SELECT * FROM $GLOBALS[schema].feeders WHERE user_email = $1 AND feeder_id = $2";
+		
+		$selectFeederStatsPrep = pg_prepare($dbconn, "feederStats", $selectFeederStats);
+		
+		if($selectFeederStatsPrep)
+		{
+			$feederStatsResult = pg_execute($dbconn, "feederStats", array($_SESSION['user'], $feederId));
+		} else {
+			echo "Could not select stats for your feeder. Please try again later";
+		}
+		
+		if($feederStatsResult) {
+			$row = pg_fetch_assoc($feederStatsResult);
+			$onlineStatus = $row['online_status'] ? "Online" : "Offline";
+			echo "<strong>Feeder Status:</strong> $onlineStatus ";
+			if($row['online_status']) {
+				echo "<span class='glyphicon glyphicon-ok green'></span><br>";
+			}
+			else {
+				echo "<span class='glyphicon glyphicon-remove red'></span><br>";
+			}
+			
+			if($row['empty']) {
+				echo "<strong>Feeder is out of food <span class='glyphicon glyphicon-exclamation-sign red'></span></strong>";
+			} else {
+				echo "<strong>Feeder has food <span class='glyphicon glyphicon-ok green'></span></strong>";
+			}			
+		} else {
+			echo "There are no stats for your feeder.";
+		}
+	}
 
 ?>
 
