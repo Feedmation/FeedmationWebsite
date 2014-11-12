@@ -48,7 +48,7 @@ include_once 'loginFunctions.php';
 					$(".errorMessage").hide().html("There was an error populating a chart for your pet. Try again later.").fadeIn('slow');
 				} else {
 					$(".errorMessage").empty();
-					var chartData = $.parseJSON(data);
+					var chartData = data;
 					var ctx = document.getElementById('petChart').getContext('2d');
 					var newChart = new Chart(ctx).Line(chartData);
 				}
