@@ -48,7 +48,9 @@ include_once 'loginFunctions.php';
 					$(".errorMessage").hide().html("There was an error populating a chart for your pet. Try again later.").fadeIn('slow');
 				} else {
 					$(".errorMessage").empty();
-					$("#petChart").html(data);
+					var chartData = $.parseJSON(data);
+					var ctx = document.getElementById('petChart').getContext('2d');
+					var newChart = new Chart(ctx).Line(chartData);
 				}
 			}
 		});
@@ -62,7 +64,6 @@ include_once 'loginFunctions.php';
 		var tagId = selectBox.options[selectBox.selectedIndex].value;
 		loadStatsTable(tagId, feederId);
 		loadPetWeightChart(tagId, feederId);
-		
 		$('select').change(function() {
 			tagId = selectBox.options[selectBox.selectedIndex].value;
 			loadStatsTable(tagId, feederId);

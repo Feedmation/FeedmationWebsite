@@ -517,8 +517,7 @@ if(session_id() == '') {
 					$event_time[] = new DateTime($row['event_time']);
 					$petweight[] = $row['petweight'];
 				};
-				$string = "<script>
-				var chartData = {
+				$string = "{
 					labels: [";
 					foreach ($event_time as $time) {
 						$string .= "'".$time->format('m/d/Y')."',";
@@ -540,11 +539,7 @@ if(session_id() == '') {
 							$string .= "]
 						}
 					]
-				};
-			
-				var ctx = document.getElementById('petChart').getContext('2d');
-				var newChart = new Chart(ctx).Line(chartData);
-				</script>";
+				}";
 				echo $string;
 			}
 		} else {
