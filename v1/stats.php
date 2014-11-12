@@ -34,6 +34,26 @@ include_once 'loginFunctions.php';
 		});
 	}
 	
+	function loadPetWeightChart(tagId, feederId) {
+		$.ajax({
+			url: 'assets/php_functions/phpFunctions.php',
+			type: "POST",
+			data: {	populatePetWeightChart: 'true',
+					statsTag : tagId,
+					feederId : feederId},
+			success: function(data) {
+				var error = 'error';
+				if(data.match(error)) {
+					window.scrollTo(0,0);
+					$(".errorMessage").hide().html("There was an error populating a chart for your pet. Try again later.").fadeIn('slow');
+				} else {
+					$(".errorMessage").empty();
+					$("#petChart").html(data);
+				}
+			}
+		});
+	}
+	
 	$(document).ready(function() {	
 		$("#buttonBar").hide();
 		$('.errorMessage').empty();
@@ -45,6 +65,7 @@ include_once 'loginFunctions.php';
 		$('select').change(function() {
 			tagId = selectBox.options[selectBox.selectedIndex].value;
 			loadStatsTable(tagId, feederId);
+			loadPetWeightChart(tagId, feederId)
 		});
 		
 	});
