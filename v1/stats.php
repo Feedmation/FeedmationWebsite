@@ -61,11 +61,12 @@ include_once 'loginFunctions.php';
 		var selectBox = document.getElementById("petSelect");
 		var tagId = selectBox.options[selectBox.selectedIndex].value;
 		loadStatsTable(tagId, feederId);
+		loadPetWeightChart(tagId, feederId);
 		
 		$('select').change(function() {
 			tagId = selectBox.options[selectBox.selectedIndex].value;
-			//loadStatsTable(tagId, feederId);
-			loadPetWeightChart(tagId, feederId)
+			loadStatsTable(tagId, feederId);
+			loadPetWeightChart(tagId, feederId);
 		});
 		
 	});
