@@ -51,7 +51,8 @@ include_once 'loginFunctions.php';
 					data = data.substring(data.indexOf("{"),data.lastIndexOf("}")+1);  // take out the JSON formatted string
 					var chartData = JSON.parse(data);  // make it an object for chart.js to use
 					var ctx = document.getElementById('petChart').getContext('2d');
-					var newChart = new Chart(ctx).Line(chartData);
+					var weightChart = new Chart(ctx).Line(chartData,{responsive: true});
+					weightChart.update();
 				}
 			}
 		});
