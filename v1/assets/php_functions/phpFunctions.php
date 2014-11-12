@@ -513,10 +513,11 @@ if(session_id() == '') {
 			if(pg_num_rows($selectPetWeightResult)==0) {
 				echo "<h4>Your pet doesn't have any stats yet!</h4><br>";
 			} else {
+				echo "Hey!";
 				//print out a chart with all the weight stats 
 				$row = pg_fetch_assoc($selectPetWeightResult);
 				$string = "<script>
-				var data = {
+				var chartData = {
 					labels: [";
 					foreach ($row['event_time'] as $event_time) {
 						$string .= "\'$event_time->format('m/d/Y')\',";
@@ -541,7 +542,7 @@ if(session_id() == '') {
 				};
 			
 				var ctx = document.getElementById('petChart').getContext('2d');
-				var newChart = new Chart(ctx).Line(data);
+				var newChart = new Chart(ctx).Line(chartData);
 				</script>";
 				echo $string;
 			}
