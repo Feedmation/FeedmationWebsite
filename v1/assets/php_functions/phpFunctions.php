@@ -327,36 +327,97 @@ if(session_id() == '') {
 		
 		$tagId = $_POST['statsTag'];
 		$feederId = $_POST['feederId'];
+		$sevenDaysAgo = date("Y-m-d H:i:s", strtotime('-7 days'));
+		$thirtyDaysAgo = date("Y-m-d H:i:s", strtotime('-30 days'));
+		$ninetyDaysAgo = date("Y-m-d H:i:s", strtotime('-90 days'));
 		
-		//select the stats for the current tagId
-		$selectStats = "SELECT SUM(amtfedcups) AS amtfedcupssum, SUM(amtatecups) AS amtatecupsSum, SUM(amtateweight) AS amtateweightSum FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2";
-		$selectStatsPrep = pg_prepare($dbconn, "selectStats", $selectStats);
+		//select and display the stats for the current tagId over the past 7 days
+		$selectStats7 = "SELECT SUM(amtfedcups) AS amtfedcupssum, SUM(amtatecups) AS amtatecupsSum, SUM(amtateweight) AS amtateweightSum FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2 AND event_time >= '$sevenDaysAgo'";
+		$selectStats7Prep = pg_prepare($dbconn, "selectStats7", $selectStats7);
 		
-		if($selectStatsPrep) {
-			$selectStatsResult = pg_execute($dbconn, "selectStats", array($tagId, $feederId));		
+		if($selectStats7Prep) {
+			$selectStats7Result = pg_execute($dbconn, "selectStats7", array($tagId, $feederId));		
 		} else {
 			echo "error";
 		}
 		
-		if($selectStatsResult) {
-			if(pg_num_rows($selectStatsResult)==0) {
-				echo "<h4>Your pet doesn't have any stats yet!</h4><br>";
+		if($selectStats7Result) {
+			$row7 = pg_fetch_assoc($selectStats7Result);
+			if($row7['amtfedcupssum'] == null && $row7['amtatecupssum'] == null && $row7['amtateweightsum'] == null) {
+				echo "<h4>Your pet doesn't have any stats in the past 7 days!</h4><br>";
 			} else {
-				//print out a table with all the stats 
-				$row = pg_fetch_assoc($selectStatsResult);
+				//print out a table with all the stats 				
 				echo "
 					<table class='table table-striped table-bordered table-hover'>
-						<tr><td>Cups of food dispensed</td><td>$row[amtfedcupssum]</td></tr>
-						<tr><td>Cups of food eaten</td><td>$row[amtatecupssum]</td></tr>
-						<tr><td>Pounds of food eaten</td><td>$row[amtateweightsum]</td></tr>
-					<!--	<tr><td>Pet weight (lbs.)</td><td></td></tr> -->
-					</table>
-					
+					<thead><strong>Last 7 Days</strong></thead>
+						<tr><td>Cups of food dispensed</td><td>$row7[amtfedcupssum]</td></tr>
+						<tr><td>Cups of food eaten</td><td>$row7[amtatecupssum]</td></tr>
+						<tr><td>Pounds of food eaten</td><td>$row7[amtateweightsum]</td></tr>
+					</table>					
 					";
 			}
 		} else {
 			echo "error";
-		}		
+		}
+		
+		//select and display the stats for the current tagId over the past 30 days
+		$selectStats30 = "SELECT SUM(amtfedcups) AS amtfedcupssum, SUM(amtatecups) AS amtatecupsSum, SUM(amtateweight) AS amtateweightSum FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2 AND event_time >= '$thirtyDaysAgo'";
+		$selectStats30Prep = pg_prepare($dbconn, "selectStats30", $selectStats30);
+		
+		if($selectStats30Prep) {
+			$selectStats30Result = pg_execute($dbconn, "selectStats30", array($tagId, $feederId));		
+		} else {
+			echo "error";
+		}
+		
+		if($selectStats30Result) {
+			$row30 = pg_fetch_assoc($selectStats30Result);
+			if($row30['amtfedcupssum'] == null && $row30['amtatecupssum'] == null && $row30['amtateweightsum'] == null) {
+				echo "<h4>Your pet doesn't have any stats in the past 30 days!</h4><br>";
+			} else {
+				//print out a table with all the stats 				
+				echo "
+					<table class='table table-striped table-bordered table-hover'>
+					<thead><strong>Last 30 Days</strong></thead>
+						<tr><td>Cups of food dispensed</td><td>$row30[amtfedcupssum]</td></tr>
+						<tr><td>Cups of food eaten</td><td>$row30[amtatecupssum]</td></tr>
+						<tr><td>Pounds of food eaten</td><td>$row30[amtateweightsum]</td></tr>
+					</table>					
+					";
+			}
+		} else {
+			echo "error";
+		}
+		
+		
+		//select and display the stats for the current tagId over the past 90 days
+		$selectStats90 = "SELECT SUM(amtfedcups) AS amtfedcupssum, SUM(amtatecups) AS amtatecupsSum, SUM(amtateweight) AS amtateweightSum FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2 AND event_time >= '$ninetyDaysAgo'";
+		$selectStats90Prep = pg_prepare($dbconn, "selectStats90", $selectStats90);
+		
+		if($selectStats90Prep) {
+			$selectStats90Result = pg_execute($dbconn, "selectStats90", array($tagId, $feederId));		
+		} else {
+			echo "error";
+		}
+		
+		if($selectStats90Result) {
+			$row90 = pg_fetch_assoc($selectStats90Result);
+			if($row90['amtfedcupssum'] == null && $row90['amtatecupssum'] == null && $row90['amtateweightsum'] == null) {
+				echo "<h4>Your pet doesn't have any stats in the past 90 days!</h4><br>";
+			} else {
+				//print out a table with all the stats 				
+				echo "
+					<table class='table table-striped table-bordered table-hover'>
+					<thead><strong>Last 90 Days</strong></thead>
+						<tr><td>Cups of food dispensed</td><td>$row90[amtfedcupssum]</td></tr>
+						<tr><td>Cups of food eaten</td><td>$row90[amtatecupssum]</td></tr>
+						<tr><td>Pounds of food eaten</td><td>$row90[amtateweightsum]</td></tr>
+					</table>					
+					";
+			}
+		} else {
+			echo "error";
+		}				
 	}
 	
 	//this will populate the edit form for editing a pet with the current settings for the selected pet
