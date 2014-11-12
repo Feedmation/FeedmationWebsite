@@ -52,7 +52,7 @@ include_once 'loginFunctions.php';
 					var chartData = JSON.parse(data);  // make it an object for chart.js to use
 					var ctx = document.getElementById('petChart').getContext('2d');
 					var weightChart = new Chart(ctx).Line(chartData,{responsive: true});
-					weightChart.update();
+					weightChart.update();  // for some reason the chart has to update once to avoid screwing up
 				}
 			}
 		});
