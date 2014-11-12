@@ -48,6 +48,7 @@ include_once 'loginFunctions.php';
 					$(".errorMessage").hide().html("There was an error populating a chart for your pet. Try again later.").fadeIn('slow');
 				} else {
 					$(".errorMessage").empty();
+					data = str.substring(str.indexOf("{"),str.lastIndexOf("}")+1);
 					console.log(data);
 					var chartData = JSON.parse(data);
 					console.log(chartData);
