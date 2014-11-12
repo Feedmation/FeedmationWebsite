@@ -521,7 +521,7 @@ if(session_id() == '') {
 				var chartData = {
 					labels: [";
 					foreach ($event_time as $time) {
-						$string .= "\'$time->format('m/d/Y')\',";
+						$string .= "'".$time->format('m/d/Y')."',";
 					}
 					$string .= "],
 					datasets: [
