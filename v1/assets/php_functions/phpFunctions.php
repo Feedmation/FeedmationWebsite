@@ -514,8 +514,7 @@ if(session_id() == '') {
 			} else {
 				//print out a chart with all the weight stats 
 				$row = pg_fetch_assoc($selectPetWeightResult);
-				foreach($row as $key=>$value)
-					echo "$key=>$value";
+				echo sizeof($row);
 				$string = "<script>
 				var chartData = {
 					labels: [";
