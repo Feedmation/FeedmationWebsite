@@ -473,16 +473,15 @@ if(session_id() == '') {
 		
 		if($feederStatsResult) {
 			$row = pg_fetch_assoc($feederStatsResult);
-			$onlineStatus = $row['online_status'] ? "Online" : "Offline";
-			echo "<strong>Feeder Status:</strong> $onlineStatus ";
-			if($row['online_status']) {
-				echo "<span class='glyphicon glyphicon-ok green'></span><br>";
-			}
-			else {
-				echo "<span class='glyphicon glyphicon-remove red'></span><br>";
+			$lastSynced = strtotime($row['last_synced']);		
+			$thirtyMinsAgo = strtotime('-30 minutes');
+			if($lastSynced >= $thirtyMinsAgo) {
+				echo "<strong>Feeder Status:</strong> Online <span class='glyphicon glyphicon-ok green'></span><br>";
+			} else {
+				echo "<strong>Feeder Status:</strong> Offline <span class='glyphicon glyphicon-exclamation-sign red'></span><br>";
 			}
 			
-			if($row['empty']) {
+			if($row['empty'] == "t") {
 				echo "<strong>Feeder is out of food <span class='glyphicon glyphicon-exclamation-sign red'></span></strong>";
 			} else {
 				echo "<strong>Feeder has food <span class='glyphicon glyphicon-ok green'></span></strong>";
