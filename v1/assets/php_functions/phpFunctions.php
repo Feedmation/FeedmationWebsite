@@ -500,7 +500,7 @@ if(session_id() == '') {
 		$feederId = $_POST['feederId'];
 		
 		//select the stats for the current tagId
-		$selectPetWeight = "SELECT petweight, event_time FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2 ORDER BY event_time ASC";
+		$selectPetWeight = "SELEC petweight, event_time FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2 ORDER BY event_time ASC";
 		$selectPetWeightPrep = pg_prepare($dbconn, "selectPetWeight", $selectStats);
 		
 		if($selectPetWeightPrep) {
