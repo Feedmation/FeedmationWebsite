@@ -329,7 +329,7 @@ if(session_id() == '') {
 		$feederId = $_POST['feederId'];
 		
 		//select the stats for the current tagId
-		$selectStats = "SELECT SUM(amtfedcups) AS amtfedcupssum, SUM(amtatecups) AS amtatecupsSum, SUM(amtateweight) AS amtateweightSum FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2";
+		$selectStats = "SELECT SUM(amtfedcups) AS amtfedcupssum, SUM(amtatecups) AS amtatecupsSum, SUM(amtateweight) AS amtateweightSum, petweight FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2";
 		$selectStatsPrep = pg_prepare($dbconn, "selectStats", $selectStats);
 		
 		if($selectStatsPrep) {
@@ -513,7 +513,6 @@ if(session_id() == '') {
 			if(pg_num_rows($selectPetWeightResult)==0) {
 				echo "<h4>Your pet doesn't have any stats yet!</h4><br>";
 			} else {
-				echo "Hey!";
 				//print out a chart with all the weight stats 
 				$row = pg_fetch_assoc($selectPetWeightResult);
 				$string = "<script>
