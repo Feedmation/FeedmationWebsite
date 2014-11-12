@@ -492,6 +492,63 @@ if(session_id() == '') {
 		}
 	}
 
+	// this will populate a chart for pet weight
+	if(isset($_POST['populatePetWeightChart']) && !empty($_POST['populatePetWeightChart'])) {
+		$dbconn = dbconnect();
+		
+		$tagId = $_POST['statsTag'];
+		$feederId = $_POST['feederId'];
+		
+		//select the stats for the current tagId
+		$selectPetWeight = "SELECT petweight, event_time FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2 ORDER BY event_time ASC";
+		$selectPetWeightPrep = pg_prepare($dbconn, "selectPetWeight", $selectStats);
+		
+		if($selectPetWeightPrep) {
+			$selectPetWeightResult = pg_execute($dbconn, "selectPetWeight", array($tagId, $feederId));		
+		} else {
+			echo "error";
+		}
+		
+		if($selectPetWeightResult) {
+			if(pg_num_rows($selectPetWeightResult)==0) {
+				echo "<h4>Your pet doesn't have any stats yet!</h4><br>";
+			} else {
+				//print out a chart with all the weight stats 
+				$row = pg_fetch_assoc($selectPetWeightResult);
+				$string = "<script>
+				var data = {
+					labels: [";
+					foreach ($row['event_time'] as $event_time) {
+						$string .= "\'$event_time->format('m/d/Y')\',";
+					}
+					$string .= "],
+					datasets: [
+						{
+							label: 'Pet Weight',
+							fillColor: 'rgba(220,220,220,0.2)',
+							strokeColor: 'rgba(220,220,220,1)',
+							pointColor: 'rgba(220,220,220,1)',
+							pointStrokeColor: '#fff',
+							pointHighlightFill: '#fff',
+							pointHighlightStroke: 'rgba(220,220,220,1)',
+							data: [";
+							foreach ($row['petweight'] as $weight)
+								$string .= "'$weight',";
+							//rtrim($string,',');
+							$string .= "]
+						}
+					]
+				};
+			
+				var ctx = document.getElementById('petChart').getContext('2d');
+				var newChart = new Chart(ctx).Line(data);
+				</script>";
+				echo $string;
+			}
+		} else {
+			echo "error";
+		}		
+	}
 ?>
 
 

@@ -63,7 +63,9 @@ include_once 'loginFunctions.php';
 		<?php populatePetsSelectBox(); ?>
 	</select>
 	<br>
-	<div id='statsTable'> </div> 
+	<div id='statsTable'> </div>
+	<!-- Canvas on which the pet chart will be drawn -->
+	<canvas id="petChart"></canvas>	
 	<center><a href="home.php" data-inline='true' class='btn btn-default backButton'>Go back to Feedmation Home</a></center>
 </body>
 </html>
