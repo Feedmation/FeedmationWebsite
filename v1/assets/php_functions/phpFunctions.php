@@ -513,13 +513,15 @@ if(session_id() == '') {
 				echo "<h4>Your pet doesn't have any stats yet!</h4><br>";
 			} else {
 				//print out a chart with all the weight stats 
-				$row = pg_fetch_assoc($selectPetWeightResult);
-				echo sizeof($row);
+				while($row = pg_fetch_assoc($selectPetWeightResult)){
+					$event_time[] = new DateTime($row['event_time']);
+					$petweight[] = $row['petweight'];
+				};
 				$string = "<script>
 				var chartData = {
 					labels: [";
-					foreach ($row['event_time'] as $event_time) {
-						$string .= "\'$event_time->format('m/d/Y')\',";
+					foreach ($event_time as $time) {
+						$string .= "\'$time->format('m/d/Y')\',";
 					}
 					$string .= "],
 					datasets: [
@@ -532,7 +534,7 @@ if(session_id() == '') {
 							pointHighlightFill: '#fff',
 							pointHighlightStroke: 'rgba(220,220,220,1)',
 							data: [";
-							foreach ($row['petweight'] as $weight)
+							foreach ($petweight as $weight)
 								$string .= "'$weight',";
 							//rtrim($string,',');
 							$string .= "]
