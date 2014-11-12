@@ -48,10 +48,8 @@ include_once 'loginFunctions.php';
 					$(".errorMessage").hide().html("There was an error populating a chart for your pet. Try again later.").fadeIn('slow');
 				} else {
 					$(".errorMessage").empty();
-					data = data.substring(data.indexOf("{"),data.lastIndexOf("}")+1);
-					console.log(data);
-					var chartData = JSON.parse(data);
-					console.log(chartData);
+					data = data.substring(data.indexOf("{"),data.lastIndexOf("}")+1);  // take out the JSON formatted string
+					var chartData = JSON.parse(data);  // make it an object for chart.js to use
 					var ctx = document.getElementById('petChart').getContext('2d');
 					var newChart = new Chart(ctx).Line(chartData);
 				}
