@@ -512,10 +512,10 @@ if(session_id() == '') {
 			if(pg_num_rows($selectPetWeightResult)==0) {
 				echo "<h4>Your pet doesn't have any stats yet!</h4><br>";
 			} else {
-				foreach($row as $key=>$value)
-					echo "$key=>$value";
 				//print out a chart with all the weight stats 
 				$row = pg_fetch_assoc($selectPetWeightResult);
+				foreach($row as $key=>$value)
+					echo "$key=>$value";
 				$string = "<script>
 				var chartData = {
 					labels: [";
