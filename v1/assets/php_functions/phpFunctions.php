@@ -518,24 +518,23 @@ if(session_id() == '') {
 					$petweight[] = $row['petweight'];
 				};
 				$string = "{
-					labels: [";
+					\"labels\": [";
 					foreach ($event_time as $time) {
-						$string .= "'".$time->format('m/d/Y')."',";
+						$string .= "\"".$time->format('m/d/Y')."\",";
 					}
 					$string .= "],
-					datasets: [
+					\"datasets\": [
 						{
-							label: 'Pet Weight',
-							fillColor: 'rgba(220,220,220,0.2)',
-							strokeColor: 'rgba(220,220,220,1)',
-							pointColor: 'rgba(220,220,220,1)',
-							pointStrokeColor: '#fff',
-							pointHighlightFill: '#fff',
-							pointHighlightStroke: 'rgba(220,220,220,1)',
-							data: [";
+							\"label\": \"Pet Weight\",
+							\"fillColor\": \"rgba(220,220,220,0.2)\",
+							\"strokeColor\": \"rgba(220,220,220,1)\",
+							\"pointColor\": \"rgba(220,220,220,1)\",
+							\"pointStrokeColor\": \"#fff\",
+							\"pointHighlightFill\": \"#fff\",
+							\"pointHighlightStroke\": \"rgba(220,220,220,1)\",
+							\"data\": [";
 							foreach ($petweight as $weight)
-								$string .= "'$weight',";
-							//rtrim($string,',');
+								$string .= "\"$weight\",";
 							$string .= "]
 						}
 					]
