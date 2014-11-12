@@ -64,7 +64,7 @@ include_once 'loginFunctions.php';
 		
 		$('select').change(function() {
 			tagId = selectBox.options[selectBox.selectedIndex].value;
-			loadStatsTable(tagId, feederId);
+			//loadStatsTable(tagId, feederId);
 			loadPetWeightChart(tagId, feederId)
 		});
 		
