@@ -519,9 +519,9 @@ if(session_id() == '') {
 				};
 				$string = "{
 					\"labels\": [";
-					foreach ($event_time as $time) {
+					foreach ($event_time as $time)
 						$string .= "\"".$time->format('m/d/Y')."\",";
-					}
+					rtrim($string, ",");  // get rid of the last ","
 					$string .= "],
 					\"datasets\": [
 						{
@@ -535,6 +535,7 @@ if(session_id() == '') {
 							\"data\": [";
 							foreach ($petweight as $weight)
 								$string .= "\"$weight\",";
+							rtrim($string, ",");  // get rid of the last ","
 							$string .= "]
 						}
 					]
