@@ -20,6 +20,10 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/dropdown.min.js"></script>
 
 <link rel="stylesheet" href="assets/css/style.css">
+
+<!-- Chart.js -->
+<script src="assets/Chart.js-master/Chart.min.js"></script>
+
 <?php
 include_once 'assets/php_functions/phpFunctions.php';
 date_default_timezone_set('America/Chicago');
