@@ -3,7 +3,7 @@ if(session_id() == '') {
     session_start();
 }
 	$sitePath = dirname(dirname(__FILE__));
-	//include_once("../../loginFunctions.php");
+	include_once("../../loginFunctions.php");
 	
 	//function for populating the list of feeders on home.php
 	function populateFeeders() {
