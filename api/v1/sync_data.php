@@ -22,9 +22,11 @@ if (!empty($_POST))
 	$func = empty($_POST['function']) ? '' : $_POST['function'];
 	$tag_id = empty($_POST['tagid']) ? '' : $_POST['tagid'];
 	$amount = empty($_POST['amount']) ? NULL : $_POST['amount'];
-	$amount = ($amount / 100.00); //convert to cups
+	//convert amount to cups
+	$amount = ($amount / 100.00);
 	$eatenWeight = empty($_POST['eatenWeight']) ? NULL : $_POST['eatenWeight'];
-	$eatenWeight = ($eatenWeight * .002205); // covert grams to lbs.
+	//convert eatenWeight grams to lbs.
+	$eatenWeight = ($eatenWeight * .002205);
 	$time = empty($_POST['time']) ? NULL : $_POST['time'];
 }
 
@@ -67,6 +69,36 @@ if(!$stmt)
 			//data loging function
 			case 'log_data':
 				
+				//first we need to calculate cost
+				
+				//Start query to get feeder food cost data
+				$foodCostQuery = "SELECT * FROM $GLOBALS[schema].feeders WHERE feeder_id = $1";
+				$stmt = pg_prepare($dbConn,"foodcost",$foodCostQuery);
+				
+				$foodCostData;
+				$bagWeight;
+				$bagCost;
+				$costPerPound = NULL;
+				$costEaten = NULL; ; 
+				//if statement will prepare then execute statment
+				if($stmt) 
+				{
+			
+					$foodCostResults =  pg_execute($dbConn,"foodcost",array($feederid));
+					if(pg_num_rows($foodCostResults) == 1) {
+					
+							$foodCostData = pg_fetch_assoc($foodCostResults);
+							$bagWeight = $foodCostData['food_bag_weight'];
+							$bagCost = $foodCostData['food_bag_cost'];
+					}
+					pg_free_result($foodCostResults);
+					
+					$costPerPound = $bagCost / $bagWeight;
+					$costEaten =  $costPerPound * $eatenWeight;
+					
+				}
+	
+				
 				//Start insert
 				
 				$logInsert = "INSERT INTO $GLOBALS[schema].stats (tag_id, feeder_id, amtfedcups, amtatecups, amtateweight, petweight, event_time, feeding_cost, amtfedweight) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)";
@@ -75,7 +107,7 @@ if(!$stmt)
 
 				if($logPrep) {
 					
-					pg_execute($dbConn, "insertLog", array($tag_id, $feederid, $amount, NULL, $eatenWeight, NULL, $time, NULL, NULL));	
+					pg_execute($dbConn, "insertLog", array($tag_id, $feederid, $amount, NULL, $eatenWeight, NULL, $time, $costEaten, NULL));	
 					
 				
 					header('Content-Type: application/json');
