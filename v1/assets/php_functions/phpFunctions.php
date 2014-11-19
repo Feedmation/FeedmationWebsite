@@ -581,7 +581,7 @@ if(session_id() == '') {
 				$string = "{
 					\"labels\": [";
 					foreach ($event_time as $time)
-						$string .= "\"".$time->format('m/d/Y')."\",";
+						$string .= "\"".$time->format('m/d')."\",";
 					$string = rtrim($string, ",");  // get rid of the last ","
 					$string .= "],
 					\"datasets\": [
