@@ -560,7 +560,7 @@ if(session_id() == '') {
 		$feederId = $_POST['feederId'];
 		
 		//select the stats for the current tagId
-		$selectStats = "SELECT SUM(amtateweight), AVG(petweight), event_time FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2 GROUP BY event_time ORDER BY event_time ASC";
+		$selectStats = "SELECT SUM(amtateweight) AS amtateweight, AVG(petweight) AS petweight, event_time FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2 GROUP BY event_time ORDER BY event_time ASC";
 		$selectStatsPrep = pg_prepare($dbconn, "selectStats", $selectStats);
 		if($selectStatsPrep) {
 			$selectStatsResult = pg_execute($dbconn, "selectStats", array($tagId, $feederId));		
