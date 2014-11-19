@@ -51,7 +51,7 @@ include_once 'loginFunctions.php';
 					data = data.substring(data.indexOf("{"),data.lastIndexOf("}")+1);  // take out the JSON formatted string
 					var chartData = JSON.parse(data);  // make it an object for chart.js to use
 					var ctx = document.getElementById('statsChart').getContext('2d');
-					var statsChart = new Chart(ctx).Line(chartData,{responsive: true, scaleBeginAtZero: true});
+					var statsChart = new Chart(ctx).Line(chartData,{responsive: true, scaleBeginAtZero: true, legendTemplate : "<left><ul style=\"border:solid\" class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].lineColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul></left>"});
 					$('#chartLegend').html(statsChart.generateLegend());  // generate a legend for the chart
 					//statsChart.update();  // for some reason the chart has to update once to avoid screwing up
 					
@@ -91,9 +91,11 @@ include_once 'loginFunctions.php';
 	</select>
 	<br>
 	<div id='statsTable'> </div>
+	
+	<!-- Legend for Chart -->
+	<div id="chartLegend"></div>
 	<!-- Canvas on which the pet chart will be drawn -->
 	<canvas id="statsChart"></canvas>
-	<span id="chartLegend"></span>
 	<center><a href="home.php" data-inline='true' class='btn btn-default backButton'>Go back to Feedmation Home</a></center>
 </body>
 </html>
