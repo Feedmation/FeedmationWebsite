@@ -52,7 +52,7 @@ include_once 'loginFunctions.php';
 					var chartData = JSON.parse(data);  // make it an object for chart.js to use
 					var ctx = document.getElementById('statsChart').getContext('2d');
 					var statsChart = new Chart(ctx).Line(chartData,{responsive: true, scaleBeginAtZero: true});
-					$('#statsChart').append(statsChart.generateLegend());  // generate a legend for the chart
+					$('#chartLegend').html(statsChart.generateLegend());  // generate a legend for the chart
 					//statsChart.update();  // for some reason the chart has to update once to avoid screwing up
 					
 				}
@@ -92,7 +92,8 @@ include_once 'loginFunctions.php';
 	<br>
 	<div id='statsTable'> </div>
 	<!-- Canvas on which the pet chart will be drawn -->
-	<canvas id="statsChart"></canvas>	
+	<canvas id="statsChart"></canvas>
+	<span id="chartLegend"></span>
 	<center><a href="home.php" data-inline='true' class='btn btn-default backButton'>Go back to Feedmation Home</a></center>
 </body>
 </html>
