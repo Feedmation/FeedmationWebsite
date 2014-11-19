@@ -52,7 +52,7 @@ include_once 'loginFunctions.php';
 					var chartData = JSON.parse(data);  // make it an object for chart.js to use
 					var ctx = document.getElementById('statsChart').getContext('2d');
 					var statsChart = new Chart(ctx).Line(chartData,{responsive: true, scaleBeginAtZero: true});
-					statsChart.generateLegend();  // generate a legend for the chart
+					$('#statsChart').append(statsChart.generateLegend());  // generate a legend for the chart
 					//statsChart.update();  // for some reason the chart has to update once to avoid screwing up
 					
 				}
