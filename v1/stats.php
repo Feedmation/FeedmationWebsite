@@ -34,11 +34,11 @@ include_once 'loginFunctions.php';
 		});
 	}
 	
-	function loadPetWeightChart(tagId, feederId) {
+	function loadStatsChart(tagId, feederId) {
 		$.ajax({
 			url: 'assets/php_functions/phpFunctions.php',
 			type: "POST",
-			data: {	populatePetWeightChart: 'true',
+			data: {	populateStatsChart: 'true',
 					statsTag : tagId,
 					feederId : feederId},
 			success: function(data) {
@@ -50,8 +50,8 @@ include_once 'loginFunctions.php';
 					$(".errorMessage").empty();
 					data = data.substring(data.indexOf("{"),data.lastIndexOf("}")+1);  // take out the JSON formatted string
 					var chartData = JSON.parse(data);  // make it an object for chart.js to use
-					var ctx = document.getElementById('petChart').getContext('2d');
-					var weightChart = new Chart(ctx).Line(chartData,{responsive: true});
+					var ctx = document.getElementById('statsChart').getContext('2d');
+					var statsChart = new Chart(ctx).Line(chartData,{responsive: true, scaleBeginAtZero: true});
 					weightChart.update();  // for some reason the chart has to update once to avoid screwing up
 				}
 			}
@@ -65,11 +65,11 @@ include_once 'loginFunctions.php';
 		var selectBox = document.getElementById("petSelect");
 		var tagId = selectBox.options[selectBox.selectedIndex].value;
 		loadStatsTable(tagId, feederId);
-		loadPetWeightChart(tagId, feederId);
+		loadStatsChart(tagId, feederId);
 		$('select').change(function() {
 			tagId = selectBox.options[selectBox.selectedIndex].value;
 			loadStatsTable(tagId, feederId);
-			loadPetWeightChart(tagId, feederId);
+			loadStatsChart(tagId, feederId);
 		});
 		
 	});
@@ -90,7 +90,7 @@ include_once 'loginFunctions.php';
 	<br>
 	<div id='statsTable'> </div>
 	<!-- Canvas on which the pet chart will be drawn -->
-	<canvas id="petChart"></canvas>	
+	<canvas id="statsChart"></canvas>	
 	<center><a href="home.php" data-inline='true' class='btn btn-default backButton'>Go back to Feedmation Home</a></center>
 </body>
 </html>

@@ -553,29 +553,30 @@ if(session_id() == '') {
 	}
 
 	// this will populate a chart for pet weight
-	if(isset($_POST['populatePetWeightChart']) && !empty($_POST['populatePetWeightChart'])) {
+	if(isset($_POST['populateStatsChart']) && !empty($_POST['populateStatsChart'])) {
 		$dbconn = dbconnect();
 		
 		$tagId = $_POST['statsTag'];
 		$feederId = $_POST['feederId'];
 		
 		//select the stats for the current tagId
-		$selectPetWeight = "SELECT petweight, event_time FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2 ORDER BY event_time ASC";
-		$selectPetWeightPrep = pg_prepare($dbconn, "selectPetWeight", $selectPetWeight);
-		if($selectPetWeightPrep) {
-			$selectPetWeightResult = pg_execute($dbconn, "selectPetWeight", array($tagId, $feederId));		
+		$selectStats = "SELECT amtateweight, petweight, event_time FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2 ORDER BY event_time ASC";
+		$selectStatsPrep = pg_prepare($dbconn, "selectStats", $selectStats);
+		if($selectStatsPrep) {
+			$selectStatsResult = pg_execute($dbconn, "selectStats", array($tagId, $feederId));		
 		} else {
 			echo "error";
 		}
 		
-		if($selectPetWeightResult) {
-			if(pg_num_rows($selectPetWeightResult)==0) {
-				echo "<h4>Your pet doesn't have any stats yet!</h4><br>";
+		if($selectStatsResult) {
+			if(pg_num_rows($selectStatsResult)==0) {
+				echo "<h4>Your pet doesn't have any food or weight stats yet!</h4><br>";
 			} else {
 				//print out a chart with all the weight stats 
-				while($row = pg_fetch_assoc($selectPetWeightResult)){
+				while($row = pg_fetch_assoc($selectStatsResult)){
 					$event_time[] = new DateTime($row['event_time']);
 					$petweight[] = $row['petweight'];
+					$amtateweight[] = $row['amtateweight'];
 				};
 				$string = "{
 					\"labels\": [";
@@ -587,13 +588,27 @@ if(session_id() == '') {
 						{
 							\"label\": \"Pet Weight\",
 							\"fillColor\": \"rgba(202,225,255,0.2)\",
-							\"strokeColor\": \"rgba(220,220,220,1)\",
-							\"pointColor\": \"rgba(220,220,220,1)\",
+							\"strokeColor\": \"rgba(202,225,255,1)\",
+							\"pointColor\": \"rgba(202,225,255,1)\",
 							\"pointStrokeColor\": \"#fff\",
 							\"pointHighlightFill\": \"#fff\",
 							\"pointHighlightStroke\": \"rgba(220,220,220,1)\",
 							\"data\": [";
 							foreach ($petweight as $weight)
+								$string .= "\"$weight\",";
+							$string = rtrim($string, ",");  // get rid of the last ","
+							$string .= "]
+						},
+						{
+							\"label\": \"Food Eaten\",
+							\"fillColor\": \"rgba(255,165,79,0.2)\",
+							\"strokeColor\": \"rgba(255,165,79,1)\",
+							\"pointColor\": \"rgba(255,165,79,1)\",
+							\"pointStrokeColor\": \"#fff\",
+							\"pointHighlightFill\": \"#fff\",
+							\"pointHighlightStroke\": \"rgba(220,220,220,1)\",
+							\"data\": [";
+							foreach ($amtateweight as $weight)
 								$string .= "\"$weight\",";
 							$string = rtrim($string, ",");  // get rid of the last ","
 							$string .= "]
