@@ -51,7 +51,7 @@ include_once 'loginFunctions.php';
 					data = data.substring(data.indexOf("{"),data.lastIndexOf("}")+1);  // take out the JSON formatted string
 					var chartData = JSON.parse(data);  // make it an object for chart.js to use
 					var ctx = document.getElementById('statsChart').getContext('2d');
-					var statsChart = new Chart(ctx).Line(chartData,{responsive: true, scaleBeginAtZero: true, legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend pull-left\"><% for (var i=0; i<datasets.length; i++){%><li><div style=\"float:left !important; height:15px !important;width:15px !important;background-color:<%=datasets[i].fillColor%>\"></div><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"});
+					var statsChart = new Chart(ctx).Line(chartData,{responsive: true, scaleBeginAtZero: true, legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend pull-left list-group\"><% for (var i=0; i<datasets.length; i++){%><li class=\"list-group-item\"><div style=\"float:left !important; height:15px !important;width:15px !important;background-color:<%=datasets[i].pointColor%>\"></div><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"});
 					$('#chartLegend').html(statsChart.generateLegend());  // generate a legend for the chart
 					//statsChart.update();  // for some reason the chart has to update once to avoid screwing up
 					
