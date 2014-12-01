@@ -22,7 +22,7 @@ if(session_id() == '') {
 		
 		if($feedersResult) {
 			if(pg_num_rows($feedersResult)==0) {
-				echo "You haven't registered any feeders.\n Add one using the button below.";
+				echo "You haven't registered any feeders.\n Add one using the menu option above";
 				return;
 			}
 			$feeders = '';

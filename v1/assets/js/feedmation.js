@@ -109,7 +109,6 @@ function deleteFeeder() {
 			url: 'assets/form_processing/fetchFeeders.php',
 			type: "GET",
 			success: function(data) {
-				$('#feedNow').hide();
 				$("#feeders").html(data);
 				$('.btn').addClass('focus');
 				$('.delete').show();
@@ -128,7 +127,6 @@ function feedNow() {
       url: 'feedNow.php',
       type: "GET",
       success: function(data) {
-		$('#feedNow').hide();
 		$("#feeders").html(data);
       }
 	});	
