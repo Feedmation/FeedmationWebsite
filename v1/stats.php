@@ -96,6 +96,7 @@ include_once 'loginFunctions.php';
 	<div id="chartLegend"></div>
 	<!-- Canvas on which the pet chart will be drawn -->
 	<canvas id="statsChart"></canvas>
+	<br><br>
 	<center><a href="home.php" data-inline='true' class='btn btn-default backButton'>Go back to Feedmation Home</a></center>
 </body>
 </html>

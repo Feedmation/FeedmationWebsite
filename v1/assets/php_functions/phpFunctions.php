@@ -331,8 +331,43 @@ if(session_id() == '') {
 		$thirtyDaysAgo = date("Y-m-d H:i:s", strtotime('-7 days'));
 		$ninetyDaysAgo = date("Y-m-d H:i:s", strtotime('-30 days'));
 		
+		//select and display the stats for the current tagId over the past 24 hours
+		$selectStats24 = "SELECT SUM(amtfedcups) AS amtfedcupssum, COUNT(*) AS feedAttempts, SUM(amtateweight) AS amtateweightSum, SUM(feeding_cost) as feedingCost FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2 AND event_time >= '$sevenDaysAgo'";
+		$selectStats24Prep = pg_prepare($dbconn, "selectStats24", $selectStats24);
+		
+		if($selectStats24Prep) {
+			$selectStats24Result = pg_execute($dbconn, "selectStats24", array($tagId, $feederId));		
+		} else {
+			echo "error";
+		}
+		
+		if($selectStats24Result) {
+			$row24 = pg_fetch_assoc($selectStats24Result);
+			if($row24['amtfedcupssum'] == null && $row24['amtatecupssum'] == null && $row24['amtateweightsum'] == null) {
+				echo "<h4>Your pet doesn't have any stats in the past 24 hours</h4><br>";
+			} else {
+				//print out a table with all the stats 				
+				echo "
+				<div class='largeText well'>
+					<table class='table table-bordered table-hover'>
+						<thead><strong>Today's Stats</strong></thead>
+						<tr><th class='text-center'>Feed attempts</th><th class='text-center'>Cups of food eaten</th></tr>
+						<tr><td class='text-center'>$row24[feedattempts]</td><td class='text-center'>$row24[amtfedcupssum]</td></tr>
+					</table>
+					<br />
+					<table class='table table-bordered table-hover'>
+						<tr><th class='text-center'>Pounds of food eaten</th><th class='text-center'>Cost of food eaten</th></tr>
+						<tr><td class='text-center'>$row24[amtateweightsum]</td><td class='text-center'>$$row24[feedingcost]</td></tr>
+					</table>		
+				</div>			
+					";
+			}
+		} else {
+			echo "error";
+		}
+		
 		//select and display the stats for the current tagId over the past 7 days
-		$selectStats7 = "SELECT SUM(amtfedcups) AS amtfedcupssum, SUM(amtatecups) AS amtatecupsSum, SUM(amtateweight) AS amtateweightSum FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2 AND event_time >= '$sevenDaysAgo'";
+		$selectStats7 = "SELECT SUM(amtfedcups) AS amtfedcupssum, COUNT(*) AS feedAttempts, SUM(amtateweight) AS amtateweightSum, SUM(feeding_cost) as feedingCost FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2 AND event_time >= '$thirtyDaysAgo'";
 		$selectStats7Prep = pg_prepare($dbconn, "selectStats7", $selectStats7);
 		
 		if($selectStats7Prep) {
@@ -344,15 +379,16 @@ if(session_id() == '') {
 		if($selectStats7Result) {
 			$row7 = pg_fetch_assoc($selectStats7Result);
 			if($row7['amtfedcupssum'] == null && $row7['amtatecupssum'] == null && $row7['amtateweightsum'] == null) {
-				echo "<h4>Your pet doesn't have any stats in the past 24 hours</h4><br>";
+				echo "<h4>Your pet doesn't have any stats in the past 7 days</h4><br>";
 			} else {
 				//print out a table with all the stats 				
 				echo "
 					<table class='table table-striped table-bordered table-hover'>
-					<thead><strong>Today's Stats</strong></thead>
-						<tr><td>Cups of food dispensed</td><td>$row7[amtfedcupssum]</td></tr>
-						<tr><td>Cups of food eaten</td><td>$row7[amtatecupssum]</td></tr>
+					<thead><strong>Last 7 Days</strong></thead>
+						<tr><td>Feed attempts</td><td>$row7[feedattempts]</td></tr>
+						<tr><td>Cups of food eaten</td><td>$row7[amtfedcupssum]</td></tr>
 						<tr><td>Pounds of food eaten</td><td>$row7[amtateweightsum]</td></tr>
+						<tr><td>Cost of food eaten</td><td>$$row7[feedingcost]</td></tr>
 					</table>					
 					";
 			}
@@ -360,8 +396,9 @@ if(session_id() == '') {
 			echo "error";
 		}
 		
+		
 		//select and display the stats for the current tagId over the past 30 days
-		$selectStats30 = "SELECT SUM(amtfedcups) AS amtfedcupssum, SUM(amtatecups) AS amtatecupsSum, SUM(amtateweight) AS amtateweightSum FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2 AND event_time >= '$thirtyDaysAgo'";
+		$selectStats30 = "SELECT SUM(amtfedcups) AS amtfedcupssum, COUNT(*) AS feedAttempts, SUM(amtateweight) AS amtateweightSum, SUM(feeding_cost) as feedingCost FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2 AND event_time >= '$ninetyDaysAgo'";
 		$selectStats30Prep = pg_prepare($dbconn, "selectStats30", $selectStats30);
 		
 		if($selectStats30Prep) {
@@ -373,45 +410,16 @@ if(session_id() == '') {
 		if($selectStats30Result) {
 			$row30 = pg_fetch_assoc($selectStats30Result);
 			if($row30['amtfedcupssum'] == null && $row30['amtatecupssum'] == null && $row30['amtateweightsum'] == null) {
-				echo "<h4>Your pet doesn't have any stats in the past 7 days</h4><br>";
-			} else {
-				//print out a table with all the stats 				
-				echo "
-					<table class='table table-striped table-bordered table-hover'>
-					<thead><strong>Last 7 Days</strong></thead>
-						<tr><td>Cups of food dispensed</td><td>$row30[amtfedcupssum]</td></tr>
-						<tr><td>Cups of food eaten</td><td>$row30[amtatecupssum]</td></tr>
-						<tr><td>Pounds of food eaten</td><td>$row30[amtateweightsum]</td></tr>
-					</table>					
-					";
-			}
-		} else {
-			echo "error";
-		}
-		
-		
-		//select and display the stats for the current tagId over the past 90 days
-		$selectStats90 = "SELECT SUM(amtfedcups) AS amtfedcupssum, SUM(amtatecups) AS amtatecupsSum, SUM(amtateweight) AS amtateweightSum FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2 AND event_time >= '$ninetyDaysAgo'";
-		$selectStats90Prep = pg_prepare($dbconn, "selectStats90", $selectStats90);
-		
-		if($selectStats90Prep) {
-			$selectStats90Result = pg_execute($dbconn, "selectStats90", array($tagId, $feederId));		
-		} else {
-			echo "error";
-		}
-		
-		if($selectStats90Result) {
-			$row90 = pg_fetch_assoc($selectStats90Result);
-			if($row90['amtfedcupssum'] == null && $row90['amtatecupssum'] == null && $row90['amtateweightsum'] == null) {
 				echo "<h4>Your pet doesn't have any stats in the past 30 days</h4><br>";
 			} else {
 				//print out a table with all the stats 				
 				echo "
 					<table class='table table-striped table-bordered table-hover'>
 					<thead><strong>Last 30 Days</strong></thead>
-						<tr><td>Cups of food dispensed</td><td>$row90[amtfedcupssum]</td></tr>
-						<tr><td>Cups of food eaten</td><td>$row90[amtatecupssum]</td></tr>
-						<tr><td>Pounds of food eaten</td><td>$row90[amtateweightsum]</td></tr>
+						<tr><td>Feed attempts</td><td>$row30[feedattempts]</td></tr>
+						<tr><td>Cups of food eaten</td><td>$row30[amtfedcupssum]</td></tr>
+						<tr><td>Pounds of food eaten</td><td>$row30[amtateweightsum]</td></tr>
+						<tr><td>Cost of food eaten</td><td>$$row30[feedingcost]</td></tr>
 					</table>					
 					";
 			}

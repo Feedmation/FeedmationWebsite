@@ -148,6 +148,14 @@ body.loading .loadingModal {
 .red {
 	color: red;
 }
+
+.largeText {
+	font-size: 16pt;
+}
+
+.largeText td {
+	width: 50%;
+}
 			
 </style>
 
