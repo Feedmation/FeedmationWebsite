@@ -327,9 +327,9 @@ if(session_id() == '') {
 		
 		$tagId = $_POST['statsTag'];
 		$feederId = $_POST['feederId'];
-		$sevenDaysAgo = date("Y-m-d H:i:s", strtotime('-7 days'));
-		$thirtyDaysAgo = date("Y-m-d H:i:s", strtotime('-30 days'));
-		$ninetyDaysAgo = date("Y-m-d H:i:s", strtotime('-90 days'));
+		$sevenDaysAgo = date("Y-m-d H:i:s", strtotime('-1 days'));
+		$thirtyDaysAgo = date("Y-m-d H:i:s", strtotime('-7 days'));
+		$ninetyDaysAgo = date("Y-m-d H:i:s", strtotime('-30 days'));
 		
 		//select and display the stats for the current tagId over the past 7 days
 		$selectStats7 = "SELECT SUM(amtfedcups) AS amtfedcupssum, SUM(amtatecups) AS amtatecupsSum, SUM(amtateweight) AS amtateweightSum FROM $GLOBALS[schema].stats WHERE tag_id = $1 AND feeder_id = $2 AND event_time >= '$sevenDaysAgo'";
@@ -344,12 +344,12 @@ if(session_id() == '') {
 		if($selectStats7Result) {
 			$row7 = pg_fetch_assoc($selectStats7Result);
 			if($row7['amtfedcupssum'] == null && $row7['amtatecupssum'] == null && $row7['amtateweightsum'] == null) {
-				echo "<h4>Your pet doesn't have any stats in the past 7 days!</h4><br>";
+				echo "<h4>Your pet doesn't have any stats in the past 24 hours</h4><br>";
 			} else {
 				//print out a table with all the stats 				
 				echo "
 					<table class='table table-striped table-bordered table-hover'>
-					<thead><strong>Last 7 Days</strong></thead>
+					<thead><strong>Today's Stats</strong></thead>
 						<tr><td>Cups of food dispensed</td><td>$row7[amtfedcupssum]</td></tr>
 						<tr><td>Cups of food eaten</td><td>$row7[amtatecupssum]</td></tr>
 						<tr><td>Pounds of food eaten</td><td>$row7[amtateweightsum]</td></tr>
@@ -373,12 +373,12 @@ if(session_id() == '') {
 		if($selectStats30Result) {
 			$row30 = pg_fetch_assoc($selectStats30Result);
 			if($row30['amtfedcupssum'] == null && $row30['amtatecupssum'] == null && $row30['amtateweightsum'] == null) {
-				echo "<h4>Your pet doesn't have any stats in the past 30 days!</h4><br>";
+				echo "<h4>Your pet doesn't have any stats in the past 7 days</h4><br>";
 			} else {
 				//print out a table with all the stats 				
 				echo "
 					<table class='table table-striped table-bordered table-hover'>
-					<thead><strong>Last 30 Days</strong></thead>
+					<thead><strong>Last 7 Days</strong></thead>
 						<tr><td>Cups of food dispensed</td><td>$row30[amtfedcupssum]</td></tr>
 						<tr><td>Cups of food eaten</td><td>$row30[amtatecupssum]</td></tr>
 						<tr><td>Pounds of food eaten</td><td>$row30[amtateweightsum]</td></tr>
@@ -403,12 +403,12 @@ if(session_id() == '') {
 		if($selectStats90Result) {
 			$row90 = pg_fetch_assoc($selectStats90Result);
 			if($row90['amtfedcupssum'] == null && $row90['amtatecupssum'] == null && $row90['amtateweightsum'] == null) {
-				echo "<h4>Your pet doesn't have any stats in the past 90 days!</h4><br>";
+				echo "<h4>Your pet doesn't have any stats in the past 30 days</h4><br>";
 			} else {
 				//print out a table with all the stats 				
 				echo "
 					<table class='table table-striped table-bordered table-hover'>
-					<thead><strong>Last 90 Days</strong></thead>
+					<thead><strong>Last 30 Days</strong></thead>
 						<tr><td>Cups of food dispensed</td><td>$row90[amtfedcupssum]</td></tr>
 						<tr><td>Cups of food eaten</td><td>$row90[amtatecupssum]</td></tr>
 						<tr><td>Pounds of food eaten</td><td>$row90[amtateweightsum]</td></tr>
