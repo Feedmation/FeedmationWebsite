@@ -28,6 +28,7 @@ if (!empty($_POST))
 	//convert eatenWeight grams to lbs.
 	$eatenWeight = ($eatenWeight * .002205);
 	$time = empty($_POST['time']) ? NULL : $_POST['time'];
+	$petWeight = empty($_POST['petWeight']) ? NULL : $_POST['petWeight'];
 }
 
 //variable for the schema used in the database.
@@ -107,7 +108,7 @@ if(!$stmt)
 
 				if($logPrep) {
 					
-					pg_execute($dbConn, "insertLog", array($tag_id, $feederid, $amount, NULL, $eatenWeight, NULL, $time, $costEaten, NULL));	
+					pg_execute($dbConn, "insertLog", array($tag_id, $feederid, $amount, NULL, $eatenWeight, $petWeight, $time, $costEaten, NULL));	
 					
 				
 					header('Content-Type: application/json');
