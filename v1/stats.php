@@ -36,6 +36,7 @@ include_once 'loginFunctions.php';
 	
 	function loadStatsChart(tagId, feederId) {
 		if (typeof statsChart !== 'undefined'){
+			console.log("heh");
 			statsChart.removeData();
 		}
 		$.ajax({
