@@ -35,6 +35,9 @@ include_once 'loginFunctions.php';
 	}
 	
 	function loadStatsChart(tagId, feederId) {
+		if (statsChart){
+			statsChart.removeData();
+		}
 		$.ajax({
 			url: 'assets/php_functions/phpFunctions.php',
 			type: "POST",
