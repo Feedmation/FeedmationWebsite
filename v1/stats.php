@@ -36,7 +36,6 @@ include_once 'loginFunctions.php';
 	
 	function loadStatsChart(tagId, feederId) {
 		if (typeof statsChart !== 'undefined'){
-			console.log(statsChart);
 			statsChart.removeData();
 		}
 		$.ajax({
@@ -54,7 +53,7 @@ include_once 'loginFunctions.php';
 					$(".errorMessage").empty();
 					data = data.substring(data.indexOf("{"),data.lastIndexOf("}")+1);  // take out the JSON formatted string
 					var chartData = JSON.parse(data);  // make it an object for chart.js to use
-					var ctx = document.getElementById('statsChart').getContext('2d');
+					var ctx = document.getElementById('statsChartCanvas').getContext('2d');
 					var statsChart = new Chart(ctx).Line(chartData,{responsive: true, maintainAspectRatio: true, legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend pull-left list-group\"><% for (var i=0; i<datasets.length; i++){%><li class=\"list-group-item\"><div style=\"float:left !important; margin-right:5px !important; height:15px !important;width:15px !important;background-color:<%=datasets[i].pointColor%>\"></div><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"});
 					$('#chartLegend').html(statsChart.generateLegend());  // generate a legend for the chart
 					statsChart.update();  // for some reason the chart has to update once to avoid screwing up
@@ -99,7 +98,7 @@ include_once 'loginFunctions.php';
 	<!-- Legend for Chart -->
 	<div id="chartLegend"></div>
 	<!-- Canvas on which the pet chart will be drawn -->
-	<canvas id="statsChart"></canvas>
+	<canvas id="statsChartCanvas"></canvas>
 	<br><br>
 	<center><a href="home.php" data-inline='true' class='btn btn-default backButton'>Go back to Feedmation Home</a></center>
 </body>
