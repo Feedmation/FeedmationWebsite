@@ -35,7 +35,7 @@ include_once 'loginFunctions.php';
 	}
 	
 	function loadStatsChart(tagId, feederId) {
-		if (typeof statsChart != "undefined"){
+		if (typeof statsChart !== 'undefined'){
 			statsChart.removeData();
 		}
 		$.ajax({
