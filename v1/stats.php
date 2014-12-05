@@ -53,7 +53,7 @@ include_once 'loginFunctions.php';
 					var ctx = document.getElementById('statsChart').getContext('2d');
 					var statsChart = new Chart(ctx).Line(chartData,{responsive: true, maintainAspectRatio: true, legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend pull-left list-group\"><% for (var i=0; i<datasets.length; i++){%><li class=\"list-group-item\"><div style=\"float:left !important; margin-right:5px !important; height:15px !important;width:15px !important;background-color:<%=datasets[i].pointColor%>\"></div><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"});
 					$('#chartLegend').html(statsChart.generateLegend());  // generate a legend for the chart
-					//statsChart.update();  // for some reason the chart has to update once to avoid screwing up
+					statsChart.update();  // for some reason the chart has to update once to avoid screwing up
 					
 				}
 			}
