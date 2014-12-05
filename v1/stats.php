@@ -35,11 +35,6 @@ include_once 'loginFunctions.php';
 	}
 	
 	function loadStatsChart(tagId, feederId) {
-		console.log(typeof statsChart);
-		if (typeof statsChart !== 'undefined'){
-			statsChart.removeData();
-			console.log("data removed");
-		}
 		$.ajax({
 			url: 'assets/php_functions/phpFunctions.php',
 			type: "POST",
@@ -47,6 +42,11 @@ include_once 'loginFunctions.php';
 					statsTag : tagId,
 					feederId : feederId},
 			success: function(data) {
+				console.log(typeof statsChart);
+				if (typeof statsChart !== 'undefined'){
+					statsChart.removeData();
+					console.log("data removed");
+				}
 				var error = 'error';
 				if(data.match(error)) {
 					window.scrollTo(0,0);
