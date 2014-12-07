@@ -26,9 +26,9 @@ if (!empty($_POST))
 	$amount = ($amount / 100.00);
 	$eatenWeight = empty($_POST['eatenWeight']) ? NULL : $_POST['eatenWeight'];
 	//convert eatenWeight grams to lbs.
-	$eatenWeight = ($eatenWeight * .002205);
+	$eatenWeight = round(($eatenWeight * .002205),2);
 	$time = empty($_POST['time']) ? NULL : $_POST['time'];
-	$petWeight = empty($_POST['petWeight']) ? NULL : $_POST['petWeight'];
+	$petWeight = round(empty($_POST['petWeight']) ? NULL : $_POST['petWeight'],2);
 }
 
 //variable for the schema used in the database.
