@@ -108,7 +108,7 @@ if(!$stmt)
 
 				if($logPrep) {
 					
-					pg_execute($dbConn, "insertLog", array($tag_id, $feederid, $amount, NULL, $eatenWeight, $petWeight, $time, $costEaten, NULL));	
+					pg_execute($dbConn, "insertLog", array($tag_id, $feederid, $amount, NULL, $eatenWeight, $petWeight, $time, round($costEaten,2), NULL));	
 					
 				
 					header('Content-Type: application/json');
