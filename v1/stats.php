@@ -52,7 +52,8 @@ include_once 'loginFunctions.php';
 					$(".errorMessage").empty();
 					data = data.substring(data.indexOf("{"),data.lastIndexOf("}")+1);  // take out the JSON formatted string
 					console.log(data);
-					if (data == "<h4>Your pet doesn't have any food or weight stats yet!</h4><br>"){
+					if (data == "{<h4>Your pet doesn't have any food or weight stats yet!</h4><br>}"){
+						data = data.substring(data.indexOf("{")+1,data.lastIndexOf("}"));
 						$('#chartLegend').html("");
 						$('#statsChartCanvas').html(data);
 					} else{
