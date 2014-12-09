@@ -578,7 +578,7 @@ if(session_id() == '') {
 		
 		if($selectStatsResult) {
 			if(pg_num_rows($selectStatsResult)==0) {
-				echo "<h4>Your pet doesn't have any food or weight stats yet!</h4><br>";
+				echo "{<h4>Your pet doesn't have any food or weight stats yet!</h4><br>}";
 			} else {
 				//print out a chart with all the weight stats 
 				while($row = pg_fetch_assoc($selectStatsResult)){

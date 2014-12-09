@@ -44,24 +44,24 @@ include_once 'loginFunctions.php';
 			success: function(data) {
 				//$('#chartLegend').html("");
 				//$('#statsChartCanvas').html(""); // empty the chart canvas
-				console.log(data);
 				var error = 'error';
 				if(data.match(error)) {
 					window.scrollTo(0,0);
 					$(".errorMessage").hide().html("There was an error populating a chart for your pet. Try again later.").fadeIn('slow');
-				} else if (data == "<h4>Your pet doesn't have any food or weight stats yet!</h4><br>"){
-					$('#chartLegend').html("");
-					$('#statsChartCanvas').html(data);
-				}
-				else{
+				} else{
 					$(".errorMessage").empty();
 					data = data.substring(data.indexOf("{"),data.lastIndexOf("}")+1);  // take out the JSON formatted string
-					var chartData = JSON.parse(data);  // make it an object for chart.js to use
-					var ctx = document.getElementById('statsChartCanvas').getContext('2d');
-					var statsChart = new Chart(ctx).Line(chartData,{responsive: true, maintainAspectRatio: true, legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend pull-left list-group\"><% for (var i=0; i<datasets.length; i++){%><li class=\"list-group-item\"><div style=\"float:left !important; margin-right:5px !important; height:15px !important;width:15px !important;background-color:<%=datasets[i].pointColor%>\"></div><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"});
-					$('#chartLegend').html(statsChart.generateLegend());  // generate a legend for the chart
+					console.log(data);
+					if (data == "<h4>Your pet doesn't have any food or weight stats yet!</h4><br>"){
+						$('#chartLegend').html("");
+						$('#statsChartCanvas').html(data);
+					} else{
+						var chartData = JSON.parse(data);  // make it an object for chart.js to use
+						var ctx = document.getElementById('statsChartCanvas').getContext('2d');
+						var statsChart = new Chart(ctx).Line(chartData,{responsive: true, maintainAspectRatio: true, legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend pull-left list-group\"><% for (var i=0; i<datasets.length; i++){%><li class=\"list-group-item\"><div style=\"float:left !important; margin-right:5px !important; height:15px !important;width:15px !important;background-color:<%=datasets[i].pointColor%>\"></div><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"});
+						$('#chartLegend').html(statsChart.generateLegend());  // generate a legend for the chart
 					//statsChart.update();  // for some reason the chart has to update once to avoid screwing 
-					
+					}
 				}
 			}
 		});
