@@ -299,7 +299,7 @@ if(!$stmt)
 						$fName = "Info Feedmation";
 						$femail = "info@feedmation.com";
 						$subject = "Feedmation Alert: Empty Feeder";
-						$message = "Hey, $feederName feeder is out of food.\n\n\n- Feedmation Alerts";
+						$message = "Hey, $feederName is out of food.\n\n\n- Feedmation Alerts";
 
 						$headers = "From: \"".$fName."\" <".$femail.">\n"; 
 						$headers .= "Return-Path: <".$femail.">\n"; 
