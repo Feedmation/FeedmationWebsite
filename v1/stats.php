@@ -44,6 +44,7 @@ include_once 'loginFunctions.php';
 			success: function(data) {
 				//$('#chartLegend').html("");
 				//$('#statsChartCanvas').html(""); // empty the chart canvas
+				console.log(data);
 				var error = 'error';
 				if(data.match(error)) {
 					window.scrollTo(0,0);
