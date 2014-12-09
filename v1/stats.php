@@ -35,7 +35,9 @@ include_once 'loginFunctions.php';
 	}
 	
 	function loadStatsChart(tagId, feederId) {
-		console.log(statsChart);
+		if (typeof(statsChart) != "undefined"){
+			console.log(statsChart);
+		}
 		$.ajax({
 			url: 'assets/php_functions/phpFunctions.php',
 			type: "POST",
