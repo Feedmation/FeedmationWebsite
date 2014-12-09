@@ -42,7 +42,8 @@ include_once 'loginFunctions.php';
 					statsTag : tagId,
 					feederId : feederId},
 			success: function(data) {
-				$('#statsChartCanvas').html(""); // empty the chart canvas
+				//$('#chartLegend').html("");
+				//$('#statsChartCanvas').html(""); // empty the chart canvas
 				var error = 'error';
 				if(data.match(error)) {
 					window.scrollTo(0,0);
