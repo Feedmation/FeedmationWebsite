@@ -35,6 +35,7 @@ include_once 'loginFunctions.php';
 	}
 	
 	function loadStatsChart(tagId, feederId) {
+		console.log(statsChart);
 		$.ajax({
 			url: 'assets/php_functions/phpFunctions.php',
 			type: "POST",
@@ -51,7 +52,7 @@ include_once 'loginFunctions.php';
 				} else{
 					$(".errorMessage").empty();
 					data = data.substring(data.indexOf("{"),data.lastIndexOf("}")+1);  // take out the JSON formatted string
-					console.log(data);
+					//console.log(data);
 					if (data == "{<h4>Your pet doesn't have any food or weight stats yet!</h4><br>}"){
 						data = data.substring(data.indexOf("{")+1,data.lastIndexOf("}"));
 						$('#chartLegend').html("");
