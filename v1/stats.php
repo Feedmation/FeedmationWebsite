@@ -48,7 +48,11 @@ include_once 'loginFunctions.php';
 				if(data.match(error)) {
 					window.scrollTo(0,0);
 					$(".errorMessage").hide().html("There was an error populating a chart for your pet. Try again later.").fadeIn('slow');
-				} else {
+				} else if (data == "<h4>Your pet doesn't have any food or weight stats yet!</h4><br>"){
+					$('#chartLegend').html("");
+					$('#statsChartCanvas').html(data);
+				}
+				else{
 					$(".errorMessage").empty();
 					data = data.substring(data.indexOf("{"),data.lastIndexOf("}")+1);  // take out the JSON formatted string
 					var chartData = JSON.parse(data);  // make it an object for chart.js to use
